@@ -980,6 +980,14 @@
 
 <div class="sheet-scrim" id="sheetScrim"></div>
 <div class="pick-scrim" id="pickScrim"></div>
+<div class="picksheet" id="expAsk" role="dialog" aria-label="Скачать конспект">
+  <h3 id="expT">Download</h3>
+  <div class="sheet-btns">
+    <button class="s-clear" id="expSingle">One sheet</button>
+    <button class="s-save" id="expPages">Equal cards</button>
+  </div>
+</div>
+
 <div class="picksheet" id="profSheet" role="dialog" aria-label="Редактирование профиля">
   <h3 id="profSheetT">Edit profile</h3>
   <div class="fld"><input id="profNameInput" type="text" autocomplete="off" maxlength="40" placeholder="Your name"></div>
@@ -989,7 +997,7 @@
 <div class="picksheet" id="repAsk" role="dialog">
   <button class="add-close" id="repAskClose" aria-label="Закрыть"><span class="ic ic-plus x"></span></button>
   <h3 id="repAskTitle">Add to spaced repetition?</h3>
-  <div class="s-date" id="repAskSub" style="text-align:center;margin-bottom:1.6rem"></div>
+  <div class="s-date" id="repAskSub" style="text-align:center;margin-bottom:1.6rem;white-space:pre-line"></div>
   <div class="sheet-btns">
     <button class="s-clear" id="repNo">Not now</button>
     <button class="s-save" id="repYes">Yes, repeat</button>
@@ -1298,7 +1306,7 @@
     fav_empty:'No favorites yet — tap the heart on a book you loved',
     pages_w:'pages',link_fb:'Link',of_w:'of',per_row_cal:'Months per row',search:'Search',
     review:'Review',rep_ask:'Add to spaced repetition?',
-    rep_sub:'Ebbinghaus method: review after 1 · 3 · 7 · 14 · 30 · 60 days',
+    rep_sub:'Ebbinghaus method:\nreview after 1 · 3 · 7 · 14 · 30 · 60 days',
     rep_yes:'Yes, repeat',rep_no:'Not now',
     rep_due:'Review today',rep_wait:'Coming up',
     rep_in:'in {d} d.',rep_round:'round {n} of 6',rep_finished:'All 6 rounds done — tap to start again',
@@ -1308,7 +1316,7 @@
     add_article:'+ Add article',art_new:'New article',art_badge:'article',
     ph_art_title:'Article title',ph_art_body:'Article text…',
     ph_art_tech:'Key points, terms, tech notes…',ph_art_url:'https:// (link — optional)',
-    art_pic:'Add a picture',art_text:'Article',art_tech:'Key points',articles:'Articles',profile:'Profile',edit_profile:'Edit profile',ph_name:'Your name',greet:'Hello, {name}!',storage_t:'App data',storage_line:'{used} of {quota} used \u00b7 {free} free',storage_warn:'Storage is getting full — save a backup and clear something old',art_edit:'Edit article',art_del:'Delete this article',art_del_ask:'Delete this article?',art_empty:'No articles yet — tap the plus above',ph_link_name2:'Link name: source, video…',ph_search:'Search books…',not_found:'Nothing found',
+    art_pic:'Add a picture',art_text:'Article',art_tech:'Key points',articles:'Articles',profile:'Profile',edit_profile:'Edit profile',exp_t:'Download the notes',exp_single:'One sheet',exp_pages:'Equal cards',ph_name:'Your name',greet:'Hello, {name}!',storage_t:'App data',storage_line:'{used} of {quota} used \u00b7 {free} free',storage_warn:'Storage is getting full — save a backup and clear something old',art_edit:'Edit article',art_del:'Delete this article',art_del_ask:'Delete this article?',art_empty:'No articles yet — tap the plus above',ph_link_name2:'Link name: source, video…',ph_search:'Search books…',not_found:'Nothing found',
     cheer_start:'The year starts with the very first page — go!',
     cheer_done:'Goal complete — {n} of {goal}. You are unstoppable!',
     cheer_half:'More than halfway there — just {left} to go!',
@@ -1343,7 +1351,7 @@
     fav_empty:'Пока пусто — нажмите на сердечко у любимой книги',
     pages_w:'стр.',link_fb:'Ссылка',of_w:'из',per_row_cal:'Месяцев в ряду',search:'Поиск',
     review:'Повторение',rep_ask:'Добавить в повторение?',
-    rep_sub:'Метод Эббингауза: повтор через 1 · 3 · 7 · 14 · 30 · 60 дней',
+    rep_sub:'Метод Эббингауза:\nповтор через 1 · 3 · 7 · 14 · 30 · 60 дней',
     rep_yes:'Да, повторять',rep_no:'Не сейчас',
     rep_due:'Повторяем сегодня',rep_wait:'Ждут своего часа',
     rep_in:'через {d} дн.',rep_round:'круг {n} из 6',rep_finished:'Все 6 кругов пройдены — нажмите, чтобы начать заново',
@@ -1353,7 +1361,7 @@
     add_article:'+ Добавить статью',art_new:'Новая статья',art_badge:'статья',
     ph_art_title:'Название статьи',ph_art_body:'Текст статьи…',
     ph_art_tech:'Важное: термины, тезисы, технические детали…',ph_art_url:'https:// (ссылка — по желанию)',
-    art_pic:'Добавить картинку',art_text:'Статья',art_tech:'Важное',articles:'Статьи',profile:'Профиль',edit_profile:'Редактировать профиль',ph_name:'Ваше имя',greet:'Добрый день, {name}',storage_t:'Объём данных',storage_line:'Занято {used} из {quota} \u00b7 свободно {free}',storage_warn:'Память почти заполнена — сохраните бэкап и удалите что-то старое',art_edit:'Редактировать статью',art_del:'Удалить статью',art_del_ask:'Удалить статью?',art_empty:'Пока нет статей — нажмите на плюс сверху',ph_link_name2:'Название ссылки: источник, видео…',ph_search:'Поиск книг…',not_found:'Ничего не нашлось',
+    art_pic:'Добавить картинку',art_text:'Статья',art_tech:'Важное',articles:'Статьи',profile:'Профиль',edit_profile:'Редактировать профиль',exp_t:'Скачать конспект',exp_single:'Одним листом',exp_pages:'Карточками',ph_name:'Ваше имя',greet:'Добрый день, {name}',storage_t:'Объём данных',storage_line:'Занято {used} из {quota} \u00b7 свободно {free}',storage_warn:'Память почти заполнена — сохраните бэкап и удалите что-то старое',art_edit:'Редактировать статью',art_del:'Удалить статью',art_del_ask:'Удалить статью?',art_empty:'Пока нет статей — нажмите на плюс сверху',ph_link_name2:'Название ссылки: источник, видео…',ph_search:'Поиск книг…',not_found:'Ничего не нашлось',
     cheer_start:'Год начинается с первой страницы — вперёд!',
     cheer_done:'Цель выполнена — {n} из {goal}. Вы неудержимы!',
     cheer_half:'Больше половины — осталось всего {left}!',
@@ -1387,7 +1395,7 @@
     fav_empty:'Aún no hay favoritos — toca el corazón de un libro que ames',
     pages_w:'págs.',link_fb:'Enlace',of_w:'de',per_row_cal:'Meses por fila',search:'Buscar',
     review:'Repaso',rep_ask:'¿Añadir a repaso espaciado?',
-    rep_sub:'Método Ebbinghaus: repasa tras 1 · 3 · 7 · 14 · 30 · 60 días',
+    rep_sub:'Método Ebbinghaus:\nrepasa tras 1 · 3 · 7 · 14 · 30 · 60 días',
     rep_yes:'Sí, repasar',rep_no:'Ahora no',
     rep_due:'Repaso de hoy',rep_wait:'Esperan su turno',
     rep_in:'en {d} d.',rep_round:'ronda {n} de 6',rep_finished:'6 rondas hechas — toca para empezar de nuevo',
@@ -1397,7 +1405,7 @@
     add_article:'+ Añadir artículo',art_new:'Nuevo artículo',art_badge:'artículo',
     ph_art_title:'Título del artículo',ph_art_body:'Texto del artículo…',
     ph_art_tech:'Puntos clave, términos, notas técnicas…',ph_art_url:'https:// (enlace — opcional)',
-    art_pic:'Añadir imagen',art_text:'Artículo',art_tech:'Puntos clave',articles:'Artículos',profile:'Perfil',edit_profile:'Editar perfil',ph_name:'Tu nombre',greet:'¡Hola, {name}!',storage_t:'Datos de la app',storage_line:'{used} de {quota} usado \u00b7 {free} libre',storage_warn:'La memoria casi está llena — guarda una copia y borra algo viejo',art_edit:'Editar artículo',art_del:'Eliminar este artículo',art_del_ask:'¿Eliminar este artículo?',art_empty:'Aún no hay artículos — toca el más',ph_link_name2:'Nombre del enlace: fuente, vídeo…',ph_search:'Buscar libros…',not_found:'No se encontró nada',
+    art_pic:'Añadir imagen',art_text:'Artículo',art_tech:'Puntos clave',articles:'Artículos',profile:'Perfil',edit_profile:'Editar perfil',exp_t:'Descargar apuntes',exp_single:'Una hoja',exp_pages:'Tarjetas iguales',ph_name:'Tu nombre',greet:'¡Hola, {name}!',storage_t:'Datos de la app',storage_line:'{used} de {quota} usado \u00b7 {free} libre',storage_warn:'La memoria casi está llena — guarda una copia y borra algo viejo',art_edit:'Editar artículo',art_del:'Eliminar este artículo',art_del_ask:'¿Eliminar este artículo?',art_empty:'Aún no hay artículos — toca el más',ph_link_name2:'Nombre del enlace: fuente, vídeo…',ph_search:'Buscar libros…',not_found:'No se encontró nada',
     cheer_start:'El año empieza con la primera página — ¡vamos!',
     cheer_done:'¡Meta cumplida — {n} de {goal}!',
     cheer_half:'¡Más de la mitad — solo quedan {left}!',
@@ -2377,7 +2385,7 @@
     pickSheet.classList.add('open');pickScrim.classList.add('open');
   }
   function closePick(){pickSheet.classList.remove('open');pickScrim.classList.remove('open')}
-  pickScrim.addEventListener('click',()=>{closePick();closeRowSheet();closeWishAsk();closeDelAsk();closeSearch();closeRepAsk();closeProfSheet()});
+  pickScrim.addEventListener('click',()=>{closePick();closeRowSheet();closeWishAsk();closeDelAsk();closeSearch();closeRepAsk();closeProfSheet();closeExpAsk()});
   const pyi=document.getElementById('pickYearInput');
   const applyYear=()=>{const y=parseInt(pyi.value,10);
     if(y>=1900&&y<=nowY+1){selY=y;yVal.textContent=y;closePick()}};
@@ -2771,7 +2779,7 @@
     });
     return pos;
   }
-  async function exportCard(bk){
+  async function exportCard(bk,paged){
     await (document.fonts&&document.fonts.ready);
     const W=1654, M=130, INW=W-2*M, ACC='#47B0E9', SOFT='#8a8a8e', TXT='#1d1d1f';
     const F=(sz,it,wt)=> (it?'italic ':'')+(wt||500)+' '+sz+'px "Montserrat Alternates"';
@@ -2784,9 +2792,9 @@
     const mediaImgs=[];
     for(const m of (bk.media||[])){try{mediaImgs.push({img:await loadImg(m.src),shape:m.shape})}catch(e){}}
 
-    function layout(draw){
+    function layout(draw,safe){
       let y=150;
-      // обложка
+      const mark=()=>{if(safe)safe.push(y)};
       const cw=430, ch=645;
       if(coverImg){
         if(draw){ctx.save();rr(ctx,(W-cw)/2,y,cw,ch,14);ctx.clip();
@@ -2794,23 +2802,20 @@
           ctx.drawImage(coverImg,(W-cw)/2-(coverImg.width*k-cw)/2,y-(coverImg.height*k-ch)/2,coverImg.width*k,coverImg.height*k);
           if(spineImg){ctx.globalAlpha=.9;ctx.drawImage(spineImg,(W-cw)/2,y,cw,ch);ctx.globalAlpha=1}
           ctx.restore();}
-        y+=ch+70;
+        y+=ch+96; mark();
       }
-      // название и автор
       ctx.font=F(66); ctx.textAlign='center'; ctx.fillStyle=TXT;
-      wrapText(ctx,bk.title||'',INW).forEach(l=>{if(draw)ctx.fillText(l,W/2,y);y+=82}); y+=6;
+      wrapText(ctx,bk.title||'',INW).forEach(l=>{if(draw)ctx.fillText(l,W/2,y);y+=86}); y+=18; mark();
       if(bk.author){ctx.font=F(44,true);ctx.fillStyle=SOFT;
-        if(draw)ctx.fillText(bk.author,W/2,y); y+=68}
-      // жанр и теги — одной строкой (с переносом)
+        if(draw)ctx.fillText(bk.author,W/2,y); y+=84; mark()}
       const rowItems=[];
       if(bk.genre)rowItems.push({txt:bk.genre,chip:false});
-      (bk.tags||[]).forEach(t=>rowItems.push({txt:'#'+t,chip:true}));
+      (bk.tags||[]).forEach(tg=>rowItems.push({txt:'#'+tg,chip:true}));
       if(rowItems.length){
         y+=10;
         const pad=26, gap=18, hh=62;
         const meas=it=>{ctx.font=it.chip?F(34,true):F(38);
           return ctx.measureText(it.txt).width+(it.chip?pad*2:0)};
-        // раскладываю по строкам
         const lines=[]; let cur=[],curW=0;
         rowItems.forEach(it=>{
           const w=meas(it);
@@ -2830,17 +2835,17 @@
             }
             x+=it.w+gap;
           });
-          y+=hh+14;
+          y+=hh+18;
         });
+        mark();
       }
-      // серые плашки — до ответов на вопросы
       const pills=[];
       if(bk.format)pills.push(I18N[LANG].fmt[bk.format]);
       if(bk.year!=null)pills.push((bk.month!=null?MONTH_FULL[bk.month]+' ':'')+bk.year);
       if(bk.rating)pills.push(bk.rating+' / 10');
       if(bk.pages)pills.push(bk.pages+' '+t('pages_w'));
       if(pills.length){
-        y+=26; ctx.font=F(34); ctx.textAlign='center';
+        y+=44; ctx.font=F(34); ctx.textAlign='center';
         const pad=34, gap2=20, hh=76;
         const widths=pills.map(p=>ctx.measureText(p).width+pad*2);
         let x=(W-(widths.reduce((a,b)=>a+b,0)+gap2*(pills.length-1)))/2;
@@ -2851,25 +2856,23 @@
             ctx.fillStyle=SOFT;ctx.fillText(p,x+widths[i]/2,y)}
           x+=widths[i]+gap2;
         });
-        y+=hh+30;
+        y+=hh+44; mark();
       }
-      // ссылки
       if(bk.links&&bk.links.length){
-        y+=34; ctx.textAlign='left';
+        y+=20; ctx.textAlign='left';
         bk.links.forEach(l=>{
           ctx.font=F(36); ctx.fillStyle=ACC;
           if(draw)ctx.fillText(l.label||t('link_fb'),M,y); y+=46;
           ctx.font=F(30); ctx.fillStyle=SOFT;
           wrapText(ctx,l.url,INW).forEach(ln=>{if(draw)ctx.fillText(ln,M,y);y+=40});
-          y+=18;
+          y+=22; mark();
         });
       }
-      // заметки
       if(bk.notes&&bk.notes.length){
-        y+=48; ctx.textAlign='left';
+        y+=60; ctx.textAlign='left';
         bk.notes.forEach(n=>{
           ctx.font=F(36,true); ctx.fillStyle=SOFT;
-          wrapText(ctx,n.q,INW).forEach(l=>{if(draw)ctx.fillText(l,M,y);y+=48}); y+=8;
+          wrapText(ctx,n.q,INW).forEach(l=>{if(draw)ctx.fillText(l,M,y);y+=50}); y+=12;
           ctx.fillStyle=TXT;
           String(n.a).split('\n').forEach(par=>{
             const words=[];
@@ -2881,21 +2884,20 @@
             const flush=()=>{
               if(draw){let x=M;line.forEach(o=>{ctx.font=F(40,o.i,o.b?700:400);
                 ctx.fillText(o.w,x,y);x+=o._w+sp})}
-              y+=58; line=[]; lw=0;
+              y+=58; mark(); line=[]; lw=0;
             };
             words.forEach(o=>{
               o._w=fw(o);
               if(lw&&lw+sp+o._w>INW)flush();
               line.push(o); lw+=(lw?sp:0)+o._w;
             });
-            if(line.length)flush(); else y+=58;
+            if(line.length)flush(); else {y+=58; mark();}
           });
-          y+=44;
+          y+=58; mark();
         });
       }
-      // медиа-мозаика
       if(mediaImgs.length){
-        y+=30;
+        y+=56; mark();
         const cols=4, gap=16, unit=(INW-gap*(cols-1))/cols;
         const pos=packMedia(mediaImgs,cols);
         let maxR=0;
@@ -2908,26 +2910,56 @@
             ctx.drawImage(im,x-(im.width*k-w)/2,yy-(im.height*k-h)/2,im.width*k,im.height*k);
             ctx.restore();}
         });
-        y+=maxR*unit+(maxR-1)*gap+70;
+        y+=maxR*unit+(maxR-1)*gap+90; mark();
       }
-      // подпись MRJ
       ctx.font=F(40); ctx.textAlign='center';
       if(draw){ctx.fillStyle=ACC;ctx.fillText('M R J',W/2,y+30)}
       y+=110;
       return y;
     }
-    const H=Math.max(2339,Math.ceil(layout(false)));
+    const safe=[];
+    const H=Math.max(2339,Math.ceil(layout(false,safe)));
     cv.height=H; ctx=cv.getContext('2d');
     ctx.fillStyle='#FFFFFF'; ctx.fillRect(0,0,W,H);
-    layout(true);
-    cv.toBlob(b=>{
-      if(!b)return;
-      const u=URL.createObjectURL(b);
-      const a=document.createElement('a');
-      a.download=(bk.title||'book').replace(/[\\/:*?"<>|]+/g,' ').trim()+' — MRJ.png';
-      a.href=u; document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(()=>URL.revokeObjectURL(u),5000);
-    },'image/png');
+    layout(true,null);
+
+    const fname=(bk.title||'book').replace(/[\\/:*?"<>|]+/g,' ').trim();
+    const dl=(canvas,name,delay)=>setTimeout(()=>{
+      canvas.toBlob(b=>{
+        if(!b)return;
+        const u=URL.createObjectURL(b);
+        const a=document.createElement('a');
+        a.download=name; a.href=u;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(()=>URL.revokeObjectURL(u),8000);
+      },'image/png');
+    },delay);
+
+    const A4H=2339;
+    if(!paged||H<=A4H+300){
+      dl(cv,fname+' — MRJ.png',0);
+      return;
+    }
+    // равные карточки формата A4; режу по безопасным линиям, строки не рвутся
+    const cuts=[0];
+    while(H-cuts[cuts.length-1]>A4H){
+      const from=cuts[cuts.length-1], target=from+A4H-80;
+      let best=target;
+      for(const s of safe){if(s<=target&&s>from+600)best=s}
+      cuts.push(Math.min(best,target));
+    }
+    cuts.push(H);
+    const total=cuts.length-1;
+    for(let p=0;p<total;p++){
+      const segH=cuts[p+1]-cuts[p];
+      const pc=document.createElement('canvas'); pc.width=W; pc.height=A4H;
+      const px=pc.getContext('2d');
+      px.fillStyle='#FFFFFF'; px.fillRect(0,0,W,A4H);
+      px.drawImage(cv,0,cuts[p],W,segH,0,60,W,segH);
+      px.fillStyle=ACC; px.font=F(30); px.textAlign='center';
+      px.fillText((p+1)+' / '+total,W/2,A4H-60);
+      dl(pc,fname+' — MRJ '+(p+1)+' of '+total+'.png',p*450);
+    }
   }
 
   // ---- просмотр сохранённой книги ----
@@ -2976,7 +3008,17 @@
   }
   function closeView(){viewSheet.classList.remove('open');
     if(!addSheet.classList.contains('open')){sheetScrim.classList.remove('open');document.body.classList.remove('addopen')}}
-  document.getElementById('vExport').addEventListener('click',()=>{if(currentViewBk)exportCard(currentViewBk)});
+  const expAsk=document.getElementById('expAsk');
+  const closeExpAsk=()=>{expAsk.classList.remove('open');pickScrim.classList.remove('open')};
+  document.getElementById('vExport').addEventListener('click',()=>{
+    if(!currentViewBk)return;
+    document.getElementById('expT').textContent=t('exp_t');
+    document.getElementById('expSingle').textContent=t('exp_single');
+    document.getElementById('expPages').textContent=t('exp_pages');
+    expAsk.classList.add('open'); pickScrim.classList.add('open');
+  });
+  document.getElementById('expSingle').addEventListener('click',()=>{closeExpAsk();if(currentViewBk)exportCard(currentViewBk,false)});
+  document.getElementById('expPages').addEventListener('click',()=>{closeExpAsk();if(currentViewBk)exportCard(currentViewBk,true)});
   document.getElementById('vEdit').addEventListener('click',()=>{
     const bk=currentViewBk; if(!bk)return;
     closeView();
