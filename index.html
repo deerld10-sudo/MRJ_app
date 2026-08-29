@@ -291,10 +291,10 @@
   .fld input::placeholder{color:var(--text-soft);font-size:1.15rem;font-style:italic;font-weight:500}
   .seg{display:flex;background:var(--circle);border-radius:1.3rem;padding:.35rem;gap:.35rem;margin-bottom:1.8rem}
   .q-cap{text-align:center;font-size:1.3rem;font-weight:500;color:var(--text);margin:2.6rem 0 1rem}
-  .seg button{flex:1;height:3.6rem;border:none;border-radius:1rem;cursor:pointer;
+  .seg button{flex:1 1 auto;white-space:nowrap;height:3.6rem;border:none;border-radius:1rem;cursor:pointer;
     background:transparent;color:var(--text-soft);
     font-family:'Montserrat Alternates',sans-serif;font-size:1.15rem;font-weight:500;font-style:italic;
-    padding:0 .8rem;transition:background .25s,color .25s,transform .2s}
+    padding:0 1.4rem;transition:background .25s,color .25s,transform .2s}
   .seg button:active{transform:scale(.94)}
   .seg button.sel{background:linear-gradient(135deg,#46A3D5,#62C2F4);color:#fff}
   .daterow{display:flex;gap:1rem}
@@ -325,6 +325,9 @@
     transition:transform .15s,opacity .2s,background .35s}
   .n-chip:active{transform:scale(.94)}
   .n-chip.used{opacity:.4;pointer-events:none}
+  .n-chip.own{color:#47B0E9;background:rgba(97,183,228,.12);
+    box-shadow:inset 0 0 0 .12rem rgba(71,176,233,.55)}
+  body.dark .n-chip.own{background:rgba(122,197,240,.1)}
   #customQWrap{position:relative}
   #customQWrap input{padding-right:4.4rem}
   #customQGo{position:absolute;right:.5rem;top:50%;transform:translateY(-50%) scale(.7);
@@ -481,6 +484,79 @@
   .sh-s .m-shape{width:2rem;height:2rem}
   .sh-s .m-shape .ic{width:.9rem;height:.9rem}
 
+  /* ---------- ПРОФИЛЬ ---------- */
+  #screen-profile{padding:1rem 2rem 12rem}
+  .avatar{width:8.4rem;height:8.4rem;border-radius:50%;margin:2.4rem auto 1.6rem;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    background:var(--circle);background-size:cover;background-position:center;
+    transition:background .35s,transform .2s;position:relative}
+  .avatar:active{transform:scale(.96)}
+  .avatar .ic{width:2.4rem;height:2.4rem;background:var(--text-soft);opacity:.7}
+  .avatar.hasimg .ic{display:none}
+  .avatar input{display:none}
+  .prof-name{text-align:center;font-size:1.5rem;font-weight:600;margin-bottom:2.6rem;min-height:1.9rem}
+  .prof-edit{display:block;margin:2rem auto 0;border:none;background:none;cursor:pointer;
+    color:#47B0E9;font-family:'Montserrat Alternates',sans-serif;
+    font-size:1.15rem;font-weight:500;font-style:italic;transition:opacity .2s}
+  .prof-edit:hover{opacity:.75}
+  .stor-card{background:var(--circle);border-radius:1.5rem;padding:1.8rem;transition:background .35s}
+  .stor-t{font-size:1.15rem;font-weight:500;font-style:italic;color:var(--text);margin-bottom:1.4rem}
+  .stor-bar{height:1.4rem;border-radius:.7rem;background:rgba(97,183,228,.16);overflow:hidden;margin-bottom:1rem}
+  .stor-fill{height:100%;border-radius:.7rem;min-width:.7rem;
+    background:linear-gradient(90deg,#46A3D5,#62C2F4);transition:width .6s cubic-bezier(.22,1,.36,1)}
+  .stor-line{font-size:1.1rem;color:var(--text-soft);font-weight:500}
+  .stor-warn{margin-top:1rem;font-size:1.05rem;font-style:italic;color:#E08A3C;line-height:1.5}
+
+  /* ---------- СТАТЬИ ---------- */
+  #screen-articles{padding:1rem 2rem 12rem}
+  #artPlusBtn{position:fixed;top:2rem;left:50%;margin-left:13.15rem;z-index:60;
+    background:var(--add-base)}
+  #artPlusBtn .ic{background:#fff}
+  .empty-mid{display:flex;align-items:center;justify-content:center;
+    min-height:52vh;text-align:center;color:var(--text-soft);
+    font-size:1.15rem;font-style:italic;font-weight:500;line-height:1.6;
+    padding:0 3rem;margin:0}
+
+  /* ---------- ПОВТОРЕНИЕ (Эббингауз) ---------- */
+  .rep-bub{display:inline-block;background:rgba(97,183,228,.16);
+    border-radius:1rem;border-top-left-radius:.3rem;
+    padding:.5rem 1rem;font-size:1rem;font-style:italic;font-weight:500;
+    color:var(--text);margin-top:.35rem;max-width:100%}
+  body.dark .rep-bub{background:rgba(122,197,240,.14)}
+  .rep-bub.due{background:linear-gradient(135deg,#46A3D5,#62C2F4);color:#fff}
+  .rep-badge{display:inline-block;vertical-align:middle;margin-left:.6rem;
+    padding:.15rem .7rem;border-radius:.8rem;font-size:.85rem;font-weight:500;font-style:italic;
+    color:#47B0E9;box-shadow:inset 0 0 0 .1rem rgba(71,176,233,.6)}
+  #screen-review{padding:1rem 2rem 12rem}
+  .rep-cap{font-size:1.3rem;font-weight:600;margin:1.6rem 0 1.2rem}
+  .rep-cap:first-child{margin-top:.4rem}
+  .rep-row{display:flex;align-items:center;gap:1.2rem;width:100%;
+    background:var(--circle);border:none;border-radius:1.4rem;cursor:pointer;
+    padding:1rem 1.2rem;margin-bottom:1rem;text-align:left;
+    font-family:'Montserrat Alternates',sans-serif;
+    transition:background .35s,transform .15s;
+    animation:rise .5s cubic-bezier(.22,1,.36,1) backwards}
+  .rep-row:active{transform:scale(.98)}
+  .rep-cov{width:4rem;height:6rem;border-radius:.3rem;flex-shrink:0;
+    background-size:cover;background-position:center;box-shadow:0 .3rem 1rem rgba(30,40,50,.2)}
+  .rep-mid{flex:1;min-width:0}
+  .rep-t{font-size:1.3rem;font-weight:600;color:var(--text);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:.3rem}
+  .rep-s{font-size:1.05rem;font-style:italic;color:var(--text-soft)}
+  .rep-do{width:4rem;height:4rem;border-radius:50%;border:none;cursor:pointer;flex-shrink:0;
+    background:linear-gradient(135deg,#46A3D5,#62C2F4);
+    display:flex;align-items:center;justify-content:center;transition:transform .2s}
+  .rep-do:active{transform:scale(.85)}
+  .rep-do .ic{width:1.6rem;height:1.6rem;background:#fff}
+  .rep-do.ghost{background:var(--circle);box-shadow:inset 0 0 0 .15rem rgba(71,176,233,.55)}
+  .rep-do.ghost .ic{background:#47B0E9}
+  .rep-wait{font-size:1.05rem;font-style:italic;color:#47B0E9;flex-shrink:0;font-weight:500}
+  .v-rep{display:block;margin:1.2rem auto 0;border:none;background:none;cursor:pointer;
+    color:#47B0E9;font-family:'Montserrat Alternates',sans-serif;
+    font-size:1.15rem;font-weight:500;font-style:italic;transition:opacity .2s}
+  .v-rep:hover{opacity:.75}
+  .nav a .mo-count{margin-left:.4rem}
+
   /* ---------- ПОИСК ---------- */
   #searchSheet .pick-grid{display:block;max-height:38rem;overflow-y:auto;
     scrollbar-width:thin;scrollbar-color:rgba(97,183,228,.45) transparent}
@@ -593,9 +669,9 @@
     animation:rise .55s .18s cubic-bezier(.22,1,.36,1) backwards}
   .chart-card+.chart-card{margin-top:1.3rem;animation-delay:.26s}
   .chart-cap{font-size:1.15rem;font-weight:500;font-style:italic;color:var(--text-soft);margin-bottom:1.6rem}
-  .chart-row{display:flex;gap:1.2rem}
-  .chart-axis{position:relative;width:2rem;flex-shrink:0}
-  .chart-axis span{position:absolute;right:0;transform:translateY(50%);
+  .chart-row{display:flex;gap:.7rem}
+  .chart-axis{position:relative;width:1.4rem;flex-shrink:0}
+  .chart-axis span{position:absolute;left:0;transform:translateY(50%);line-height:1;
     font-size:1.05rem;color:var(--text-soft);font-weight:500}
   .chart-cols{flex:1;display:flex;justify-content:space-between;align-items:flex-end}
   .chart-col{display:flex;flex-direction:column;align-items:center;gap:.7rem;width:2.4rem}
@@ -793,7 +869,8 @@
     <button class="icon-circle" id="burger" aria-label="Открыть меню">
       <span class="ic ic-menu"></span>
     </button>
-    <button class="icon-circle hidden" id="gearBtn" aria-label="Настройка цели"><span class="ic ic-gear"></span></button>
+    <button class="icon-circle hidden" id="artPlusBtn" aria-label="Добавить статью"><span class="ic ic-plus"></span></button>
+  <button class="icon-circle hidden" id="gearBtn" aria-label="Настройка цели"><span class="ic ic-gear"></span></button>
   <h1 class="page-title"><span class="tt" aria-hidden="false">All books</span><span class="tt">Already read</span></h1>
   </header>
 
@@ -852,10 +929,29 @@
   <div id="screen-hashtags" class="hidden"><div id="tgWrap"></div></div>
   <div id="screen-wishlist" class="hidden"><div id="wlGrid"></div></div>
   <div id="screen-rating" class="hidden"><div class="mo-grid" id="rtGrid" style="margin-top:1rem"></div></div>
+  <div id="screen-profile" class="hidden">
+    <label class="avatar" id="avatar">
+      <span class="ic ic-user"></span>
+      <input type="file" id="avatarInput" accept="image/*">
+    </label>
+    <div class="prof-name" id="profName"></div>
+    <div class="stor-card">
+      <div class="stor-t" id="storT">Device storage</div>
+      <div class="stor-bar"><div class="stor-fill" id="storFill" style="width:0%"></div></div>
+      <div class="stor-line" id="storLine">…</div>
+      <div class="stor-warn hidden" id="storWarn"></div>
+    </div>
+    <button type="button" class="prof-edit" id="profEditBtn">Edit profile</button>
+  </div>
+  <div id="screen-articles" class="hidden"><div id="artList"></div>
+    <div class="empty-mid hidden" id="artEmpty"></div></div>
+  <div id="screen-review" class="hidden">
+    <div id="repWrap"></div>
+  </div>
 
   <div id="screen-favorites" class="hidden">
     <div class="mo-grid" id="favGrid" style="margin-top:1rem"></div>
-    <div class="g-cheer hidden" id="favEmpty">No favorites yet — tap the heart on a book you loved</div>
+    <div class="empty-mid hidden" id="favEmpty">No favorites yet — tap the heart on a book you loved</div>
   </div>
 
   <div id="screen-tracker" class="hidden">
@@ -884,6 +980,22 @@
 
 <div class="sheet-scrim" id="sheetScrim"></div>
 <div class="pick-scrim" id="pickScrim"></div>
+<div class="picksheet" id="profSheet" role="dialog" aria-label="Редактирование профиля">
+  <h3 id="profSheetT">Edit profile</h3>
+  <div class="fld"><input id="profNameInput" type="text" autocomplete="off" maxlength="40" placeholder="Your name"></div>
+  <div class="sheet-btns"><button class="s-save" id="profSave">Save</button></div>
+</div>
+
+<div class="picksheet" id="repAsk" role="dialog">
+  <button class="add-close" id="repAskClose" aria-label="Закрыть"><span class="ic ic-plus x"></span></button>
+  <h3 id="repAskTitle">Add to spaced repetition?</h3>
+  <div class="s-date" id="repAskSub" style="text-align:center;margin-bottom:1.6rem"></div>
+  <div class="sheet-btns">
+    <button class="s-clear" id="repNo">Not now</button>
+    <button class="s-save" id="repYes">Yes, repeat</button>
+  </div>
+</div>
+
 <div class="picksheet" id="searchSheet" role="dialog" aria-label="Поиск">
   <button class="add-close" id="searchClose" aria-label="Закрыть"><span class="ic ic-plus x"></span></button>
   <h3 id="searchTitle">Search</h3>
@@ -950,6 +1062,46 @@
   <button class="add-save" id="wishSave">Save</button>
 </div>
 
+<div class="addsheet" id="artSheet" role="dialog" aria-label="Статья">
+  <div class="as-head">
+    <h3 id="artHead">New article</h3>
+    <button class="add-close" id="artClose" aria-label="Закрыть"><span class="ic ic-plus x"></span></button>
+  </div>
+  <label class="cov-up" id="aCovUp">
+    <svg class="cov-frame" viewBox="0 0 124 186" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="15" y="8" width="101" height="170" rx="4" stroke="#47B0E9" stroke-opacity=".55" stroke-width="1.4"/>
+      <rect x="21" y="14" width="89" height="158" rx="2" stroke="#47B0E9" stroke-opacity=".28" stroke-width="1"/>
+      <path d="M27 20 h8 M27 20 v8 M104 20 h-8 M104 20 v8 M27 166 h8 M27 166 v-8 M104 166 h-8 M104 166 v-8"
+            stroke="#47B0E9" stroke-opacity=".5" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+    <span class="cov-plus"></span>
+    <span id="aCovLbl">Add a cover</span>
+    <input type="file" id="aCovInput" accept="image/*">
+  </label>
+  <div class="fld"><input id="aTitle" type="text" autocomplete="off" placeholder="Article title"></div>
+  <div class="fld"><input id="aAuthor" type="text" autocomplete="off" placeholder="Author"></div>
+  <div class="q-cap" id="aNotesCap">Notes</div>
+  <div class="notes-chips" id="aChips"></div>
+  <div class="fld hidden" id="aQWrap">
+    <input id="aQ" type="text" autocomplete="off" placeholder="Type your question…">
+  </div>
+  <div id="aNotesList"></div>
+  <div class="q-cap" id="aMediaCap">Media</div>
+  <button type="button" class="media-add" id="aMediaAdd"><span class="ic ic-plus"></span><span>Add pictures</span></button>
+  <input type="file" id="aMediaInput" accept="image/*" multiple class="hidden">
+  <div class="media-grid" id="aMediaGrid"></div>
+  <div class="q-cap" id="aLinksCap">Links</div>
+  <div id="aLinksList"></div>
+  <div class="fld"><input id="aLinkName" type="text" autocomplete="off" placeholder="Link name: source, video…"></div>
+  <div class="fld" id="aLinkWrap" style="position:relative">
+    <input id="aLinkUrl" type="text" autocomplete="off" inputmode="url" placeholder="https://…" style="padding-right:4.4rem">
+    <button type="button" id="aLinkGo" aria-label="Добавить ссылку" style="position:absolute;right:.5rem;top:50%;transform:translateY(-50%);width:3.2rem;height:3.2rem;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center">
+      <svg viewBox="0 0 24 24" style="width:1.8rem;height:1.8rem;fill:#47B0E9"><path d="M13.5 4.5 21 11l-7.5 6.5v-4.1c-4.6-.3-7.6 1-9.9 4.1.3-5.6 3.3-9.7 9.9-10.3z"/></svg>
+    </button>
+  </div>
+  <button class="add-save" id="artSave">Save</button>
+</div>
+
 <div class="addsheet" id="viewSheet" role="dialog" aria-label="Карточка книги">
   <div class="as-head">
     <h3 id="vHead">Book</h3>
@@ -959,7 +1111,7 @@
   <div class="v-title" id="vTitle"></div>
   <div class="v-author" id="vAuthor"></div>
   <div class="v-line"><span class="v-genre-txt" id="vGenre"></span><span class="v-tags" id="vTags" style="display:contents"></span></div>
-  <div class="v-meta">
+  <div class="v-meta" id="vMeta">
     <div class="datepill"><span class="value" id="vFormat"></span></div>
     <div class="datepill"><span class="value" id="vDate"></span></div>
     <div class="datepill hidden" id="vRatePill"><span class="value" id="vRate"></span></div>
@@ -972,6 +1124,7 @@
     <button class="add-save" id="vEdit">Edit this book</button>
     <button class="v-dl" id="vExport" aria-label="Скачать изображением"><span class="ic ic-dl"></span></button>
   </div>
+  <button class="v-rep" id="vRep"></button>
   <button class="v-del" id="vDelete">Delete this book</button>
 </div>
 
@@ -1087,6 +1240,8 @@
       <a data-screen="hashtags" tabindex="0" role="button">Hashtags</a>
       <a data-screen="goal" tabindex="0" role="button">Goals</a>
       <a data-screen="tracker" tabindex="0" role="button">Tracker</a>
+      <a data-screen="review" tabindex="0" role="button">Review</a>
+      <a data-screen="articles" tabindex="0" role="button">Articles</a>
       <a data-screen="wishlist" tabindex="0" role="button">Wishlist</a>
       <a data-screen="favorites" tabindex="0" role="button">Favorites</a>
     </nav>
@@ -1119,6 +1274,7 @@
     wd:['Su','Mo','Tu','We','Th','Fr','Sa'],
     fmt:{paper:'Paper',ebook:'E-book',audio:'Audio'},
     presets:['What is it about?','My thoughts','Favourite quote','What I liked','What it taught me'],
+    presetsArt:['What is the article about?','My thoughts','Key quote','Main takeaways','How to apply it'],
     all_books:'All books',already_read:'Already read',months_s:'Months',stats:'Statistics',authors:'Authors',
     hashtags:'Hashtags',rating:'Rating',goal:'Goals',goal_t:'Goal',tracker:'Tracker',wishlist:'Wishlist',favorites:'Favorites',
     language:'Language',theme:'Theme',save_backup:'Save backup',load_backup:'Load backup',
@@ -1140,16 +1296,30 @@
     books_lbl:'Books',st_read:'Books read',st_year:'This year',st_avg:'Avg rating',
     reading_by:'Reading by months',cap1:'January — June',cap2:'July — December',
     fav_empty:'No favorites yet — tap the heart on a book you loved',
-    pages_w:'pages',link_fb:'Link',of_w:'of',per_row_cal:'Months per row',search:'Search',ph_search:'Search books…',not_found:'Nothing found',
+    pages_w:'pages',link_fb:'Link',of_w:'of',per_row_cal:'Months per row',search:'Search',
+    review:'Review',rep_ask:'Add to spaced repetition?',
+    rep_sub:'Ebbinghaus method: review after 1 · 3 · 7 · 14 · 30 · 60 days',
+    rep_yes:'Yes, repeat',rep_no:'Not now',
+    rep_due:'Review today',rep_wait:'Coming up',
+    rep_in:'in {d} d.',rep_round:'round {n} of 6',rep_finished:'All 6 rounds done — tap to start again',
+    rep_empty:'Nothing here yet — save a book and add it to repetition',
+    v_rep_add:'Add to review',v_rep_on:'In review · round {n} — tap to remove',
+    rep_bub_due:'Round {n} · review now!',rep_bub_wait:'Round {n} · review on {date}',
+    add_article:'+ Add article',art_new:'New article',art_badge:'article',
+    ph_art_title:'Article title',ph_art_body:'Article text…',
+    ph_art_tech:'Key points, terms, tech notes…',ph_art_url:'https:// (link — optional)',
+    art_pic:'Add a picture',art_text:'Article',art_tech:'Key points',articles:'Articles',profile:'Profile',edit_profile:'Edit profile',ph_name:'Your name',greet:'Hello, {name}!',storage_t:'App data',storage_line:'{used} of {quota} used \u00b7 {free} free',storage_warn:'Storage is getting full — save a backup and clear something old',art_edit:'Edit article',art_del:'Delete this article',art_del_ask:'Delete this article?',art_empty:'No articles yet — tap the plus above',ph_link_name2:'Link name: source, video…',ph_search:'Search books…',not_found:'Nothing found',
     cheer_start:'The year starts with the very first page — go!',
     cheer_done:'Goal complete — {n} of {goal}. You are unstoppable!',
     cheer_half:'More than halfway there — just {left} to go!',
     cheer_go:'{n} down, only {left} to go — keep reading!'},
    ru:{months:['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+    monthsGen:['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'],
     monthsShort:['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
     wd:['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
     fmt:{paper:'Бумажная',ebook:'Электронная',audio:'Аудио'},
     presets:['О чём книга?','Мои мысли','Любимая цитата','Что понравилось','Чему научила'],
+    presetsArt:['О чём статья?','Мои мысли','Главная цитата','Ключевые тезисы','Как это применить'],
     all_books:'Все книги',already_read:'Уже прочитано',months_s:'Месяцы',stats:'Статистика',authors:'Авторы',
     hashtags:'Хештеги',rating:'Рейтинг',goal:'Цели',goal_t:'Цель',tracker:'Трекер',wishlist:'Вишлист',favorites:'Избранное',
     language:'Язык',theme:'Тема',save_backup:'Сохранить бэкап',load_backup:'Загрузить бэкап',
@@ -1171,7 +1341,19 @@
     books_lbl:'книг',st_read:'Всего прочитано',st_year:'В этом\nгоду',st_avg:'Средний рейтинг',
     reading_by:'Чтение по месяцам',cap1:'Январь — Июнь',cap2:'Июль — Декабрь',
     fav_empty:'Пока пусто — нажмите на сердечко у любимой книги',
-    pages_w:'стр.',link_fb:'Ссылка',of_w:'из',per_row_cal:'Месяцев в ряду',search:'Поиск',ph_search:'Поиск книг…',not_found:'Ничего не нашлось',
+    pages_w:'стр.',link_fb:'Ссылка',of_w:'из',per_row_cal:'Месяцев в ряду',search:'Поиск',
+    review:'Повторение',rep_ask:'Добавить в повторение?',
+    rep_sub:'Метод Эббингауза: повтор через 1 · 3 · 7 · 14 · 30 · 60 дней',
+    rep_yes:'Да, повторять',rep_no:'Не сейчас',
+    rep_due:'Повторяем сегодня',rep_wait:'Ждут своего часа',
+    rep_in:'через {d} дн.',rep_round:'круг {n} из 6',rep_finished:'Все 6 кругов пройдены — нажмите, чтобы начать заново',
+    rep_empty:'Пока пусто — сохраните книгу и добавьте её в повторение',
+    v_rep_add:'Добавить в повторение',v_rep_on:'В повторении · круг {n} — нажмите, чтобы убрать',
+    rep_bub_due:'Круг {n} · пора повторить!',rep_bub_wait:'Круг {n} · повторить {date}',
+    add_article:'+ Добавить статью',art_new:'Новая статья',art_badge:'статья',
+    ph_art_title:'Название статьи',ph_art_body:'Текст статьи…',
+    ph_art_tech:'Важное: термины, тезисы, технические детали…',ph_art_url:'https:// (ссылка — по желанию)',
+    art_pic:'Добавить картинку',art_text:'Статья',art_tech:'Важное',articles:'Статьи',profile:'Профиль',edit_profile:'Редактировать профиль',ph_name:'Ваше имя',greet:'Добрый день, {name}',storage_t:'Объём данных',storage_line:'Занято {used} из {quota} \u00b7 свободно {free}',storage_warn:'Память почти заполнена — сохраните бэкап и удалите что-то старое',art_edit:'Редактировать статью',art_del:'Удалить статью',art_del_ask:'Удалить статью?',art_empty:'Пока нет статей — нажмите на плюс сверху',ph_link_name2:'Название ссылки: источник, видео…',ph_search:'Поиск книг…',not_found:'Ничего не нашлось',
     cheer_start:'Год начинается с первой страницы — вперёд!',
     cheer_done:'Цель выполнена — {n} из {goal}. Вы неудержимы!',
     cheer_half:'Больше половины — осталось всего {left}!',
@@ -1181,6 +1363,7 @@
     wd:['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
     fmt:{paper:'Papel',ebook:'E-book',audio:'Audio'},
     presets:['¿De qué trata?','Mis pensamientos','Cita favorita','Lo que me gustó','Lo que me enseñó'],
+    presetsArt:['¿De qué trata el artículo?','Mis pensamientos','Cita clave','Puntos principales','Cómo aplicarlo'],
     all_books:'Todos los libros',already_read:'Ya leídos',months_s:'Meses',stats:'Estadísticas',authors:'Autores',
     hashtags:'Hashtags',rating:'Valoración',goal:'Metas',goal_t:'Meta',tracker:'Tracker',wishlist:'Wishlist',favorites:'Favoritos',
     language:'Idioma',theme:'Tema',save_backup:'Guardar copia',load_backup:'Cargar copia',
@@ -1202,7 +1385,19 @@
     books_lbl:'Libros',st_read:'Libros leídos',st_year:'Este año',st_avg:'Valoración media',
     reading_by:'Lectura por meses',cap1:'Enero — Junio',cap2:'Julio — Diciembre',
     fav_empty:'Aún no hay favoritos — toca el corazón de un libro que ames',
-    pages_w:'págs.',link_fb:'Enlace',of_w:'de',per_row_cal:'Meses por fila',search:'Buscar',ph_search:'Buscar libros…',not_found:'No se encontró nada',
+    pages_w:'págs.',link_fb:'Enlace',of_w:'de',per_row_cal:'Meses por fila',search:'Buscar',
+    review:'Repaso',rep_ask:'¿Añadir a repaso espaciado?',
+    rep_sub:'Método Ebbinghaus: repasa tras 1 · 3 · 7 · 14 · 30 · 60 días',
+    rep_yes:'Sí, repasar',rep_no:'Ahora no',
+    rep_due:'Repaso de hoy',rep_wait:'Esperan su turno',
+    rep_in:'en {d} d.',rep_round:'ronda {n} de 6',rep_finished:'6 rondas hechas — toca para empezar de nuevo',
+    rep_empty:'Aún no hay nada — guarda un libro y añádelo al repaso',
+    v_rep_add:'Añadir al repaso',v_rep_on:'En repaso · ronda {n} — toca para quitar',
+    rep_bub_due:'Ronda {n} · ¡repasa ahora!',rep_bub_wait:'Ronda {n} · repasar el {date}',
+    add_article:'+ Añadir artículo',art_new:'Nuevo artículo',art_badge:'artículo',
+    ph_art_title:'Título del artículo',ph_art_body:'Texto del artículo…',
+    ph_art_tech:'Puntos clave, términos, notas técnicas…',ph_art_url:'https:// (enlace — opcional)',
+    art_pic:'Añadir imagen',art_text:'Artículo',art_tech:'Puntos clave',articles:'Artículos',profile:'Perfil',edit_profile:'Editar perfil',ph_name:'Tu nombre',greet:'¡Hola, {name}!',storage_t:'Datos de la app',storage_line:'{used} de {quota} usado \u00b7 {free} libre',storage_warn:'La memoria casi está llena — guarda una copia y borra algo viejo',art_edit:'Editar artículo',art_del:'Eliminar este artículo',art_del_ask:'¿Eliminar este artículo?',art_empty:'Aún no hay artículos — toca el más',ph_link_name2:'Nombre del enlace: fuente, vídeo…',ph_search:'Buscar libros…',not_found:'No se encontró nada',
     cheer_start:'El año empieza con la primera página — ¡vamos!',
     cheer_done:'¡Meta cumplida — {n} de {goal}!',
     cheer_half:'¡Más de la mitad — solo quedan {left}!',
@@ -1213,7 +1408,7 @@
   const t=k=>(I18N[LANG]&&I18N[LANG][k])||I18N.en[k]||k;
   const tf=(k,o)=>t(k).replace(/\{(\w+)\}/g,(_,p)=>o[p]);
   let MONTH_FULL=I18N[LANG].months, MONTH_SHORT=I18N[LANG].monthsShort, WDAYS=I18N[LANG].wd;
-  const ALL_PRESETS=[].concat(I18N.en.presets,I18N.ru.presets,I18N.es.presets);
+  const ALL_PRESETS=[].concat(I18N.en.presets,I18N.ru.presets,I18N.es.presets,I18N.en.presetsArt,I18N.ru.presetsArt,I18N.es.presetsArt);
 
   // ---- локальная память устройства (IndexedDB — вмещает картинки и конспекты) ----
   const idbOpen=()=>new Promise((res,rej)=>{
@@ -1229,7 +1424,8 @@
       const q=t.objectStore('kv').get(k); q.onsuccess=()=>res(q.result); q.onerror=()=>rej(q.error)})};
   function persistLibrary(){
     try{idbSet('READ',JSON.parse(JSON.stringify(READ))).catch(()=>{});
-        idbSet('WISHLIST',JSON.parse(JSON.stringify(WISHLIST))).catch(()=>{});}catch(e){}
+        idbSet('WISHLIST',JSON.parse(JSON.stringify(WISHLIST))).catch(()=>{});
+        idbSet('ARTICLES',JSON.parse(JSON.stringify(ARTICLES))).catch(()=>{});}catch(e){}
   }
 
   // Настройки сеток (объявлены до первых рендеров)
@@ -1478,7 +1674,7 @@
   document.getElementById('monthsWrap').addEventListener('click',ev=>{
     const d=ev.target.closest('.day'); if(d)openSheet(d);
   });
-  sheetScrim.addEventListener('click',()=>{closeSheet();closeGoalSheet();closeAdd();closeView();closeWishForm()});
+  sheetScrim.addEventListener('click',()=>{closeSheet();closeGoalSheet();closeAdd();closeView();closeWishForm();closeArtSheet()});
   const chips=[...document.querySelectorAll('.chip')];
   const markChip=()=>{const l=levelFor(sheetInput.value);chips.forEach((c,i)=>c.classList.toggle('sel',i===l-1))};
   chips.forEach(c=>c.addEventListener('click',()=>{sheetInput.value=c.dataset.v;markChip()}));
@@ -1588,7 +1784,7 @@
       c.addEventListener('click',()=>{c.classList.add('used');addNote(q,true)});
       noteChips.appendChild(c);
     });
-    const ownChip=document.createElement('button'); ownChip.type='button'; ownChip.className='n-chip'; ownChip.textContent=t('your_q');
+    const ownChip=document.createElement('button'); ownChip.type='button'; ownChip.className='n-chip own'; ownChip.textContent=t('your_q');
     ownChip.addEventListener('click',()=>{customQWrap.classList.toggle('hidden');if(!customQWrap.classList.contains('hidden'))customQ.focus()});
     noteChips.appendChild(ownChip);
   }
@@ -1664,6 +1860,343 @@
     });
   }
 
+  // ================= ПОВТОРЕНИЕ (метод Эббингауза) =================
+  const REP_INT=[1,3,7,14,30,60]; // дни между кругами
+  let ARTICLES=[];
+  function fmtFullDate(ts){return fmtRepDate(ts)+' '+new Date(ts).getFullYear()}
+  function fmtRepDate(ts){
+    const d=new Date(ts), day=d.getDate(), m=d.getMonth();
+    if(LANG==='ru')return day+' '+I18N.ru.monthsGen[m];
+    if(LANG==='es')return day+' de '+I18N.es.months[m].toLowerCase();
+    return I18N.en.months[m]+' '+day;
+  }
+  const DAY=86400000;
+  function repDueCount(){const n=Date.now();
+    return READ.concat(ARTICLES).filter(b=>b.rep&&!b.rep.done&&b.rep.next<=n).length}
+  function updateRepBadge(){
+    const a=document.querySelector('.nav a[data-screen="review"]'); if(!a)return;
+    const d=repDueCount();
+    a.innerHTML=t('review')+(d?' <sup class="mo-count">'+String(d).padStart(2,'0')+'</sup>':'');
+  }
+  function repStart(bk){bk.rep={stage:0,next:Date.now()+REP_INT[0]*DAY,done:false};persistLibrary();updateRepBadge()}
+  function repAdvance(bk){
+    bk.rep.stage++;
+    if(bk.rep.stage>=REP_INT.length){bk.rep.done=true}
+    else bk.rep.next=Date.now()+REP_INT[bk.rep.stage]*DAY;
+    persistLibrary(); updateRepBadge();
+  }
+  function repRow(bk,due){
+    const r=document.createElement('div'); r.className='rep-row'; r.tabIndex=0;
+    const c=document.createElement('span');
+    c.className='rep-cov'+(bk.cov?'':' im-'+bk.id);
+    if(bk.cov)c.style.backgroundImage='url('+bk.cov+')';
+    const mid=document.createElement('span'); mid.className='rep-mid';
+    const tt=document.createElement('div'); tt.className='rep-t'; tt.textContent=bk.title||'';
+    if(bk._art){const bg=document.createElement('span');bg.className='rep-badge';bg.textContent=t('art_badge');tt.appendChild(bg)}
+    const ss=document.createElement('div'); ss.className='rep-bub'+(due?' due':'');
+    ss.textContent=due?tf('rep_bub_due',{n:bk.rep.stage+1})
+                      :tf('rep_bub_wait',{n:bk.rep.stage+1,date:fmtRepDate(bk.rep.next)});
+    mid.appendChild(tt); mid.appendChild(ss);
+    r.appendChild(c); r.appendChild(mid);
+    // галочка есть всегда: у наступивших — залитая, у ожидающих — контурная (досрочно тоже можно)
+    const b=document.createElement('button'); b.className='rep-do'+(due?'':' ghost');
+    b.setAttribute('aria-label','Повторила'); b.innerHTML='<span class="ic ic-check"></span>';
+    b.addEventListener('click',ev=>{ev.stopPropagation();repAdvance(bk);buildReview()});
+    r.appendChild(b);
+    r.addEventListener('click',()=>{bk._art?openArticleView(bk):openView(bk)});
+    return r;
+  }
+  function buildReview(){
+    const wrap=document.getElementById('repWrap'); wrap.innerHTML='';
+    const now=Date.now();
+    ARTICLES.forEach(a=>a._art=true);
+    const act=READ.filter(b=>b.rep&&!b.rep.done).concat(ARTICLES.filter(a=>a.rep&&!a.rep.done));
+    const due=act.filter(b=>b.rep.next<=now).sort((a,b)=>a.rep.next-b.rep.next);
+    const wait=act.filter(b=>b.rep.next>now).sort((a,b)=>a.rep.next-b.rep.next);
+    if(!act.length){
+      const e=document.createElement('div'); e.className='empty-mid'; e.textContent=t('rep_empty');
+      wrap.appendChild(e); updateRepBadge(); return;
+    }
+    if(due.length){
+      const h=document.createElement('div'); h.className='rep-cap'; h.textContent=t('rep_due');
+      wrap.appendChild(h);
+      due.forEach((b,i)=>{const r=repRow(b,true);r.style.animationDelay=(i*0.05)+'s';wrap.appendChild(r)});
+    }
+    if(wait.length){
+      const h=document.createElement('div'); h.className='rep-cap'; h.textContent=t('rep_wait');
+      wrap.appendChild(h);
+      wait.forEach((b,i)=>{const r=repRow(b,false);r.style.animationDelay=(i*0.04)+'s';wrap.appendChild(r)});
+    }
+    updateRepBadge();
+  }
+  // ---- профиль: аватар и память устройства ----
+  const avatarEl=document.getElementById('avatar');
+  let PROFILE={avatar:null,name:''};
+  function saveProfile(){idbSet('PROFILE',JSON.parse(JSON.stringify(PROFILE))).catch(()=>{})}
+  function renderProfName(){
+    document.getElementById('profName').textContent=PROFILE.name?tf('greet',{name:PROFILE.name}):'';
+  }
+  const profSheet=document.getElementById('profSheet');
+  function openProfSheet(){
+    document.getElementById('profSheetT').textContent=t('edit_profile');
+    document.getElementById('profNameInput').placeholder=t('ph_name');
+    document.getElementById('profNameInput').value=PROFILE.name||'';
+    document.getElementById('profSave').textContent=t('save');
+    profSheet.classList.add('open'); pickScrim.classList.add('open');
+    setTimeout(()=>document.getElementById('profNameInput').focus(),350);
+  }
+  const closeProfSheet=()=>{profSheet.classList.remove('open');pickScrim.classList.remove('open')};
+  document.getElementById('profEditBtn').addEventListener('click',openProfSheet);
+  
+  document.getElementById('profSave').addEventListener('click',()=>{
+    PROFILE.name=document.getElementById('profNameInput').value.trim();
+    saveProfile(); renderProfName(); closeProfSheet();
+  });
+  document.getElementById('avatarInput').addEventListener('change',()=>{
+    const f=document.getElementById('avatarInput').files[0]; if(!f)return;
+    const r=new FileReader();
+    r.onload=()=>{
+      avatarEl.style.backgroundImage='url('+r.result+')';
+      avatarEl.classList.add('hasimg');
+      PROFILE.avatar=r.result; saveProfile();
+    };
+    r.readAsDataURL(f);
+  });
+  function fmtBytes(b){
+    if(b>=1e9)return (b/1e9).toFixed(1)+' GB';
+    if(b>=1e6)return Math.round(b/1e6)+' MB';
+    return Math.max(1,Math.round(b/1e3))+' KB';
+  }
+  async function buildProfile(){
+    document.getElementById('storT').textContent=t('storage_t');
+    document.getElementById('profEditBtn').textContent=t('edit_profile');
+    renderProfName();
+    try{
+      const est=await navigator.storage.estimate();
+      const used=est.usage||0, quota=est.quota||0, free=Math.max(0,quota-used);
+      const pct=quota?Math.min(100,used/quota*100):0;
+      document.getElementById('storFill').style.width=Math.max(2,pct)+'%';
+      document.getElementById('storLine').textContent=
+        tf('storage_line',{used:fmtBytes(used),quota:fmtBytes(quota),free:fmtBytes(free)});
+      const w=document.getElementById('storWarn');
+      w.classList.toggle('hidden',pct<80);
+      w.textContent=t('storage_warn');
+    }catch(e){document.getElementById('storLine').textContent='—'}
+  }
+
+  // ---- статьи: свой раздел, полноценная сокращённая форма ----
+  const artSheet=document.getElementById('artSheet');
+  let aCov=null, aMediaArr=[], aLinksArr=[], editingArtId=null;
+  const aCovUp=document.getElementById('aCovUp'),aCovInput=document.getElementById('aCovInput'),
+        aChips=document.getElementById('aChips'),aNotesList=document.getElementById('aNotesList'),
+        aQWrap=document.getElementById('aQWrap'),aQ=document.getElementById('aQ'),
+        aMediaGrid=document.getElementById('aMediaGrid'),aMediaInput=document.getElementById('aMediaInput'),
+        aLinksList=document.getElementById('aLinksList'),
+        aLinkName=document.getElementById('aLinkName'),aLinkUrl=document.getElementById('aLinkUrl'),
+        aLinkGo=document.getElementById('aLinkGo');
+  aCovInput.addEventListener('change',()=>{
+    const f=aCovInput.files[0]; if(!f)return;
+    const r=new FileReader();
+    r.onload=()=>{aCov=r.result;aCovUp.style.backgroundImage='url('+aCov+')';aCovUp.classList.add('hasimg')};
+    r.readAsDataURL(f);
+  });
+  function aAddNote(q,fromChip){
+    const it=document.createElement('div'); it.className='note-item'; it.dataset.q=q;
+    it.innerHTML='<div class="note-q"></div>'+
+      '<button type="button" class="note-del" aria-label="Убрать вопрос"><span class="ic ic-plus"></span></button>';
+    it.querySelector('.note-q').textContent=q;
+    const ta=document.createElement('textarea'); ta.placeholder=t('ph_ans');
+    ta.addEventListener('input',()=>{ta.style.height='auto';ta.style.height=ta.scrollHeight+'px'});
+    it.appendChild(ta);
+    it.querySelector('.note-del').addEventListener('click',()=>{
+      it.remove();
+      if(fromChip){const c=[...aChips.children].find(x=>x.textContent===q);if(c)c.classList.remove('used')}
+    });
+    aNotesList.appendChild(it);
+    setTimeout(()=>ta.focus(),50);
+    return it;
+  }
+  function buildAChips(){
+    aChips.innerHTML='';
+    I18N[LANG].presetsArt.forEach(q=>{
+      const c=document.createElement('button'); c.type='button'; c.className='n-chip'; c.textContent=q;
+      c.addEventListener('click',()=>{c.classList.add('used');aAddNote(q,true)});
+      aChips.appendChild(c);
+    });
+    const own=document.createElement('button'); own.type='button'; own.className='n-chip own'; own.textContent=t('your_q');
+    own.addEventListener('click',()=>{aQWrap.classList.toggle('hidden');if(!aQWrap.classList.contains('hidden'))aQ.focus()});
+    aChips.appendChild(own);
+  }
+  aQ.addEventListener('keydown',e=>{
+    if(e.key==='Enter'&&aQ.value.trim()){aAddNote(aQ.value.trim(),false);aQ.value='';aQWrap.classList.add('hidden')}
+  });
+  document.getElementById('aMediaAdd').addEventListener('click',()=>aMediaInput.click());
+  aMediaInput.addEventListener('change',async()=>{
+    for(const f of aMediaInput.files){
+      const s=await shrinkImage(f);
+      aMediaArr.push({src:s,shape:'m'});
+    }
+    aMediaInput.value=''; renderMedia(aMediaGrid,aMediaArr,true);
+  });
+  function aRenderLinks(){
+    aLinksList.innerHTML='';
+    aLinksArr.forEach((l,i)=>{
+      const row=document.createElement('div'); row.className='link-row';
+      row.innerHTML='<span class="lr-label"></span><span class="lr-url"></span>'+
+        '<button type="button" class="note-del" aria-label="Убрать ссылку"><span class="ic ic-plus"></span></button>';
+      row.querySelector('.lr-label').textContent=l.label||l.url.replace(/^https?:\/\//,'').split('/')[0];
+      row.querySelector('.lr-url').textContent=l.url.replace(/^https?:\/\//,'');
+      row.querySelector('.note-del').addEventListener('click',()=>{aLinksArr.splice(i,1);aRenderLinks()});
+      aLinksList.appendChild(row);
+    });
+  }
+  function aAddLink(){
+    const u=normUrl(aLinkUrl.value); if(!u)return;
+    aLinksArr.push({label:aLinkName.value.trim(),url:u});
+    aLinkName.value=''; aLinkUrl.value=''; aRenderLinks();
+  }
+  aLinkUrl.addEventListener('keydown',e=>{if(e.key==='Enter')aAddLink()});
+  aLinkGo.addEventListener('click',aAddLink);
+  function resetArtForm(){
+    editingArtId=null; aCov=null; aMediaArr=[]; aLinksArr=[];
+    aCovUp.classList.remove('hasimg'); aCovUp.style.backgroundImage='';
+    ['aTitle','aAuthor','aQ','aLinkName','aLinkUrl'].forEach(id=>document.getElementById(id).value='');
+    aNotesList.innerHTML=''; aQWrap.classList.add('hidden');
+    buildAChips(); renderMedia(aMediaGrid,aMediaArr,true); aRenderLinks();
+    document.getElementById('artHead').textContent=t('art_new');
+  }
+  function openArtSheet(){resetArtForm();
+    artSheet.classList.add('open');sheetScrim.classList.add('open');document.body.classList.add('addopen')}
+  function openArtEdit(a){
+    resetArtForm(); editingArtId=a.id;
+    document.getElementById('artHead').textContent=t('art_edit');
+    if(a.cov){aCov=a.cov;aCovUp.style.backgroundImage='url('+a.cov+')';aCovUp.classList.add('hasimg')}
+    document.getElementById('aTitle').value=a.title||'';
+    document.getElementById('aAuthor').value=a.author||'';
+    (a.notes||[]).forEach(n=>{
+      const preset=ALL_PRESETS.includes(n.q);
+      if(preset){const c=[...aChips.children].find(x=>x.textContent===n.q);if(c)c.classList.add('used')}
+      const it=aAddNote(n.q,preset);
+      const ta=it.querySelector('textarea'); ta.value=n.a;
+      setTimeout(()=>{ta.style.height='auto';ta.style.height=ta.scrollHeight+'px'},60);
+    });
+    aMediaArr=(a.media||[]).map(m=>({src:m.src,shape:m.shape}));
+    renderMedia(aMediaGrid,aMediaArr,true);
+    aLinksArr=(a.links||[]).map(l=>({label:l.label,url:l.url}));
+    aRenderLinks();
+    artSheet.classList.add('open');sheetScrim.classList.add('open');document.body.classList.add('addopen');
+  }
+  function closeArtSheet(){artSheet.classList.remove('open');
+    if(!addSheet.classList.contains('open')){sheetScrim.classList.remove('open');document.body.classList.remove('addopen')}}
+  document.getElementById('artClose').addEventListener('click',closeArtSheet);
+  document.getElementById('artPlusBtn').addEventListener('click',openArtSheet);
+  document.getElementById('artSave').addEventListener('click',()=>{
+    const tI=document.getElementById('aTitle');
+    if(!tI.value.trim()){tI.focus();tI.style.boxShadow='0 0 0 .09rem #FF6B6B';setTimeout(()=>tI.style.boxShadow='',900);return}
+    const data={
+      cov:aCov, title:tI.value.trim(),
+      author:document.getElementById('aAuthor').value.trim(),
+      notes:[...aNotesList.children].map(it=>({q:it.dataset.q,a:it.querySelector('textarea').value.trim()})).filter(n=>n.a),
+      media:aMediaArr.map(m=>({src:m.src,shape:m.shape})),
+      links:aLinksArr.map(l=>({label:l.label,url:l.url}))
+    };
+    if(editingArtId){
+      const a0=ARTICLES.find(x=>x.id===editingArtId);
+      if(a0)Object.assign(a0,data);
+      editingArtId=null;
+    }else{
+      ARTICLES.push(Object.assign({id:'a'+Date.now(),added:Date.now()},data));
+    }
+    persistLibrary(); closeArtSheet(); buildArticles();
+    if(currentScreen==='review')buildReview();
+  });
+  // список статей
+  function buildArticles(){
+    const wrap=document.getElementById('artList'); wrap.innerHTML='';
+    document.getElementById('artEmpty').classList.toggle('hidden',ARTICLES.length>0);
+    document.getElementById('artEmpty').textContent=t('art_empty');
+    [...ARTICLES].sort((a,b)=>b.added-a.added).forEach((a,i)=>{
+      const r=document.createElement('div'); r.className='rep-row';
+      r.style.animationDelay=(i*0.05)+'s';
+      const c=document.createElement('span'); c.className='rep-cov';
+      if(a.cov)c.style.backgroundImage='url('+a.cov+')';
+      else{c.style.background='rgba(97,183,228,.16)'}
+      const mid=document.createElement('span'); mid.className='rep-mid';
+      const tt=document.createElement('div'); tt.className='rep-t'; tt.textContent=a.title||'';
+      const ss=document.createElement('div'); ss.className='rep-s';
+      ss.textContent=(a.author?a.author+' \u00b7 ':'')+fmtFullDate(a.added);
+      mid.appendChild(tt); mid.appendChild(ss);
+      r.appendChild(c); r.appendChild(mid);
+      r.addEventListener('click',()=>openArticleView(a));
+      wrap.appendChild(r);
+    });
+  }
+  let currentViewIsArticle=false;
+  function openArticleView(a){
+    currentViewIsArticle=true; currentViewId=a.id; currentViewBk=a;
+    const c=document.getElementById('vCover');
+    c.style.backgroundImage=a.cov?'url('+a.cov+')':''; c.className='v-cover'+(a.cov?'':' hidden');
+    document.getElementById('vTitle').textContent=a.title||'';
+    document.getElementById('vAuthor').textContent=(a.author?a.author+' \u00b7 ':'')+fmtFullDate(a.added);
+    document.getElementById('vGenre').textContent='';
+    document.getElementById('vTags').innerHTML='';
+    document.getElementById('vMeta').classList.add('hidden');
+    document.getElementById('vEdit').classList.remove('hidden');
+    document.getElementById('vEdit').textContent=t('art_edit');
+    document.getElementById('vDelete').textContent=t('art_del');
+    const vl=document.getElementById('vLinks'); vl.innerHTML='';
+    (a.links||[]).forEach(l=>{
+      const el=document.createElement('a'); el.className='v-link'; el.href=l.url; el.target='_blank'; el.rel='noopener';
+      el.innerHTML='<span class="vl-t"></span><svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/></svg>';
+      el.querySelector('.vl-t').textContent=l.label||l.url.replace(/^https?:\/\//,'');
+      vl.appendChild(el);
+    });
+    const vn=document.getElementById('vNotes'); vn.innerHTML='';
+    (a.notes||[]).forEach(n=>{
+      const qq=document.createElement('div'); qq.className='vn-q'; qq.textContent=n.q;
+      const aa=document.createElement('div'); aa.className='vn-a'; aa.innerHTML=fmtHTML(n.a);
+      vn.appendChild(qq); vn.appendChild(aa);
+    });
+    renderMedia(document.getElementById('vMedia'),a.media||[],false);
+    refreshVRep(a);
+    viewSheet.classList.add('open');sheetScrim.classList.add('open');document.body.classList.add('addopen');
+  }
+
+  // предложение после сохранения новой книги
+  const repAsk=document.getElementById('repAsk');
+  let repAskId=null;
+  function openRepAsk(id){
+    repAskId=id;
+    document.getElementById('repAskTitle').textContent=t('rep_ask');
+    document.getElementById('repAskSub').textContent=t('rep_sub');
+    document.getElementById('repNo').textContent=t('rep_no');
+    document.getElementById('repYes').textContent=t('rep_yes');
+    repAsk.classList.add('open'); pickScrim.classList.add('open');
+  }
+  const closeRepAsk=()=>{repAsk.classList.remove('open');pickScrim.classList.remove('open');repAskId=null};
+  document.getElementById('repAskClose').addEventListener('click',closeRepAsk);
+  document.getElementById('repNo').addEventListener('click',closeRepAsk);
+  document.getElementById('repYes').addEventListener('click',()=>{
+    const bk=READ.find(b=>b.id===repAskId);
+    if(bk)repStart(bk);
+    closeRepAsk();
+  });
+  // кнопка в карточке книги
+  function refreshVRep(bk){
+    const el=document.getElementById('vRep');
+    if(!bk){el.textContent='';return}
+    if(bk.rep&&!bk.rep.done)el.textContent=tf('v_rep_on',{n:bk.rep.stage+1});
+    else if(bk.rep&&bk.rep.done)el.textContent=t('rep_finished');
+    else el.textContent=t('v_rep_add');
+  }
+  document.getElementById('vRep').addEventListener('click',()=>{
+    const bk=currentViewBk; if(!bk)return;
+    if(bk.rep&&!bk.rep.done){delete bk.rep;persistLibrary();updateRepBadge()}
+    else repStart(bk); // нет цикла или все круги пройдены — запускаем заново
+    refreshVRep(bk);
+    if(currentScreen==='review')buildReview();
+  });
+
   // ---- поиск по библиотеке ----
   const searchSheet=document.getElementById('searchSheet'),
         searchInput=document.getElementById('searchInput'),
@@ -1712,6 +2245,7 @@
   searchInput.addEventListener('input',renderSearch);
   document.getElementById('searchClose').addEventListener('click',closeSearch);
   document.querySelector('.tab[aria-label="Поиск"]').addEventListener('click',openSearch);
+  document.querySelector('.tab[aria-label="Профиль"]').addEventListener('click',()=>showScreen('profile'));
 
   // ---- полноэкранная галерея ----
   const lightbox=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),
@@ -1843,7 +2377,7 @@
     pickSheet.classList.add('open');pickScrim.classList.add('open');
   }
   function closePick(){pickSheet.classList.remove('open');pickScrim.classList.remove('open')}
-  pickScrim.addEventListener('click',()=>{closePick();closeRowSheet();closeWishAsk();closeDelAsk();closeSearch()});
+  pickScrim.addEventListener('click',()=>{closePick();closeRowSheet();closeWishAsk();closeDelAsk();closeSearch();closeRepAsk();closeProfSheet()});
   const pyi=document.getElementById('pickYearInput');
   const applyYear=()=>{const y=parseInt(pyi.value,10);
     if(y>=1900&&y<=nowY+1){selY=y;yVal.textContent=y;closePick()}};
@@ -1934,6 +2468,7 @@
     persistLibrary();
     closeAdd(); showScreen('books');
     setTimeout(()=>document.querySelector('.section-title').scrollIntoView({behavior:'smooth'}),150);
+    setTimeout(()=>openRepAsk(bk.id),650);
   });
 
   // ================= РАЗДЕЛ STATISTICS =================
@@ -1978,10 +2513,11 @@
         cols.appendChild(col);
       }
       const ax=document.getElementById(axisId); ax.innerHTML='';
+      ax.style.width=(String(flat?Math.min(20,maxN):rows).length>1?1.35:0.65)+'rem';
       ax.style.height=stackH+'rem'; ax.style.marginBottom='1.75rem';
       const put=(val,rowIdx)=>{
         const s=document.createElement('span'); s.textContent=val;
-        s.style.bottom=((rowIdx*unit)-gap/2-(cubeH/2))+'rem';
+        s.style.bottom=(((rowIdx-1)*unit)+cubeH/2)+'rem';
         ax.appendChild(s);
       };
       put(1,1);
@@ -2399,6 +2935,11 @@
   let currentViewId=null;
   let currentViewBk=null;
   function openView(bk){
+    currentViewIsArticle=false;
+    document.getElementById('vMeta').classList.remove('hidden');
+    document.getElementById('vEdit').classList.remove('hidden');
+    document.getElementById('vEdit').textContent=t('edit_this');
+    document.getElementById('vDelete').textContent=t('del_this');
     currentViewId=bk.id; currentViewBk=bk;
     const c=document.getElementById('vCover');
     c.style.backgroundImage=bk.cov?'url('+bk.cov+')':'';
@@ -2430,6 +2971,7 @@
     document.getElementById('vRate').textContent=bk.rating?(bk.rating+' / 10'):'';
     document.getElementById('vPagesPill').classList.toggle('hidden',!bk.pages);
     document.getElementById('vPages').textContent=bk.pages?(bk.pages+' '+t('pages_w')):'';
+    refreshVRep(bk);
     viewSheet.classList.add('open');sheetScrim.classList.add('open');document.body.classList.add('addopen');
   }
   function closeView(){viewSheet.classList.remove('open');
@@ -2437,18 +2979,25 @@
   document.getElementById('vExport').addEventListener('click',()=>{if(currentViewBk)exportCard(currentViewBk)});
   document.getElementById('vEdit').addEventListener('click',()=>{
     const bk=currentViewBk; if(!bk)return;
-    closeView(); openEditBook(bk);
+    closeView();
+    if(currentViewIsArticle)openArtEdit(bk); else openEditBook(bk);
   });
   document.getElementById('viewClose').addEventListener('click',closeView);
   // удаление конспекта
   const delAsk=document.getElementById('delAsk');
   const closeDelAsk=()=>{delAsk.classList.remove('open');pickScrim.classList.remove('open')};
   document.getElementById('vDelete').addEventListener('click',()=>{
+    document.querySelector('#delAsk h3').textContent=currentViewIsArticle?t('art_del_ask'):t('del_ask');
     delAsk.classList.add('open');pickScrim.classList.add('open');
   });
   document.getElementById('delAskClose').addEventListener('click',closeDelAsk);
   document.getElementById('delNo').addEventListener('click',closeDelAsk);
   document.getElementById('delYes').addEventListener('click',()=>{
+    if(currentViewIsArticle){
+      const j=ARTICLES.findIndex(a=>a.id===currentViewId);
+      if(j>-1)ARTICLES.splice(j,1);
+      persistLibrary(); closeDelAsk(); closeView(); buildArticles(); if(currentScreen==='review')buildReview(); updateRepBadge(); return;
+    }
     const i=READ.findIndex(b=>b.id===currentViewId);
     if(i>-1)READ.splice(i,1);
     persistLibrary();
@@ -2516,6 +3065,10 @@
     document.getElementById('screen-favorites').classList.toggle('hidden',name!=='favorites');
     document.getElementById('screen-wishlist').classList.toggle('hidden',name!=='wishlist');
     document.getElementById('screen-rating').classList.toggle('hidden',name!=='rating');
+    document.getElementById('screen-review').classList.toggle('hidden',name!=='review');
+    document.getElementById('screen-articles').classList.toggle('hidden',name!=='articles');
+    document.getElementById('screen-profile').classList.toggle('hidden',name!=='profile');
+    document.getElementById('artPlusBtn').classList.toggle('hidden',name!=='articles');
     document.getElementById('gearBtn').classList.toggle('hidden',['goal','months','authors','hashtags','favorites','wishlist','rating','tracker'].indexOf(name)<0);
     currentScreen=name;
     if(name==='tracker'){pageTitle.classList.remove('swap');pageTitle.innerHTML='<span class="tt">'+t('tracker')+'</span>';buildTracker()}
@@ -2526,6 +3079,9 @@
     else if(name==='hashtags'){pageTitle.classList.remove('swap');pageTitle.innerHTML='<span class="tt">'+t('hashtags')+'</span>';buildTags()}
     else if(name==='favorites'){pageTitle.classList.remove('swap');pageTitle.innerHTML='<span class="tt">'+t('favorites')+'</span>';buildFavorites()}
     else if(name==='rating'){pageTitle.classList.remove('swap');pageTitle.innerHTML='<span class="tt">'+t('rating')+'</span>';buildRating()}
+    else if(name==='review'){pageTitle.classList.remove('swap');pageTitle.innerHTML='<span class="tt">'+t('review')+'</span>';buildReview()}
+    else if(name==='articles'){pageTitle.classList.remove('swap');pageTitle.innerHTML='<span class="tt">'+t('articles')+'</span>';buildArticles()}
+    else if(name==='profile'){pageTitle.classList.remove('swap');pageTitle.innerHTML='<span class="tt">'+t('profile')+'</span>';buildProfile()}
     else if(name==='wishlist'){pageTitle.classList.remove('swap');pageTitle.innerHTML='<span class="tt">'+t('wishlist')+'</span>';buildWishlist();
       if(WISHLIST.length===0)setTimeout(openWishForm,350)}
     else{pageTitle.innerHTML=booksTitleHTML();onScroll()}
@@ -2550,6 +3106,11 @@
   (async()=>{
     try{
       const r=await idbGet('READ'), w=await idbGet('WISHLIST');
+      try{const ar=await idbGet('ARTICLES'); if(Array.isArray(ar)){ARTICLES.length=0;ARTICLES.push(...ar)}}catch(e){}
+      try{const pr=await idbGet('PROFILE');
+        if(pr){Object.assign(PROFILE,pr);
+          if(PROFILE.avatar){avatarEl.style.backgroundImage='url('+PROFILE.avatar+')';avatarEl.classList.add('hasimg')}
+          renderProfName();}}catch(e){}
       if(Array.isArray(r)&&r.length){READ.length=0; READ.push(...r)}
       if(Array.isArray(w)&&w.length){WISHLIST.length=0; WISHLIST.push(...w)}
       const SEED_R=['uni','det','sev','mil','dra','mar','peh','pla','ves','pra'];
@@ -2569,7 +3130,7 @@
   function backupData(){
     return {
       app:'MRJ', version:1, saved:new Date().toISOString(),
-      READ, WISHLIST, TRACK, GOAL, ROWS, TR_ROW, BOOKS_ROW
+      READ, WISHLIST, ARTICLES, TRACK, GOAL, ROWS, TR_ROW, BOOKS_ROW
     };
   }
   document.getElementById('backupSave').addEventListener('click',()=>{
@@ -2592,6 +3153,7 @@
         if(d.app!=='MRJ')throw 0;
         if(Array.isArray(d.READ)){READ.length=0;READ.push(...d.READ)}
         if(Array.isArray(d.WISHLIST)){WISHLIST.length=0;WISHLIST.push(...d.WISHLIST)}
+        if(Array.isArray(d.ARTICLES)){ARTICLES.length=0;ARTICLES.push(...d.ARTICLES)}
         if(d.TRACK&&typeof d.TRACK==='object'){TRACK=d.TRACK;saveTrack()}
         if(d.GOAL&&typeof d.GOAL==='object'){GOAL=d.GOAL;saveGoal()}
         if(d.ROWS&&typeof d.ROWS==='object'){ROWS=Object.assign(ROWS,d.ROWS);saveRows()}
@@ -2620,7 +3182,7 @@
     MONTH_FULL=I18N[LANG].months; MONTH_SHORT=I18N[LANG].monthsShort; WDAYS=I18N[LANG].wd;
     langSelect.value=LANG; langValue.textContent=LANG_LABEL[LANG];
     // меню
-    const MENU={books:'all_books',months:'months_s',stats:'stats',authors:'authors',hashtags:'hashtags',
+    const MENU={books:'all_books',months:'months_s',stats:'stats',authors:'authors',hashtags:'hashtags',articles:'articles',
       rating:'rating',goal:'goal',tracker:'tracker',wishlist:'wishlist',favorites:'favorites'};
     document.querySelectorAll('.nav a[data-screen]').forEach(a=>{a.textContent=t(MENU[a.dataset.screen]||a.dataset.screen)});
     // настройки
@@ -2684,6 +3246,17 @@
     if(caps[0])caps[0].textContent=t('cap1');
     if(caps[1])caps[1].textContent=t('cap2');
     const fe=document.getElementById('favEmpty'); if(fe)fe.textContent=t('fav_empty');
+    updateRepBadge();
+    document.getElementById('artHead').textContent=editingArtId?t('art_edit'):t('art_new');
+    document.querySelector('#aCovUp>span:last-of-type').textContent=t('add_cover');
+    setPh('aTitle','ph_art_title');setPh('aAuthor','ph_author');
+    setPh('aQ','ph_q');setPh('aLinkName','ph_link_name2');
+    document.querySelector('#aMediaAdd span:last-child').textContent=t('add_pics');
+    document.getElementById('aNotesCap').textContent=t('q_notes');
+    document.getElementById('aMediaCap').textContent=t('q_media');
+    document.getElementById('aLinksCap').textContent=t('q_links');
+    buildAChips();
+    document.getElementById('artSave').textContent=t('save');
     try{renderGoalIsland()}catch(e){}
   }
   applyLang();
