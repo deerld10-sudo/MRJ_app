@@ -2779,6 +2779,35 @@
     });
     return pos;
   }
+  // ---- ZIP без сжатия: карточки скачиваются одним архивом-папкой ----
+  const CRC_T=(()=>{const t=new Uint32Array(256);
+    for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?(0xEDB88320^(c>>>1)):(c>>>1);t[n]=c>>>0}return t})();
+  function crc32(u8){let c=0xFFFFFFFF;
+    for(let i=0;i<u8.length;i++)c=CRC_T[(c^u8[i])&0xFF]^(c>>>8);
+    return (c^0xFFFFFFFF)>>>0}
+  function zipStore(entries){
+    const enc=new TextEncoder(); const parts=[]; const central=[]; let off=0;
+    entries.forEach(e=>{
+      const name=enc.encode(e.name), crc=crc32(e.data), sz=e.data.length;
+      const lfh=new DataView(new ArrayBuffer(30));
+      lfh.setUint32(0,0x04034b50,true); lfh.setUint16(4,20,true); lfh.setUint16(6,0x0800,true);
+      lfh.setUint32(14,crc,true); lfh.setUint32(18,sz,true); lfh.setUint32(22,sz,true);
+      lfh.setUint16(26,name.length,true);
+      parts.push(lfh.buffer,name,e.data);
+      const cd=new DataView(new ArrayBuffer(46));
+      cd.setUint32(0,0x02014b50,true); cd.setUint16(4,20,true); cd.setUint16(6,20,true); cd.setUint16(8,0x0800,true);
+      cd.setUint32(16,crc,true); cd.setUint32(20,sz,true); cd.setUint32(24,sz,true);
+      cd.setUint16(28,name.length,true); cd.setUint32(42,off,true);
+      central.push(cd.buffer,name);
+      off+=30+name.length+sz;
+    });
+    let cdLen=0; central.forEach(b=>cdLen+=b.byteLength||b.length);
+    const end=new DataView(new ArrayBuffer(22));
+    end.setUint32(0,0x06054b50,true);
+    end.setUint16(8,entries.length,true); end.setUint16(10,entries.length,true);
+    end.setUint32(12,cdLen,true); end.setUint32(16,off,true);
+    return new Blob([...parts,...central,end.buffer],{type:'application/zip'});
+  }
   async function exportCard(bk,paged){
     await (document.fonts&&document.fonts.ready);
     const W=1654, M=130, INW=W-2*M, ACC='#47B0E9', SOFT='#8a8a8e', TXT='#1d1d1f';
@@ -2804,48 +2833,21 @@
           ctx.restore();}
         y+=ch+96; mark();
       }
-      ctx.font=F(66); ctx.textAlign='center'; ctx.fillStyle=TXT;
+      // заголовок — жирный
+      ctx.font=F(66,false,600); ctx.textAlign='center'; ctx.fillStyle=TXT;
       wrapText(ctx,bk.title||'',INW).forEach(l=>{if(draw)ctx.fillText(l,W/2,y);y+=86}); y+=18; mark();
       if(bk.author){ctx.font=F(44,true);ctx.fillStyle=SOFT;
         if(draw)ctx.fillText(bk.author,W/2,y); y+=84; mark()}
-      const rowItems=[];
-      if(bk.genre)rowItems.push({txt:bk.genre,chip:false});
-      (bk.tags||[]).forEach(tg=>rowItems.push({txt:'#'+tg,chip:true}));
-      if(rowItems.length){
-        y+=10;
-        const pad=26, gap=18, hh=62;
-        const meas=it=>{ctx.font=it.chip?F(34,true):F(38);
-          return ctx.measureText(it.txt).width+(it.chip?pad*2:0)};
-        const lines=[]; let cur=[],curW=0;
-        rowItems.forEach(it=>{
-          const w=meas(it);
-          if(curW&&curW+gap+w>INW){lines.push({items:cur,w:curW});cur=[];curW=0}
-          cur.push(Object.assign({w},it)); curW+=(curW?gap:0)+w;
-        });
-        if(cur.length)lines.push({items:cur,w:curW});
-        lines.forEach(ln=>{
-          let x=(W-ln.w)/2;
-          ln.items.forEach(it=>{
-            if(draw){
-              if(it.chip){ctx.fillStyle='rgba(97,183,228,.16)';rr(ctx,x,y-44,it.w,hh,30);ctx.fill();
-                ctx.font=F(34,true);ctx.fillStyle=TXT;ctx.textAlign='center';
-                ctx.fillText(it.txt,x+it.w/2,y)}
-              else{ctx.font=F(38);ctx.fillStyle=TXT;ctx.textAlign='center';
-                ctx.fillText(it.txt,x+it.w/2,y)}
-            }
-            x+=it.w+gap;
-          });
-          y+=hh+18;
-        });
-        mark();
-      }
+      // жанр (теги в файл не включаем)
+      if(bk.genre){ctx.font=F(38);ctx.fillStyle=TXT;ctx.textAlign='center';
+        if(draw)ctx.fillText(bk.genre,W/2,y); y+=64; mark()}
       const pills=[];
       if(bk.format)pills.push(I18N[LANG].fmt[bk.format]);
       if(bk.year!=null)pills.push((bk.month!=null?MONTH_FULL[bk.month]+' ':'')+bk.year);
       if(bk.rating)pills.push(bk.rating+' / 10');
       if(bk.pages)pills.push(bk.pages+' '+t('pages_w'));
       if(pills.length){
-        y+=44; ctx.font=F(34); ctx.textAlign='center';
+        y+=34; ctx.font=F(34); ctx.textAlign='center';
         const pad=34, gap2=20, hh=76;
         const widths=pills.map(p=>ctx.measureText(p).width+pad*2);
         let x=(W-(widths.reduce((a,b)=>a+b,0)+gap2*(pills.length-1)))/2;
@@ -2924,42 +2926,45 @@
     layout(true,null);
 
     const fname=(bk.title||'book').replace(/[\\/:*?"<>|]+/g,' ').trim();
-    const dl=(canvas,name,delay)=>setTimeout(()=>{
-      canvas.toBlob(b=>{
-        if(!b)return;
-        const u=URL.createObjectURL(b);
-        const a=document.createElement('a');
-        a.download=name; a.href=u;
-        document.body.appendChild(a); a.click(); a.remove();
-        setTimeout(()=>URL.revokeObjectURL(u),8000);
-      },'image/png');
-    },delay);
+    const dlBlob=(blob,name)=>{
+      const u=URL.createObjectURL(blob);
+      const a=document.createElement('a');
+      a.download=name; a.href=u;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(u),8000);
+    };
+    const toBlob=canvas=>new Promise(res=>canvas.toBlob(res,'image/png'));
 
-    const A4H=2339;
-    if(!paged||H<=A4H+300){
-      dl(cv,fname+' — MRJ.png',0);
+    const A4H=2339, TOP=110, BOT=150, USE=A4H-TOP-BOT;
+    if(!paged||H<=A4H){
+      const b=await toBlob(cv); if(b)dlBlob(b,fname+' — MRJ.png');
       return;
     }
-    // равные карточки формата A4; режу по безопасным линиям, строки не рвутся
+    // равные карточки: рез только по безопасным линиям, текст не режется
     const cuts=[0];
-    while(H-cuts[cuts.length-1]>A4H){
-      const from=cuts[cuts.length-1], target=from+A4H-80;
-      let best=target;
-      for(const s of safe){if(s<=target&&s>from+600)best=s}
-      cuts.push(Math.min(best,target));
+    while(H-cuts[cuts.length-1]>USE){
+      const from=cuts[cuts.length-1], target=from+USE;
+      let best=-1;
+      for(const s of safe){if(s<=target&&s>from+400)best=s}
+      cuts.push(best>0?best:target);
     }
     cuts.push(H);
     const total=cuts.length-1;
+    const files=[];
     for(let p=0;p<total;p++){
       const segH=cuts[p+1]-cuts[p];
       const pc=document.createElement('canvas'); pc.width=W; pc.height=A4H;
       const px=pc.getContext('2d');
       px.fillStyle='#FFFFFF'; px.fillRect(0,0,W,A4H);
-      px.drawImage(cv,0,cuts[p],W,segH,0,60,W,segH);
-      px.fillStyle=ACC; px.font=F(30); px.textAlign='center';
-      px.fillText((p+1)+' / '+total,W/2,A4H-60);
-      dl(pc,fname+' — MRJ '+(p+1)+' of '+total+'.png',p*450);
+      px.drawImage(cv,0,cuts[p],W,segH,0,TOP,W,segH);
+      // номер страницы — правый верхний угол, вне текста
+      px.fillStyle=ACC; px.font=F(32); px.textAlign='right';
+      px.fillText((p+1)+' / '+total,W-70,86);
+      const b=await toBlob(pc);
+      if(b)files.push({name:fname+' '+(p+1)+' of '+total+'.png',
+                       data:new Uint8Array(await b.arrayBuffer())});
     }
+    if(files.length)dlBlob(zipStore(files),fname+' — MRJ.zip');
   }
 
   // ---- просмотр сохранённой книги ----
