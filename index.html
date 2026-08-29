@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="MRJ">
 <link rel="apple-touch-icon" href="icon-180.png">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport-x-placeholder" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>MRJ — All books</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,7 @@
     --panel:#1B1B1B; --tabbar:rgba(27,27,27,.55);
   }
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  body{font-family:'Montserrat Alternates',system-ui,sans-serif;background:var(--bg);color:var(--text);transition:background .35s,color .35s;overflow-x:hidden}
+  body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;font-family:'Montserrat Alternates',system-ui,sans-serif;background:var(--bg);color:var(--text);transition:background .35s,color .35s;overflow-x:hidden}
   .app{width:37.5rem;margin:0 auto;min-height:100dvh;position:relative}
 
   /* Обложки */
@@ -51,7 +51,7 @@
   body.scrolled #burger{background:#fff}
   body.dark.scrolled #burger{background:#333}
   .icon-circle svg{width:1.6rem;height:1.6rem;stroke:var(--text);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none}
-  h1.page-title{font-size:1.6rem;font-weight:500;height:3.6rem;overflow:hidden;position:relative}
+  h1.page-title{font-size:1.6rem;font-weight:600;height:3.6rem;overflow:hidden;position:relative}
   .page-title .tt{display:block;line-height:3.6rem;transition:transform .4s cubic-bezier(.22,1,.36,1)}
   .page-title.swap .tt{transform:translateY(-100%)}
 
@@ -104,7 +104,7 @@
   
 
   /* ALREADY READ: заголовок 16/500, книги 154×235, зазоры 24 */
-  .section-title{font-size:1.6rem;font-weight:500;margin:3.2rem 2rem 2rem;
+  .section-title{font-size:1.6rem;font-weight:600;margin:2.6rem 2rem 2rem;
     display:flex;align-items:center;justify-content:space-between}
   .st-gear{width:3.6rem;height:3.6rem;border-radius:50%;border:none;cursor:pointer;
     background:var(--circle);display:flex;align-items:center;justify-content:center;
@@ -123,7 +123,10 @@
   /* Лайк: скрыт до наведения/тапа; контур белый крупный, избранное — красное всегда */
   .fav{position:absolute;top:.2rem;right:.2rem;width:3.4rem;height:3.4rem;border-radius:50%;background:none;border:none;cursor:pointer;z-index:2;
     display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s,transform .2s}
-  .book:hover .fav,.book.show .fav,.fav:focus-visible,.fav.liked{opacity:1}
+  @media (hover:hover){.book:hover .fav{opacity:1}}
+  .book.show .fav,.fav:focus-visible,.fav.liked{opacity:1}
+  .fav{pointer-events:none}
+  .book:hover .fav,.book.show .fav,.fav.liked,.fav:focus-visible{pointer-events:auto}
   .fav:active{transform:scale(.82)}
   .fav svg{width:2rem;height:2rem;filter:drop-shadow(0 .15rem .4rem rgba(0,0,0,.45))}
   .fav svg path{fill:transparent;stroke:#fff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:fill .25s,stroke .25s}
@@ -131,7 +134,7 @@
   .fav.liked svg path{fill:var(--red);stroke:var(--red)}
 
   /* iOS TAB BAR: 354×50, снизу 10, только тонкие иконки */
-  .tabbar{position:fixed;left:50%;transform:translateX(-50%);bottom:1rem;width:35.4rem;height:5rem;background:var(--tabbar);
+  .tabbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(1.8rem + env(safe-area-inset-bottom,0px));width:34.4rem;height:5rem;background:var(--tabbar);
     backdrop-filter:blur(28px) saturate(1.8);-webkit-backdrop-filter:blur(28px) saturate(1.8);border-radius:2.5rem;
     display:flex;align-items:center;justify-content:center;gap:3rem;
     box-shadow:0 .8rem 2.6rem rgba(20,30,40,.14),inset 0 .05rem 0 rgba(255,255,255,.55),inset 0 0 0 .05rem rgba(255,255,255,.28);z-index:40}
@@ -165,12 +168,12 @@
   .drawer.open{transform:translateX(0)}
   .drawer-shape{position:absolute;inset:0;background:var(--panel);filter:drop-shadow(1rem 0 2.6rem rgba(20,30,40,.16));-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 812' preserveAspectRatio='none'><path d='M279 0 C279 34.1 241 47.1 241 81.2 C241 115.3 279 128.3 279 162.4 C279 196.5 241 209.5 241 243.6 C241 277.7 279 290.7 279 324.8 C279 358.9 241 371.9 241 406.0 C241 440.1 279 453.1 279 487.2 C279 521.3 241 534.3 241 568.4 C241 602.5 279 615.5 279 649.6 C279 683.7 241 696.7 241 730.8 C241 764.9 279 777.9 279 812.0 L0 812 L0 0 Z' fill='black'/></svg>") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 812' preserveAspectRatio='none'><path d='M279 0 C279 34.1 241 47.1 241 81.2 C241 115.3 279 128.3 279 162.4 C279 196.5 241 209.5 241 243.6 C241 277.7 279 290.7 279 324.8 C279 358.9 241 371.9 241 406.0 C241 440.1 279 453.1 279 487.2 C279 521.3 241 534.3 241 568.4 C241 602.5 279 615.5 279 649.6 C279 683.7 241 696.7 241 730.8 C241 764.9 279 777.9 279 812.0 L0 812 L0 0 Z' fill='black'/></svg>") 0 0/100% 100% no-repeat;transition:background .35s}
   .drawer-inner{position:relative;height:100%;transform:translateZ(0);display:flex;flex-direction:column;padding:2.8rem 6rem 3rem 3.2rem;overflow-y:auto}
-  .logo{font-size:4.1rem;font-weight:500;line-height:1;letter-spacing:.02em;user-select:none;text-transform:uppercase;transition:color .3s ease}
+  .logo{font-size:4.1rem;font-weight:600;line-height:1;letter-spacing:.02em;user-select:none;text-transform:uppercase;transition:none}
   .nav{display:flex;flex-direction:column;margin-top:2.4rem}
   .nav a{text-decoration:none;color:var(--text);font-size:1.4rem;font-weight:500;line-height:3.4rem;width:max-content;
     opacity:0;transform:translateX(-1.2rem);transition:opacity .35s var(--d,0s),transform .45s var(--d,0s) cubic-bezier(.22,1,.36,1),color .2s}
   .drawer.open .nav a{opacity:1;transform:none}
-  .nav a.active{color:#47B0E9}
+  .nav a.active{color:#47B0E9;font-weight:600}
   .nav a:active{opacity:.6}
 
   /* Плашки настроек: 177×40 r14, цвет A4CCE1, свитч без зелёного */
@@ -267,6 +270,7 @@
   .cov-frame{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
   .fld{margin-bottom:1.5rem}
   .fld .s-cap{margin-bottom:.5rem}
+  input,textarea{-webkit-user-select:text;user-select:text}
   .fld input{width:100%;height:3.9rem;border-radius:1.2rem;border:none;
     background:rgba(97,183,228,.12);color:var(--text);
     font-family:'Montserrat Alternates',sans-serif;font-size:1.3rem;font-weight:500;
@@ -300,7 +304,7 @@
   @media (hover:hover){.add-save:hover{filter:brightness(1.06)}}
   .as-head{position:sticky;top:0;z-index:6;background:var(--panel);
     padding:2.2rem 0 1.4rem;margin:0 0 .6rem;transition:background .35s}
-  .addsheet h3{font-size:1.6rem;font-weight:500;text-align:center;margin:0}
+  .addsheet h3{font-size:1.6rem;font-weight:600;text-align:center;margin:0}
   .as-head .add-close{top:50%;transform:translateY(-46%);right:0}
   .as-head .add-close:active{transform:translateY(-46%) scale(.9)}
 
@@ -566,7 +570,7 @@
 
   /* ---------- STATISTICS SCREEN ---------- */
   #screen-stats{padding:1rem 2rem 12rem}
-  .stat-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.2rem;margin-bottom:2.4rem}
+  .stat-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.3rem;margin-bottom:2.6rem}
   .stat-card{background:var(--circle);border-radius:1.5rem;padding:1.6rem 1.2rem;
     display:flex;flex-direction:column;gap:.5rem;transition:background .35s;
     animation:rise .55s cubic-bezier(.22,1,.36,1) backwards}
@@ -574,11 +578,11 @@
   .stat-card:nth-child(3){animation-delay:.12s}
   .stat-num{font-size:2.6rem;font-weight:500;font-style:italic;line-height:1;color:var(--text)}
   .stat-lbl{font-size:1.05rem;color:var(--text-soft);font-weight:500;white-space:pre-line}
-  .chart-title{font-size:1.6rem;font-weight:500;margin:0 0 1.4rem}
+  .chart-title{font-size:1.6rem;font-weight:600;margin:0 0 1.4rem}
   .chart-card{background:var(--circle);border-radius:1.5rem;padding:1.8rem 1.6rem 1.6rem;
     transition:background .35s;
     animation:rise .55s .18s cubic-bezier(.22,1,.36,1) backwards}
-  .chart-card+.chart-card{margin-top:1.6rem;animation-delay:.26s}
+  .chart-card+.chart-card{margin-top:1.3rem;animation-delay:.26s}
   .chart-cap{font-size:1.15rem;font-weight:500;font-style:italic;color:var(--text-soft);margin-bottom:1.6rem}
   .chart-row{display:flex;gap:1.2rem}
   .chart-axis{position:relative;width:2rem;flex-shrink:0}
@@ -595,9 +599,9 @@
 
   /* ---------- MONTHS SCREEN ---------- */
   #screen-months,#screen-authors,#screen-hashtags,#screen-favorites{padding:1rem 2rem 12rem}
-  .mo-head{display:flex;align-items:flex-start;gap:.6rem;margin:3rem 0 1.4rem}
+  .mo-head{display:flex;align-items:flex-start;gap:.6rem;margin:2.6rem 0 1.3rem}
   .mo-head:first-child{margin-top:1rem}
-  .mo-name{font-size:1.6rem;font-weight:500;font-style:italic;line-height:1}
+  .mo-name{font-size:1.6rem;font-weight:600;font-style:italic;line-height:1}
   .mo-count{color:#47B0E9;font-size:.9rem;font-weight:500;font-style:italic;margin-top:-.1rem}
   .mo-grid{display:grid;gap:1.2rem}
   .mo-grid.sq{gap:.6rem}
@@ -608,13 +612,13 @@
     backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
     opacity:0;pointer-events:none;transition:opacity .25s}
   .pick-scrim.open{opacity:1;pointer-events:auto}
-  .picksheet{position:fixed;left:50%;bottom:2rem;z-index:98;width:33rem;
+  .picksheet{position:fixed;left:50%;bottom:3.2rem;z-index:98;width:33rem;
     transform:translateX(-50%) translateY(150%);visibility:hidden;
     background:var(--panel);border-radius:2rem;padding:2rem;
     box-shadow:0 1.6rem 4rem rgba(0,0,0,.35);
     transition:transform .38s cubic-bezier(.32,.9,.28,1),background .35s,visibility 0s .38s}
   .picksheet.open{transform:translateX(-50%) translateY(0);visibility:visible;transition-delay:0s}
-  .picksheet h3{font-size:1.4rem;font-weight:500;text-align:center;margin-bottom:1.4rem}
+  .picksheet h3{font-size:1.4rem;font-weight:600;text-align:center;margin-bottom:1.4rem}
   .picksheet .add-close{position:absolute;top:1.1rem;right:1.1rem;width:3rem;height:3rem}
   .picksheet .add-close .ic.x{width:1.2rem;height:1.2rem}
   .pick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}
@@ -637,7 +641,7 @@
   .v-cover{width:12.4rem;height:18.6rem;margin:1rem auto 2rem;border-radius:.4rem;
     background-size:cover;background-position:center;position:relative;overflow:hidden;
     box-shadow:0 .6rem 1.8rem rgba(30,40,50,.25)}
-  .v-title{font-size:1.6rem;font-weight:500;text-align:center;margin-bottom:.4rem}
+  .v-title{font-size:1.6rem;font-weight:600;text-align:center;margin-bottom:.4rem}
   .v-author{font-size:1.3rem;font-style:italic;color:var(--text-soft);text-align:center;margin-bottom:1.6rem}
   .v-genre{font-size:1.2rem;text-align:center;color:var(--text);margin-bottom:1.4rem}
   .v-tags{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:1.8rem}
@@ -676,8 +680,10 @@
 
   /* ---------- TRACKER SCREEN ---------- */
   .hidden{display:none!important}
+  body:has(.sheet.open),body:has(.picksheet.open),body:has(.addsheet.open),
+  body:has(.lightbox.open),body:has(.drawer.open){overflow:hidden}
   #screen-tracker{padding:1.4rem 2rem 12rem}
-  .months{display:grid;grid-template-columns:1fr;gap:1.6rem}
+  .months{display:grid;grid-template-columns:1fr;gap:1.3rem}
   .months.two .m-name{font-size:1.15rem;margin-bottom:.8rem}
   .months.two .m-grid{gap:.3rem}
   .months.two .m-grid .wd{font-size:.7rem;line-height:1.4rem}
@@ -685,7 +691,7 @@
   .months.two .month{padding:1.2rem 1rem 1.4rem}
   .month{background:var(--circle);border-radius:1.5rem;padding:1.6rem 1.8rem 2rem;
     transition:background .35s;animation:rise .55s cubic-bezier(.22,1,.36,1) backwards}
-  .m-name{text-align:center;font-size:1.4rem;font-weight:500;margin-bottom:1.2rem;letter-spacing:.06em}
+  .m-name{text-align:center;font-size:1.4rem;font-weight:600;margin-bottom:1.2rem;letter-spacing:.06em}
   .m-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.5rem;justify-items:center}
   .m-grid .wd{font-size:.95rem;color:var(--text-soft);line-height:2rem}
   .day{width:100%;aspect-ratio:1/.94;height:auto;border-radius:.8rem;border:none;cursor:pointer;
@@ -695,23 +701,28 @@
   body.dark .day{background:rgba(255,255,255,.07)}
   .day:active{transform:scale(.85)}
   .day.today{box-shadow:inset 0 0 0 .09rem #47B0E9}
-  .m-grid .day.l1{background:#DCEDF7;color:#1d1d1f}
-  .m-grid .day.l2{background:#AFD8EF;color:#1d1d1f}
-  .m-grid .day.l3{background:#85C4E9;color:#1d1d1f}
-  .m-grid .day.l4{background:#61B7E4;color:#fff}
-  .m-grid .day.l5{background:#47B0E9;color:#fff}
+  .m-grid .day.l1{background:#D7EBFA;color:#1d1d1f}
+  .m-grid .day.l2{background:#B7DCF7;color:#1d1d1f}
+  .m-grid .day.l3{background:#8CC6F2;color:#1d1d1f}
+  .m-grid .day.l4{background:#5BAAEC;color:#fff}
+  .m-grid .day.l5{background:#2F90EA;color:#fff}
+  body.dark .m-grid .day.l1{background:#425466;color:#fff}
+  body.dark .m-grid .day.l2{background:#55708A;color:#fff}
+  body.dark .m-grid .day.l3{background:#6C8FB0;color:#fff}
+  body.dark .m-grid .day.l4{background:#4B99D6;color:#fff}
+  body.dark .m-grid .day.l5{background:#2F90EA;color:#fff}
   @media (hover:hover){.day:hover{transform:scale(1.12)}}
   /* модалка "сколько страниц" */
   .sheet-scrim{position:fixed;inset:0;z-index:90;background:rgba(20,20,20,.45);
     backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
     opacity:0;pointer-events:none;transition:opacity .3s}
   .sheet-scrim.open{opacity:1;pointer-events:auto}
-  .sheet{position:fixed;left:50%;transform:translateX(-50%) translateY(150%);visibility:hidden;bottom:2rem;z-index:95;
+  .sheet{position:fixed;left:50%;transform:translateX(-50%) translateY(150%);visibility:hidden;bottom:3.2rem;z-index:95;
     width:33rem;background:var(--panel);border-radius:2rem;padding:2.2rem 2rem 2rem;
     box-shadow:0 1.6rem 4rem rgba(0,0,0,.3);
     transition:transform .42s cubic-bezier(.32,.9,.28,1),visibility 0s .42s}
   .sheet.open{transform:translateX(-50%) translateY(0);visibility:visible;transition-delay:0s}
-  .sheet h3{font-size:1.5rem;font-weight:500;margin-bottom:.4rem;text-align:center}
+  .sheet h3{font-size:1.5rem;font-weight:600;margin-bottom:.4rem;text-align:center}
   .sheet .s-date{font-size:1.1rem;color:var(--text-soft);margin-bottom:1.8rem;text-align:center}
   .sheet input{width:100%;height:3.8rem;border-radius:1.2rem;border:none;
     background:rgba(97,183,228,.12);color:var(--text);font-family:'Montserrat Alternates',sans-serif;
@@ -725,6 +736,12 @@
     transition:transform .2s,box-shadow .2s;padding:0}
   .chip:active{transform:scale(.92)}
   .chip.sel{box-shadow:0 0 0 .22rem var(--bg),0 0 0 .42rem #47B0E9}
+  .chip.c1{background:#D7EBFA;color:#1d1d1f}.chip.c2{background:#B7DCF7;color:#1d1d1f}
+  .chip.c3{background:#8CC6F2;color:#1d1d1f}.chip.c4{background:#5BAAEC;color:#fff}
+  .chip.c5{background:#2F90EA;color:#fff}
+  body.dark .chip.c1{background:#425466;color:#fff}body.dark .chip.c2{background:#55708A;color:#fff}
+  body.dark .chip.c3{background:#6C8FB0;color:#fff}body.dark .chip.c4{background:#4B99D6;color:#fff}
+  body.dark .chip.c5{background:#2F90EA;color:#fff}
   .sheet-btns{display:flex;gap:1rem}
   .sheet-btns button{flex:1;height:4rem;border:none;border-radius:1.2rem;cursor:pointer;
     font-family:'Montserrat Alternates',sans-serif;font-size:1.3rem;font-weight:500;transition:transform .2s}
@@ -1028,11 +1045,11 @@
   <h3>How many pages?</h3>
   <div class="s-date" id="sheetDate"></div>
   <div class="chips">
-    <button class="chip" data-v="20" style="background:#DCEDF7;color:#1d1d1f">0–20</button>
-    <button class="chip" data-v="40" style="background:#AFD8EF;color:#1d1d1f">21–40</button>
-    <button class="chip" data-v="65" style="background:#85C4E9;color:#1d1d1f">41–65</button>
-    <button class="chip" data-v="90" style="background:#61B7E4;color:#fff">66–90</button>
-    <button class="chip" data-v="120" style="background:#47B0E9;color:#fff">90–120</button>
+    <button class="chip c1" data-v="20">0–20</button>
+    <button class="chip c2" data-v="40">21–40</button>
+    <button class="chip c3" data-v="65">41–65</button>
+    <button class="chip c4" data-v="90">66–90</button>
+    <button class="chip c5" data-v="120">90–120</button>
   </div>
   <input id="sheetInput" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="exact pages — optional">
   <div class="sheet-btns">
@@ -1110,7 +1127,7 @@
     books_lbl:'Books',st_read:'Books read',st_year:'This year',st_avg:'Avg rating',
     reading_by:'Reading by months',cap1:'January — June',cap2:'July — December',
     fav_empty:'No favorites yet — tap the heart on a book you loved',
-    pages_w:'pages',link_fb:'Link',of_w:'of',search:'Search',ph_search:'Search books…',not_found:'Nothing found',
+    pages_w:'pages',link_fb:'Link',of_w:'of',per_row_cal:'Months per row',search:'Search',ph_search:'Search books…',not_found:'Nothing found',
     cheer_start:'The year starts with the very first page — go!',
     cheer_done:'Goal complete — {n} of {goal}. You are unstoppable!',
     cheer_half:'More than halfway there — just {left} to go!',
@@ -1141,7 +1158,7 @@
     books_lbl:'книг',st_read:'Всего прочитано',st_year:'В этом\nгоду',st_avg:'Средний рейтинг',
     reading_by:'Чтение по месяцам',cap1:'Январь — Июнь',cap2:'Июль — Декабрь',
     fav_empty:'Пока пусто — нажмите на сердечко у любимой книги',
-    pages_w:'стр.',link_fb:'Ссылка',of_w:'из',search:'Поиск',ph_search:'Поиск книг…',not_found:'Ничего не нашлось',
+    pages_w:'стр.',link_fb:'Ссылка',of_w:'из',per_row_cal:'Месяцев в ряду',search:'Поиск',ph_search:'Поиск книг…',not_found:'Ничего не нашлось',
     cheer_start:'Год начинается с первой страницы — вперёд!',
     cheer_done:'Цель выполнена — {n} из {goal}. Вы неудержимы!',
     cheer_half:'Больше половины — осталось всего {left}!',
@@ -1172,7 +1189,7 @@
     books_lbl:'Libros',st_read:'Libros leídos',st_year:'Este año',st_avg:'Valoración media',
     reading_by:'Lectura por meses',cap1:'Enero — Junio',cap2:'Julio — Diciembre',
     fav_empty:'Aún no hay favoritos — toca el corazón de un libro que ames',
-    pages_w:'págs.',link_fb:'Enlace',of_w:'de',search:'Buscar',ph_search:'Buscar libros…',not_found:'No se encontró nada',
+    pages_w:'págs.',link_fb:'Enlace',of_w:'de',per_row_cal:'Meses por fila',search:'Buscar',ph_search:'Buscar libros…',not_found:'No se encontró nada',
     cheer_start:'El año empieza con la primera página — ¡vamos!',
     cheer_done:'¡Meta cumplida — {n} de {goal}!',
     cheer_half:'¡Más de la mitad — solo quedan {left}!',
@@ -1215,11 +1232,7 @@
   // addToWishlist('id-обложки') добавляет книгу, и плашка на главной
   // автоматически показывает ПОСЛЕДНИЕ добавленные (новейшая — в центре).
   const WISHLIST=[
-    {id:'mil',added:1},{id:'det',added:2},{id:'sev',added:3},
-    {id:'uni',added:4},{id:'kit',added:5},
-    // новые — добавлены последними, веер показывает их автоматически:
-    {id:'dra',added:6},{id:'mar',added:7},{id:'peh',added:8},
-    {id:'pla',added:9},{id:'ves',added:10},{id:'pra',added:11}
+    {id:'kit',added:1} // единственный пример в вишлисте
   ];
   const FAN_SLOTS=['f3','f2','f4','f1','f5']; // центр -> к краям, по свежести
   function renderWishlistFan(){
@@ -1272,12 +1285,7 @@
   // === Раздел Already read: новые книги встают сверху (по дате добавления) ===
   const HEART='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z';
   const READ=[
-    {id:'uni',added:1,liked:true},{id:'det',added:2,liked:false},
-    {id:'sev',added:3,liked:true},{id:'mil',added:4,liked:false},
-    // добавленные последними — окажутся в начале раздела:
-    {id:'dra',added:5,liked:false},{id:'mar',added:6,liked:false},
-    {id:'peh',added:7,liked:false},{id:'pla',added:8,liked:false},
-    {id:'ves',added:9,liked:false},{id:'pra',added:10,liked:false}
+    {id:'pra',added:1,liked:false} // единственный пример конспекта
   ];
   // доводка стартовых книг: даты, авторы, теги, названия — открываются как конспекты
   function applySeedMeta(){
@@ -2043,6 +2051,7 @@
   const rowSheet=document.getElementById('rowSheet'),rowGrid=document.getElementById('rowGrid');
   function openRowSheet(){
     rowGrid.innerHTML='';
+    rowSheet.querySelector('h3').textContent=(currentScreen==='tracker')?t('per_row_cal'):t('per_row');
     let opts,cur,apply;
     if(currentScreen==='tracker'){
       opts=[1,2]; cur=TR_ROW;
@@ -2521,7 +2530,13 @@
       const r=await idbGet('READ'), w=await idbGet('WISHLIST');
       if(Array.isArray(r)&&r.length){READ.length=0; READ.push(...r)}
       if(Array.isArray(w)&&w.length){WISHLIST.length=0; WISHLIST.push(...w)}
-      if((Array.isArray(r)&&r.length)||(Array.isArray(w)&&w.length)){
+      const SEED_R=['uni','det','sev','mil','dra','mar','peh','pla','ves'];
+      const SEED_W=['mil','det','sev','uni','dra','mar','peh','pla','ves','pra'];
+      let purged=false;
+      for(let i=READ.length-1;i>=0;i--)if(SEED_R.includes(READ[i].id)){READ.splice(i,1);purged=true}
+      for(let i=WISHLIST.length-1;i>=0;i--)if(SEED_W.includes(WISHLIST[i].id)){WISHLIST.splice(i,1);purged=true}
+      if(purged)persistLibrary();
+      if(true){
         applySeedMeta();
         renderReadGrid(); renderWishlistFan();
       }
