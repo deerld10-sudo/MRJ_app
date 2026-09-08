@@ -113,8 +113,8 @@
     transition:transform .2s,background .35s}
   .st-gear:active{transform:scale(.92)}
   .st-gear .ic{width:1.7rem;height:1.7rem;background:var(--text)}
-  .books-grid{display:grid;grid-template-columns:15.4rem 15.4rem;column-gap:2.4rem;row-gap:2.4rem;padding:0 2rem 12rem 2rem}
-  .book{position:relative;width:15.4rem;height:23.5rem;cursor:pointer}
+  .books-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:1.2rem;row-gap:1.2rem;padding:0 2rem 12rem 2rem}
+  .book{position:relative;aspect-ratio:2/3;cursor:pointer}
   .books-grid.fluid .book{width:auto;height:auto;aspect-ratio:2/3}
   .books-grid.fluid .fav{right:0}
   .books-grid.fluid.tight .fav{right:0;width:2.6rem;height:2.6rem}
@@ -1552,21 +1552,15 @@
     grid.innerHTML='';
     // поля и зазоры задаются напрямую — ровно те же правила, что в сетках вишлиста и статистик
     grid.style.paddingLeft='2rem'; grid.style.paddingRight='2rem';
-    if(BOOKS_ROW===2){
-      grid.classList.remove('fluid','tight');
-      grid.style.gridTemplateColumns='15.4rem 15.4rem';
-      grid.style.columnGap='2.4rem'; grid.style.rowGap='2.4rem';
-    }else{
-      grid.classList.add('fluid');
-      grid.classList.toggle('tight',BOOKS_ROW>=6);
-      grid.style.gridTemplateColumns='repeat('+BOOKS_ROW+',1fr)';
-      const g=(BOOKS_ROW>=10)?'.6rem':'1.2rem';
-      grid.style.columnGap=g; grid.style.rowGap=g;
-    }
+    grid.classList.add('fluid');
+    grid.classList.toggle('tight',BOOKS_ROW>=6);
+    grid.style.gridTemplateColumns='repeat('+BOOKS_ROW+',1fr)';
+    const g=(BOOKS_ROW>=10)?'.6rem':'1.2rem';
+    grid.style.columnGap=g; grid.style.rowGap=g;
     [...READ].sort((a,b)=>b.added-a.added).forEach((bk,i)=>{
       const d=document.createElement('div');
       d.className='book'; d.dataset.id=bk.id;
-      if(BOOKS_ROW!==2){d.style.width='auto';d.style.height='auto';d.style.aspectRatio='2/3'}
+      d.style.width='auto'; d.style.height='auto'; d.style.aspectRatio='2/3';
       d.style.animationDelay=(0.3+Math.min(i,6)*0.06)+'s';
       const artCls=bk.cov?'art':'art im-'+bk.id;
       const artStyle=bk.cov?' style="background-image:url('+bk.cov+');background-size:cover;background-position:center"':'';
