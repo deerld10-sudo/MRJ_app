@@ -2959,7 +2959,7 @@
 
     function layout(draw,safe){
       let y=150;
-      const mark=()=>{if(safe)safe.push(y-36)};
+      const mark=()=>{if(safe)safe.push(y-44)}; // просвет при строке 72
       const cw=430, ch=645;
       if(coverImg){
         if(draw){ctx.save();rr(ctx,(W-cw)/2,y,cw,ch,14);ctx.clip();
@@ -2973,15 +2973,15 @@
       ctx.font=F(66,false,600); ctx.textAlign='center'; ctx.fillStyle=TXT;
       wrapText(ctx,bk.title||'',INW).forEach(l=>{if(draw)ctx.fillText(l,W/2,y);y+=86}); y-=6; mark();
       // автор — ровным шрифтом, кегль как у жанра и ответов
-      if(bk.author){ctx.font=F(40,false,500);ctx.fillStyle=TXT;
-        if(draw)ctx.fillText(bk.author,W/2,y); y+=118; mark()}
+      if(bk.author){ctx.font=F(50,false,500);ctx.fillStyle=TXT;
+        if(draw)ctx.fillText(bk.author,W/2,y); y+=128; mark()}
       // жанр (жирный) и хештеги — одной строкой, как в конспекте
       const rowItems=[];
       if(bk.genre)rowItems.push({txt:bk.genre,chip:false});
       (bk.tags||[]).forEach(tg=>rowItems.push({txt:'#'+tg,chip:true}));
       if(rowItems.length){
         const cpad=40, cgap=18, chh=62;
-        const meas=it=>{ctx.font=it.chip?F(34,true):F(40,false,600);
+        const meas=it=>{ctx.font=it.chip?F(34,true):F(50,false,600);
           return ctx.measureText(it.txt).width+(it.chip?cpad*2:0)};
         const lines=[]; let cur=[],curW=0;
         rowItems.forEach(it=>{
@@ -2997,7 +2997,7 @@
               if(it.chip){ctx.fillStyle='rgba(97,183,228,.16)';rr(ctx,x,y-44,it.w,chh,30);ctx.fill();
                 ctx.font=F(34,true);ctx.fillStyle=TXT;ctx.textAlign='center';
                 ctx.fillText(it.txt,x+it.w/2,y)}
-              else{ctx.font=F(40,false,600);ctx.fillStyle=TXT;ctx.textAlign='center';
+              else{ctx.font=F(50,false,600);ctx.fillStyle=TXT;ctx.textAlign='center';
                 ctx.fillText(it.txt,x+it.w/2,y)}
             }
             x+=it.w+cgap;
@@ -3046,22 +3046,22 @@
             const words=[];
             fmtRuns(par).forEach(r=>r.t.split(/\s+/).filter(Boolean)
               .forEach(w=>words.push({w,b:r.b,i:r.i})));
-            const fw=o=>{ctx.font=F(40,o.i,o.b?700:400);return ctx.measureText(o.w).width};
-            const sp=(()=>{ctx.font=F(40);return ctx.measureText(' ').width})();
+            const fw=o=>{ctx.font=F(50,o.i,o.b?700:400);return ctx.measureText(o.w).width};
+            const sp=(()=>{ctx.font=F(50);return ctx.measureText(' ').width})();
             let line=[],lw=0;
             const flush=()=>{
-              if(draw){let x=M;line.forEach(o=>{ctx.font=F(40,o.i,o.b?700:400);
+              if(draw){let x=M;line.forEach(o=>{ctx.font=F(50,o.i,o.b?700:400);
                 ctx.fillText(o.w,x,y);x+=o._w+sp})}
-              y+=58; mark(); line=[]; lw=0;
+              y+=72; mark(); line=[]; lw=0;
             };
             words.forEach(o=>{
               o._w=fw(o);
               if(lw&&lw+sp+o._w>INW)flush();
               line.push(o); lw+=(lw?sp:0)+o._w;
             });
-            if(line.length)flush(); else {y+=58; mark();}
+            if(line.length)flush(); else {y+=72; mark();}
           });
-          y+=58; mark();
+          y+=68; mark();
         });
       }
       if(mediaImgs.length){
@@ -3142,7 +3142,7 @@
       ctx=px; layout(true,null);
       px.restore();
       if(withNum){
-        px.fillStyle=ACC; px.font=F(32); px.textAlign='right';
+        px.fillStyle=ACC; px.font=F(36); px.textAlign='right';
         px.fillText((p+1)+' / '+total,W-70,86);
       }
       // M R J — на каждой странице, с тем же полем снизу, что у номера сверху
@@ -3198,30 +3198,32 @@
       y=126; ctx.textAlign='center';
       // герой: крупная цифра цели; подпись «книг» — как «Цель на год»
       const hero=[
-        {txt:String(GOAL.goal),f:F(150,true,600),c:TXT,dy:0},
-        {txt:'  '+t('books_lbl'),f:F(36,true,500),c:SOFT,dy:0}
+        {txt:String(GOAL.goal),f:F(170,true,600),c:TXT,dy:0},
+        {txt:'  '+t('books_lbl'),f:F(50,true,500),c:SOFT,dy:0}
       ];
       let tw=0; hero.forEach(p=>{ctx.font=p.f;p.w=ctx.measureText(p.txt).width;tw+=p.w});
       let x=(W-tw)/2; ctx.textAlign='left';
       hero.forEach(p=>{if(draw){ctx.font=p.f;ctx.fillStyle=p.c;ctx.fillText(p.txt,x,y)}x+=p.w});
       y+=70;
-      ctx.textAlign='center'; ctx.font=F(36,true); ctx.fillStyle=SOFT;
+      ctx.textAlign='center'; ctx.font=F(50,true); ctx.fillStyle=SOFT;
       if(draw)ctx.fillText(t('goal_cap'),W/2,y);
-      y+=104;
+      y+=118;
       // прогресс: N из M — прочитанное голубым
       const prog=[
-        {txt:String(n),f:F(36,false,600),c:ACC},
-        {txt:' '+t('of_w')+' ',f:F(36,false,500),c:SOFT},
-        {txt:String(GOAL.goal),f:F(36,false,600),c:TXT}
+        {txt:String(n),f:F(54,false,600),c:ACC},
+        {txt:' '+t('of_w')+' ',f:F(54,false,500),c:SOFT},
+        {txt:String(GOAL.goal),f:F(54,false,600),c:TXT}
       ];
       tw=0; prog.forEach(p=>{ctx.font=p.f;p.w=ctx.measureText(p.txt).width;tw+=p.w});
       x=(W-tw)/2; ctx.textAlign='left';
       prog.forEach(p=>{if(draw){ctx.font=p.f;ctx.fillStyle=p.c;ctx.fillText(p.txt,x,y)}x+=p.w});
-      y+=100; if(safe)safe.push(y-44);
+      y+=112; if(safe)safe.push(y-44);
       // сетка обложек
       for(let i=0;i<list.length;i+=cols){
-        for(let j=0;j<cols&&i+j<list.length;j++){
-          const xx=M+j*(cw+cgap);
+        const k=Math.min(cols,list.length-i); // в ряду меньше четырёх — центруем
+        const x0=M+Math.round((INW-(k*cw+(k-1)*cgap))/2);
+        for(let j=0;j<k;j++){
+          const xx=x0+j*(cw+cgap);
           if(draw){
             const im=covers[i+j];
             ctx.save(); rr(ctx,xx,y,cw,chH,14); ctx.clip();
@@ -3274,14 +3276,14 @@
       const dy=(total===1)?Math.max(TOP,Math.round((A4H-segH)/2)):TOP;
       px.save(); px.beginPath(); px.rect(0,dy,W,segH); px.clip();
       px.translate(0,dy-cuts[p]); ctx=px; layout(true,null); px.restore();
-      px.font=F(32); px.textAlign='right';
+      px.textAlign='right';
       let rx=W-70;
       if(total>1){
-        px.fillStyle=ACC;
+        px.font=F(36); px.fillStyle=ACC;
         px.fillText((p+1)+' / '+total,rx,86);
         rx-=px.measureText((p+1)+' / '+total).width+34;
       }
-      px.fillStyle=TXT;
+      px.font=F(36); px.fillStyle=TXT;
       px.fillText(t('goal_t')+' \u00b7 '+year,rx,86);
       px.fillStyle=ACC; px.font=F(40); px.textAlign='center';
       px.fillText('M R J',W/2,A4H-74);
