@@ -2971,10 +2971,10 @@
       }
       // название — жирное, компактный кегль прошлой версии
       ctx.font=F(66,false,600); ctx.textAlign='center'; ctx.fillStyle=TXT;
-      wrapText(ctx,bk.title||'',INW).forEach(l=>{if(draw)ctx.fillText(l,W/2,y);y+=86}); y-=16; mark(); // x=70 до автора
+      wrapText(ctx,bk.title||'',INW).forEach(l=>{if(draw)ctx.fillText(l,W/2,y);y+=86}); y+=8; mark(); // равный шаг: до автора
       // автор — ровным шрифтом, кегль как у жанра и ответов
-      if(bk.author){ctx.font=F(50,false,500);ctx.fillStyle=TXT;
-        if(draw)ctx.fillText(bk.author,W/2,y); y+=140; mark()} // 2x до жанра
+      if(bk.author){ctx.font=F(50,false,600);ctx.fillStyle=ACC; // жирный, акцентный
+        if(draw)ctx.fillText(bk.author,W/2,y); y+=96; mark()} // равный шаг: до жанра
       // жанр (жирный) и хештеги — одной строкой, как в конспекте
       const rowItems=[];
       if(bk.genre)rowItems.push({txt:bk.genre,chip:false});
@@ -3013,7 +3013,7 @@
       if(bk.rating)pills.push(bk.rating+' / 10');
       if(bk.pages)pills.push(bk.pages+' '+t('pages_w'));
       if(pills.length){
-        y+=58; ctx.font=F(34,true); ctx.textAlign='center';
+        y+=64; ctx.font=F(34,true); ctx.textAlign='center';
         const pad=64, gap2=20, hh=112;
         const widths=pills.map(p=>ctx.measureText(p).width+pad*2);
         let x=(W-(widths.reduce((a,b)=>a+b,0)+gap2*(pills.length-1)))/2;
@@ -3195,7 +3195,7 @@
 
     function layout(draw,safe){
       let y=150;
-      y=126; ctx.textAlign='center';
+      y=214; ctx.textAlign='center'; // запас под высоту крупной цифры
       // герой: крупная цифра цели; подпись «книг» — как «Цель на год»
       const hero=[
         {txt:String(GOAL.goal),f:F(250,true,600),c:TXT,dy:0},
@@ -3207,17 +3207,17 @@
       y+=64; // x
       ctx.textAlign='center'; ctx.font=F(46,true); ctx.fillStyle=SOFT;
       if(draw)ctx.fillText(t('goal_cap'),W/2,y);
-      y+=128; // 2x
+      y+=96; // x
       // прогресс: N из M — прочитанное голубым
       const prog=[
-        {txt:String(n),f:F(54,false,600),c:ACC},
-        {txt:' '+t('of_w')+' ',f:F(54,false,500),c:SOFT},
-        {txt:String(GOAL.goal),f:F(54,false,600),c:TXT}
+        {txt:String(n),f:F(46,true,600),c:ACC},
+        {txt:' '+t('of_w')+' ',f:F(46,true,500),c:SOFT},
+        {txt:String(GOAL.goal),f:F(46,true,600),c:TXT}
       ];
       tw=0; prog.forEach(p=>{ctx.font=p.f;p.w=ctx.measureText(p.txt).width;tw+=p.w});
       x=(W-tw)/2; ctx.textAlign='left';
       prog.forEach(p=>{if(draw){ctx.font=p.f;ctx.fillStyle=p.c;ctx.fillText(p.txt,x,y)}x+=p.w});
-      y+=128; if(safe)safe.push(y-44); // 2x до обложек
+      y+=96; if(safe)safe.push(y-44); // x до обложек
       // сетка обложек
       for(let i=0;i<list.length;i+=cols){
         const k=Math.min(cols,list.length-i); // в ряду меньше четырёх — центруем
