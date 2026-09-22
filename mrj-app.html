@@ -2973,7 +2973,7 @@
       ctx.font=F(66,false,600); ctx.textAlign='center'; ctx.fillStyle=TXT;
       wrapText(ctx,bk.title||'',INW).forEach(l=>{if(draw)ctx.fillText(l,W/2,y);y+=86}); y+=8; mark(); // равный шаг: до автора
       // автор — ровным шрифтом, кегль как у жанра и ответов
-      if(bk.author){ctx.font=F(50,false,600);ctx.fillStyle=ACC; // жирный, акцентный
+      if(bk.author){ctx.font=F(46,false,600);ctx.fillStyle=ACC; // жирный, акцентный
         if(draw)ctx.fillText(bk.author,W/2,y); y+=96; mark()} // равный шаг: до жанра
       // жанр (жирный) и хештеги — одной строкой, как в конспекте
       const rowItems=[];
@@ -2981,7 +2981,7 @@
       (bk.tags||[]).forEach(tg=>rowItems.push({txt:'#'+tg,chip:true}));
       if(rowItems.length){
         const cpad=40, cgap=18, chh=62;
-        const meas=it=>{ctx.font=it.chip?F(34,true):F(50,false,600);
+        const meas=it=>{ctx.font=it.chip?F(34,true):F(46,false,600);
           return ctx.measureText(it.txt).width+(it.chip?cpad*2:0)};
         const lines=[]; let cur=[],curW=0;
         rowItems.forEach(it=>{
@@ -2997,7 +2997,7 @@
               if(it.chip){ctx.fillStyle='rgba(97,183,228,.16)';rr(ctx,x,y-44,it.w,chh,30);ctx.fill();
                 ctx.font=F(34,true);ctx.fillStyle=TXT;ctx.textAlign='center';
                 ctx.fillText(it.txt,x+it.w/2,y)}
-              else{ctx.font=F(50,false,600);ctx.fillStyle=TXT;ctx.textAlign='center';
+              else{ctx.font=F(46,false,600);ctx.fillStyle=TXT;ctx.textAlign='center';
                 ctx.fillText(it.txt,x+it.w/2,y)}
             }
             x+=it.w+cgap;
