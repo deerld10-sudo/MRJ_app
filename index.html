@@ -240,11 +240,12 @@
   .addsheet{position:fixed;left:50%;bottom:0;z-index:96;width:37.5rem;
     transform:translateX(-50%) translateY(112%);visibility:hidden;
     background:var(--panel);border-radius:2rem 2rem 0 0;
-    max-height:88dvh;overflow-y:auto;
+    max-height:94dvh;overflow-y:auto;
     padding:0 2.4rem 2.8rem;
     box-shadow:0 -1rem 4rem rgba(0,0,0,.14);
     transition:transform .46s cubic-bezier(.32,.9,.28,1),background .35s,visibility 0s .46s;
     scrollbar-width:thin;scrollbar-color:rgba(97,183,228,.45) transparent}
+  #addSheet,#artSheet{min-height:94dvh}
   .addsheet::-webkit-scrollbar{width:.5rem}
   .addsheet::-webkit-scrollbar-track{background:transparent;margin:2.4rem 0}
   .addsheet::-webkit-scrollbar-thumb{background:rgba(97,183,228,.45);border-radius:1rem}
@@ -280,6 +281,11 @@
   .fld{margin-bottom:1.5rem}
   .fld .s-cap{margin-bottom:.5rem}
   input,textarea{-webkit-user-select:text;user-select:text}
+  .note-item textarea{max-height:24rem;overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:rgba(97,183,228,.45) transparent}
+  .note-item textarea::-webkit-scrollbar{width:.4rem}
+  .note-item textarea::-webkit-scrollbar-thumb{background:rgba(97,183,228,.45);border-radius:1rem}
+  .fld input,.note-item textarea,#searchInput,#sheetInput,#goalInput,#pickYearInput,#profNameInput,#customQ,#aQ{font-size:16px}
   .fld input{width:100%;height:3.9rem;border-radius:1.2rem;border:none;
     background:rgba(97,183,228,.12);color:var(--text);
     font-family:'Montserrat Alternates',sans-serif;font-size:1.3rem;font-weight:500;
@@ -304,7 +310,7 @@
     font-size:1.25rem;color:var(--text);position:relative;cursor:pointer;
     transition:background .35s,transform .2s}
   .datepill:active{transform:scale(.97)}
-  .datepill .value{color:var(--text-soft);font-size:1.15rem;font-weight:500;font-style:italic}
+  .datepill .value{color:var(--text-soft);font-size:1.05rem;font-weight:500;font-style:italic}
   .add-save{width:100%;height:4.4rem;border:none;border-radius:1.4rem;cursor:pointer;
     background:linear-gradient(135deg,#46A3D5,#62C2F4);color:#fff;
     font-family:'Montserrat Alternates',sans-serif;font-size:1.3rem;font-weight:500;
@@ -357,7 +363,7 @@
   .ic-dl{-webkit-mask:url(data:image/svg+xml;base64,PHN2ZyBpZD0iaWNvbnMiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTIxIDE5aC0xOGExIDEgMCAwIDAgMCAyaDE4YTEgMSAwIDAgMCAwLTJ6Ii8+PHBhdGggZD0ibTEyIDJhMSAxIDAgMCAwIC0xIDF2MTAuNTlsLTMuMjktMy4zYTEgMSAwIDAgMCAtMS40MiAxLjQybDUgNWExIDEgMCAwIDAgMS40MiAwbDUtNWExIDEgMCAwIDAgLTEuNDItMS40MmwtMy4yOSAzLjN2LTEwLjU5YTEgMSAwIDAgMCAtMS0xeiIvPjwvc3ZnPg==) center/contain no-repeat;mask:url(data:image/svg+xml;base64,PHN2ZyBpZD0iaWNvbnMiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTIxIDE5aC0xOGExIDEgMCAwIDAgMCAyaDE4YTEgMSAwIDAgMCAwLTJ6Ii8+PHBhdGggZD0ibTEyIDJhMSAxIDAgMCAwIC0xIDF2MTAuNTlsLTMuMjktMy4zYTEgMSAwIDAgMCAtMS40MiAxLjQybDUgNWExIDEgMCAwIDAgMS40MiAwbDUtNWExIDEgMCAwIDAgLTEuNDItMS40MmwtMy4yOSAzLjN2LTEwLjU5YTEgMSAwIDAgMCAtMS0xeiIvPjwvc3ZnPg==) center/contain no-repeat}
   .v-line{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;align-items:center;margin-bottom:2rem}
   .v-line:empty{display:none}
-  .v-genre-txt{font-size:1.2rem;color:var(--text)}
+  .v-genre-txt{font-size:1.2rem;font-weight:600;color:var(--text)}
   .v-actions{display:flex;gap:1rem;margin-top:2.6rem}
   .v-actions .add-save{flex:1;margin:0}
   .v-dl{width:4.4rem;height:4.4rem;border-radius:50%;border:none;cursor:pointer;flex-shrink:0;
@@ -365,9 +371,12 @@
     transition:transform .2s,background .35s}
   .v-dl:active{transform:scale(.9)}
   .v-dl .ic{width:1.8rem;height:1.8rem;background:var(--text)}
-  .v-del{display:block;margin:2.4rem auto 0;border:none;background:none;cursor:pointer;
-    color:#E66A6A;font-family:'Montserrat Alternates',sans-serif;
-    font-size:1.15rem;font-weight:500;font-style:italic;transition:opacity .2s}
+  .v-del{display:block;width:100%;height:4rem;margin:1rem 0 0;border:none;cursor:pointer;
+    border-radius:1.2rem;background:rgba(224,85,85,.14);color:#E05555;
+    font-family:'Montserrat Alternates',sans-serif;font-size:1.05rem;font-weight:500;
+    transition:background .2s,transform .15s}
+  .v-del:active{transform:scale(.98)}
+  body.dark .v-del{background:rgba(224,85,85,.2);color:#FF8A8A}
   .v-del:hover{opacity:.75}
   .s-danger{background:#E66A6A;color:#fff}
   .vn-q{font-size:1.15rem;font-style:italic;font-weight:500;color:var(--text-soft);margin-bottom:.4rem}
@@ -499,6 +508,36 @@
     color:#47B0E9;font-family:'Montserrat Alternates',sans-serif;
     font-size:1.15rem;font-weight:500;font-style:italic;transition:opacity .2s}
   .prof-edit:hover{opacity:.75}
+  .prof-rows{margin-top:1.3rem}
+  .prof-row{width:100%;height:4.4rem;border-radius:1.4rem;border:none;cursor:pointer;
+    background:var(--circle);color:var(--text);margin-bottom:1rem;
+    display:flex;align-items:center;justify-content:space-between;padding:0 1.6rem;
+    font-family:'Montserrat Alternates',sans-serif;font-size:1.3rem;font-weight:500;
+    transition:background .35s,transform .2s}
+  .prof-row:active{transform:scale(.98)}
+  .prof-row .st-ic{width:1.5rem;height:1.5rem;background:var(--text)}
+  .prof-row .st-ic.up{transform:rotate(180deg)}
+  /* цветные роли кнопок кабинета — полупрозрачные, как в попапах */
+  .pr-dark{background:#1d1d1f;color:#fff}
+  .pr-dark .st-ic{background:#fff}
+  body.dark .pr-dark{background:rgba(255,255,255,.14);color:#fff}
+  body.dark .pr-dark .st-ic{background:#fff}
+  .pr-green{background:rgba(88,190,125,.16);color:#33995C}
+  .pr-green .st-ic{background:#33995C}
+  body.dark .pr-green{background:rgba(88,190,125,.18);color:#7ED9A3}
+  body.dark .pr-green .st-ic{background:#7ED9A3}
+  .pr-blue{background:rgba(97,183,228,.16);color:#2E8FC9}
+  .pr-blue .st-ic{background:#2E8FC9}
+  body.dark .pr-blue{background:rgba(122,197,240,.16);color:#7AC5F0}
+  body.dark .pr-blue .st-ic{background:#7AC5F0}
+  .pr-amber{background:rgba(240,180,60,.18);color:#B87F14}
+  .pr-amber .st-ic{background:#B87F14}
+  body.dark .pr-amber{background:rgba(240,180,60,.2);color:#F0C168}
+  body.dark .pr-amber .st-ic{background:#F0C168}
+  .prof-name{cursor:pointer}
+  .prof-name.empty{color:#47B0E9;font-size:1.3rem;font-style:italic;font-weight:500}
+  .drawer{scrollbar-width:none}
+  .drawer::-webkit-scrollbar{display:none}
   .stor-card{background:var(--circle);border-radius:1.5rem;padding:1.8rem;transition:background .35s}
   .stor-t{font-size:1.15rem;font-weight:500;font-style:italic;color:var(--text);margin-bottom:1.4rem}
   .stor-bar{height:1.4rem;border-radius:.7rem;background:rgba(97,183,228,.16);overflow:hidden;margin-bottom:1rem}
@@ -509,6 +548,8 @@
 
   /* ---------- СТАТЬИ ---------- */
   #screen-articles{padding:1rem 2rem 12rem}
+  #goalDlBtn{position:fixed;top:2rem;left:50%;margin-left:9.2rem;z-index:60}
+  #goalDlBtn .ic{width:1.7rem;height:1.7rem}
   #artPlusBtn{position:fixed;top:2rem;left:50%;margin-left:13.15rem;z-index:60;
     background:var(--add-base)}
   #artPlusBtn .ic{background:#fff}
@@ -551,9 +592,12 @@
   .rep-do.ghost{background:var(--circle);box-shadow:inset 0 0 0 .15rem rgba(71,176,233,.55)}
   .rep-do.ghost .ic{background:#47B0E9}
   .rep-wait{font-size:1.05rem;font-style:italic;color:#47B0E9;flex-shrink:0;font-weight:500}
-  .v-rep{display:block;margin:1.2rem auto 0;border:none;background:none;cursor:pointer;
-    color:#47B0E9;font-family:'Montserrat Alternates',sans-serif;
-    font-size:1.15rem;font-weight:500;font-style:italic;transition:opacity .2s}
+  .v-rep{display:block;width:100%;height:4rem;margin:1rem 0 0;border:none;cursor:pointer;
+    border-radius:1.2rem;background:rgba(97,183,228,.14);color:#47B0E9;
+    font-family:'Montserrat Alternates',sans-serif;font-size:1.05rem;font-weight:500;
+    transition:background .2s,transform .15s}
+  .v-rep:active{transform:scale(.98)}
+  body.dark .v-rep{background:rgba(122,197,240,.14)}
   .v-rep:hover{opacity:.75}
   .nav a .mo-count{margin-left:.4rem}
 
@@ -678,8 +722,8 @@
   .cube-stack{display:flex;flex-direction:column-reverse;gap:.35rem;justify-content:flex-start}
   .cube{width:2.4rem;border-radius:.6rem;background:#61B7E4;
     animation:cellPop .4s cubic-bezier(.34,1.56,.64,1) backwards}
-  .cube.empty{background:rgba(97,183,228,.12)}
-  body.dark .cube.empty{background:rgba(122,197,240,.1)}
+  .cube.empty{background:rgba(97,183,228,.06)}
+  body.dark .cube.empty{background:rgba(122,197,240,.05)}
   .chart-mo{font-size:1.05rem;color:var(--text-soft);font-weight:500}
 
   /* ---------- MONTHS SCREEN ---------- */
@@ -691,6 +735,11 @@
   .mo-grid{display:grid;gap:1.2rem}
   .mo-grid.sq{gap:.6rem}
   .mo-grid .gcov{cursor:pointer}
+  .gfav{position:absolute;top:.55rem;right:.55rem;z-index:2;
+    width:1.6rem;height:1.6rem;pointer-events:none;
+    filter:drop-shadow(0 .15rem .4rem rgba(0,0,0,.45))}
+  .gfav path{fill:var(--red);stroke:var(--red)}
+  .mo-grid.sq .gfav{width:1.2rem;height:1.2rem;top:.35rem;right:.35rem}
 
   /* ---------- PICKER (месяц/год) ---------- */
   .pick-scrim{position:fixed;inset:0;z-index:97;background:rgba(20,20,20,.35);
@@ -730,11 +779,11 @@
     background-size:cover;background-position:center;position:relative;overflow:hidden;
     box-shadow:0 .6rem 1.8rem rgba(30,40,50,.25)}
   .v-title{font-size:1.6rem;font-weight:600;text-align:center;margin-bottom:.4rem}
-  .v-author{font-size:1.3rem;font-style:italic;color:var(--text-soft);text-align:center;margin-bottom:1.6rem}
+  .v-author{font-size:1.2rem;font-style:normal;font-weight:500;color:var(--text);text-align:center;margin-bottom:1.6rem}
   .v-genre{font-size:1.2rem;text-align:center;color:var(--text);margin-bottom:1.4rem}
   .v-tags{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:1.8rem}
   .v-tag{background:rgba(97,183,228,.16);color:var(--text);border-radius:1rem;
-    padding:.5rem 1.1rem;font-size:1.1rem;font-style:italic}
+    padding:.5rem 1.1rem;font-size:1.05rem;font-style:italic}
   .v-meta{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:2.2rem}
   .v-meta .datepill{flex:0 1 auto;padding:0 1.8rem;white-space:nowrap}
   .v-meta .datepill{cursor:default}
@@ -768,6 +817,7 @@
 
   /* ---------- TRACKER SCREEN ---------- */
   .hidden{display:none!important}
+  body.booting .card.wishlist .fan,body.booting .books-grid{visibility:hidden}
   body:has(.sheet.open),body:has(.picksheet.open),body:has(.addsheet.open),
   body:has(.lightbox.open),body:has(.drawer.open){overflow:hidden}
   #screen-tracker{padding:1.4rem 2rem 12rem}
@@ -836,6 +886,38 @@
   .sheet-btns button:active{transform:scale(.95)}
   .s-save{background:linear-gradient(135deg,#46A3D5,#62C2F4);color:#fff}
   .s-clear{background:var(--circle);color:var(--text)}
+  .s-warn{background:rgba(224,85,85,.14);color:#E05555}
+  body.dark .s-warn{background:rgba(224,85,85,.2);color:#FF8A8A}
+
+  .exp-grid{display:block;max-height:30rem;overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:rgba(97,183,228,.45) transparent}
+  .exp-row{width:100%;height:4rem;display:flex;align-items:center;justify-content:space-between;
+    background:var(--circle);border:none;border-radius:1.2rem;cursor:pointer;
+    padding:0 1.4rem;margin-bottom:.8rem;
+    font-family:'Montserrat Alternates',sans-serif;font-size:1.05rem;font-weight:500;
+    color:var(--text);transition:transform .15s,box-shadow .2s}
+  .exp-row:active{transform:scale(.98)}
+  .exp-row .ic{width:1.5rem;height:1.5rem;background:var(--text)}
+  .exp-row.got{box-shadow:inset 0 0 0 .15rem #47B0E9;color:#47B0E9}
+  .exp-row.got .ic{background:#47B0E9}
+  .exp-grid::-webkit-scrollbar{width:.4rem}
+  .exp-grid::-webkit-scrollbar-thumb{background:rgba(97,183,228,.45);border-radius:1rem}
+  .exp-th{position:relative;aspect-ratio:1654/2339;border-radius:.6rem;border:none;cursor:pointer;
+    background:#fff;overflow:hidden;
+    box-shadow:0 .2rem .9rem rgba(30,40,50,.18);transition:transform .15s;padding:0}
+  .exp-th img{position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:top center;display:block}
+  .exp-th:active{transform:scale(.95)}
+  .exp-th i{position:absolute;left:.4rem;top:.4rem;z-index:2;font-style:normal;
+    background:rgba(71,176,233,.9);color:#fff;border-radius:.6rem;
+    padding:.1rem .55rem;font-size:.95rem;font-weight:500}
+  .exp-th.got::after{content:"";position:absolute;inset:0;border-radius:.6rem;
+    box-shadow:inset 0 0 0 .22rem #47B0E9}
+
+  /* единый размер текста кнопок — 12px */
+  .sheet-btns button,.add-save,.btn-pill,.seg button,.chip,.pick-opt,
+  .n-chip,.setting,.prof-row,.prof-edit,.v-del,.v-rep,.media-add,.g-chip,
+  #linkGo,.rep-do{font-size:1.05rem}
 
   /* --- ховеры --- */
   @media (hover:hover){
@@ -863,13 +945,14 @@
   }
 </style>
 </head>
-<body>
+<body class="booting">
 <div class="app">
   <header class="header">
     <button class="icon-circle" id="burger" aria-label="Открыть меню">
       <span class="ic ic-menu"></span>
     </button>
-    <button class="icon-circle hidden" id="artPlusBtn" aria-label="Добавить статью"><span class="ic ic-plus"></span></button>
+    <button class="icon-circle hidden" id="goalDlBtn" aria-label="Скачать карточку цели"><span class="ic ic-dl"></span></button>
+  <button class="icon-circle hidden" id="artPlusBtn" aria-label="Добавить статью"><span class="ic ic-plus"></span></button>
   <button class="icon-circle hidden" id="gearBtn" aria-label="Настройка цели"><span class="ic ic-gear"></span></button>
   <h1 class="page-title"><span class="tt" aria-hidden="false">All books</span><span class="tt">Already read</span></h1>
   </header>
@@ -941,6 +1024,22 @@
       <div class="stor-line" id="storLine">…</div>
       <div class="stor-warn hidden" id="storWarn"></div>
     </div>
+    <div class="prof-rows">
+      <button class="prof-row pr-dark" id="themeBtn">Theme
+        <span class="switch" id="themeSwitch" role="switch" aria-checked="false"></span>
+      </button>
+      <button class="prof-row pr-green" id="backupSave">Save backup
+        <span class="ic ic-dl st-ic"></span>
+      </button>
+      <button class="prof-row pr-blue" id="backupLoad">Load backup
+        <span class="ic ic-dl st-ic up"></span>
+      </button>
+      <button class="prof-row pr-amber" id="importCsv">Import CSV
+        <span class="ic ic-dl st-ic up"></span>
+      </button>
+      <input type="file" id="backupInput" accept="application/json,.json" class="hidden">
+      <input type="file" id="csvInput" accept=".csv,text/csv" class="hidden">
+    </div>
     <button type="button" class="prof-edit" id="profEditBtn">Edit profile</button>
   </div>
   <div id="screen-articles" class="hidden"><div id="artList"></div>
@@ -980,6 +1079,23 @@
 
 <div class="sheet-scrim" id="sheetScrim"></div>
 <div class="pick-scrim" id="pickScrim"></div>
+<div class="picksheet" id="expReady" role="dialog" aria-label="Карточки готовы">
+  <button class="add-close" id="expReadyClose" aria-label="Закрыть"><span class="ic ic-plus x"></span></button>
+  <h3 id="expReadyT">Cards are ready</h3>
+  <div class="s-date" id="expReadySub" style="text-align:center;margin-bottom:1.2rem"></div>
+  <div class="exp-grid" id="expGrid"></div>
+  <div class="sheet-btns" style="margin-top:1.4rem">
+    <button class="s-clear" id="expZip">ZIP</button>
+    <button class="s-save hidden" id="expShare">Gallery</button>
+  </div>
+</div>
+
+<div class="picksheet" id="limitAsk" role="dialog">
+  <h3 id="limitT">Too long</h3>
+  <div class="s-date" id="limitSub" style="text-align:center;margin-bottom:1.6rem;white-space:pre-line"></div>
+  <div class="sheet-btns"><button class="s-save" id="limitOk">OK</button></div>
+</div>
+
 <div class="picksheet" id="expAsk" role="dialog" aria-label="Скачать конспект">
   <h3 id="expT">Download</h3>
   <div class="sheet-btns">
@@ -1026,7 +1142,7 @@
   <h3>Have you read it?</h3>
   <div class="s-date" style="text-align:center;margin-bottom:1.6rem">Move it to your shelf with all its details?</div>
   <div class="sheet-btns">
-    <button class="s-clear" id="wishNo">No, remove</button>
+    <button class="s-clear s-warn" id="wishNo">No, remove</button>
     <button class="s-save" id="wishYes">Yes, add</button>
   </div>
 </div>
@@ -1260,16 +1376,6 @@
           <option value="en">English</option><option value="ru">Русский</option><option value="es">Español</option>
         </select>
       </label>
-      <button class="setting" id="themeBtn">Theme
-        <span class="switch" id="themeSwitch" role="switch" aria-checked="false"></span>
-      </button>
-      <button class="setting" id="backupSave">Save backup
-        <span class="ic ic-dl st-ic"></span>
-      </button>
-      <button class="setting" id="backupLoad">Load backup
-        <span class="ic ic-dl st-ic up"></span>
-      </button>
-      <input type="file" id="backupInput" accept="application/json,.json" class="hidden">
     </div>
   </div>
 </aside>
@@ -1285,7 +1391,7 @@
     presetsArt:['What is the article about?','My thoughts','Key quote','Main takeaways','How to apply it'],
     all_books:'All books',already_read:'Already read',months_s:'Months',stats:'Statistics',authors:'Authors',
     hashtags:'Hashtags',rating:'Rating',goal:'Goals',goal_t:'Goal',tracker:'Tracker',wishlist:'Wishlist',favorites:'Favorites',
-    language:'Language',theme:'Theme',save_backup:'Save backup',load_backup:'Load backup',
+    language:'Language',theme:'Theme',save_backup:'Save backup',load_backup:'Load backup',import_csv:'Import CSV',
     add_new_book:'Add new book',edit_book:'Edit book',add_cover:'Add a cover',
     ph_title:'Book title',ph_author:'Author',ph_genre:'Genre: fantasy, romance…',
     ph_tags:'Hashtags: cozy, witches, magic',ph_pages:'Number of pages',
@@ -1300,7 +1406,7 @@
     no_remove:'No, remove',yes_add:'Yes, add',
     del_ask:'Delete this book?',del_sub:'The notes and pictures will be gone too',
     cancel:'Cancel',delete_w:'Delete',edit_this:'Edit this book',del_this:'Delete this book',
-    pages_q:'How many pages?',goal_q:'How many books this year?',per_row:'Books per row',
+    pages_q:'How many pages?',goal_q:'How many books this year?',goal_cap:'Goal for the year',per_row:'Books per row',
     books_lbl:'Books',st_read:'Books read',st_year:'This year',st_avg:'Avg rating',
     reading_by:'Reading by months',cap1:'January — June',cap2:'July — December',
     fav_empty:'No favorites yet — tap the heart on a book you loved',
@@ -1316,7 +1422,7 @@
     add_article:'+ Add article',art_new:'New article',art_badge:'article',
     ph_art_title:'Article title',ph_art_body:'Article text…',
     ph_art_tech:'Key points, terms, tech notes…',ph_art_url:'https:// (link — optional)',
-    art_pic:'Add a picture',art_text:'Article',book_t:'Book',art_tech:'Key points',articles:'Articles',profile:'Profile',edit_profile:'Edit profile',exp_t:'Download the notes',exp_single:'One sheet',exp_pages:'Equal cards',ph_name:'Your name',greet:'Hello, {name}!',storage_t:'App data',storage_line:'{used} of {quota} used \u00b7 {free} free',storage_warn:'Storage is getting full — save a backup and clear something old',art_edit:'Edit article',art_del:'Delete this article',art_del_ask:'Delete this article?',art_empty:'No articles yet — tap the plus above',ph_link_name2:'Link name: source, video…',ph_search:'Search books…',not_found:'Nothing found',
+    art_pic:'Add a picture',art_text:'Article',book_t:'Book',art_tech:'Key points',articles:'Articles',profile:'Profile',edit_profile:'Edit profile',exp_t:'Download the notes',exp_ready_t:'Cards are ready',exp_ready_sub:'Tap a card to save it',exp_zip:'Download ZIP',exp_share:'To gallery',exp_card:'Card {n}',exp_single:'One sheet',exp_pages:'Equal cards',exp_limit_t:'The notes are too long',exp_limit_sub:'This would take more than 15 cards.\nTrim the text or remove some pictures',ok_w:'Got it',ph_name:'Your name',greet:'Hello, {name}!',greet_empty:'Let\u2019s get acquainted',storage_t:'App data',storage_line:'{used} of {quota} used \u00b7 {free} free',storage_warn:'Storage is getting full — save a backup and clear something old',art_edit:'Edit article',art_del:'Delete this article',art_del_ask:'Delete this article?',art_empty:'No articles yet — tap the plus above',ph_link_name2:'Link name: source, video…',ph_search:'Search books…',not_found:'Nothing found',
     cheer_start:'The year starts with the very first page — go!',
     cheer_done:'Goal complete — {n} of {goal}. You are unstoppable!',
     cheer_half:'More than halfway there — just {left} to go!',
@@ -1330,7 +1436,7 @@
     presetsArt:['О чём статья?','Мои мысли','Главная цитата','Ключевые тезисы','Как это применить'],
     all_books:'Все книги',already_read:'Уже прочитано',months_s:'Месяцы',stats:'Статистика',authors:'Авторы',
     hashtags:'Хештеги',rating:'Рейтинг',goal:'Цели',goal_t:'Цель',tracker:'Трекер',wishlist:'Вишлист',favorites:'Избранное',
-    language:'Язык',theme:'Тема',save_backup:'Сохранить бэкап',load_backup:'Загрузить бэкап',
+    language:'Язык',theme:'Тема',save_backup:'Сохранить бэкап',load_backup:'Загрузить бэкап',import_csv:'Импорт из CSV',
     add_new_book:'Новая книга',edit_book:'Редактировать',add_cover:'Добавить\nобложку',
     ph_title:'Название книги',ph_author:'Автор',ph_genre:'Жанр: фэнтези, романтика…',
     ph_tags:'Хештеги: уют, ведьмы, магия',ph_pages:'Количество страниц',
@@ -1345,7 +1451,7 @@
     no_remove:'Нет, удалить',yes_add:'Да, добавить',
     del_ask:'Удалить книгу?',del_sub:'Заметки и картинки тоже исчезнут',
     cancel:'Отмена',delete_w:'Удалить',edit_this:'Редактировать книгу',del_this:'Удалить книгу',
-    pages_q:'Сколько страниц?',goal_q:'Сколько книг в этом году?',per_row:'Книг в ряду',
+    pages_q:'Сколько страниц?',goal_q:'Сколько книг в этом году?',goal_cap:'Цель на год',per_row:'Книг в ряду',
     books_lbl:'книг',st_read:'Всего прочитано',st_year:'В этом\nгоду',st_avg:'Средний рейтинг',
     reading_by:'Чтение по месяцам',cap1:'Январь — Июнь',cap2:'Июль — Декабрь',
     fav_empty:'Пока пусто — нажмите на сердечко у любимой книги',
@@ -1361,7 +1467,7 @@
     add_article:'+ Добавить статью',art_new:'Новая статья',art_badge:'статья',
     ph_art_title:'Название статьи',ph_art_body:'Текст статьи…',
     ph_art_tech:'Важное: термины, тезисы, технические детали…',ph_art_url:'https:// (ссылка — по желанию)',
-    art_pic:'Добавить картинку',art_text:'Статья',book_t:'Книга',art_tech:'Важное',articles:'Статьи',profile:'Профиль',edit_profile:'Редактировать профиль',exp_t:'Скачать конспект',exp_single:'Одним листом',exp_pages:'Карточками',ph_name:'Ваше имя',greet:'Добрый день, {name}',storage_t:'Объём данных',storage_line:'Занято {used} из {quota} \u00b7 свободно {free}',storage_warn:'Память почти заполнена — сохраните бэкап и удалите что-то старое',art_edit:'Редактировать статью',art_del:'Удалить статью',art_del_ask:'Удалить статью?',art_empty:'Пока нет статей — нажмите на плюс сверху',ph_link_name2:'Название ссылки: источник, видео…',ph_search:'Поиск книг…',not_found:'Ничего не нашлось',
+    art_pic:'Добавить картинку',art_text:'Статья',book_t:'Книга',art_tech:'Важное',articles:'Статьи',profile:'Профиль',edit_profile:'Редактировать профиль',exp_t:'Скачать конспект',exp_ready_t:'Карточки готовы',exp_ready_sub:'Нажмите на карточку, чтобы скачать её',exp_zip:'Скачать архивом',exp_share:'В галерею',exp_card:'Карточка {n}',exp_single:'Одним листом',exp_pages:'Карточками',exp_limit_t:'Конспект слишком большой',exp_limit_sub:'Получается больше 15 карточек.\nСократите текст или уберите часть картинок',ok_w:'Понятно',ph_name:'Ваше имя',greet:'Добрый день, {name}',greet_empty:'Давайте знакомиться',storage_t:'Объём данных',storage_line:'Занято {used} из {quota} \u00b7 свободно {free}',storage_warn:'Память почти заполнена — сохраните бэкап и удалите что-то старое',art_edit:'Редактировать статью',art_del:'Удалить статью',art_del_ask:'Удалить статью?',art_empty:'Пока нет статей — нажмите на плюс сверху',ph_link_name2:'Название ссылки: источник, видео…',ph_search:'Поиск книг…',not_found:'Ничего не нашлось',
     cheer_start:'Год начинается с первой страницы — вперёд!',
     cheer_done:'Цель выполнена — {n} из {goal}. Вы неудержимы!',
     cheer_half:'Больше половины — осталось всего {left}!',
@@ -1374,7 +1480,7 @@
     presetsArt:['¿De qué trata el artículo?','Mis pensamientos','Cita clave','Puntos principales','Cómo aplicarlo'],
     all_books:'Todos los libros',already_read:'Ya leídos',months_s:'Meses',stats:'Estadísticas',authors:'Autores',
     hashtags:'Hashtags',rating:'Valoración',goal:'Metas',goal_t:'Meta',tracker:'Tracker',wishlist:'Wishlist',favorites:'Favoritos',
-    language:'Idioma',theme:'Tema',save_backup:'Guardar copia',load_backup:'Cargar copia',
+    language:'Idioma',theme:'Tema',save_backup:'Guardar copia',load_backup:'Cargar copia',import_csv:'Importar CSV',
     add_new_book:'Nuevo libro',edit_book:'Editar libro',add_cover:'Añadir portada',
     ph_title:'Título del libro',ph_author:'Autor',ph_genre:'Género: fantasía, romance…',
     ph_tags:'Hashtags: acogedor, brujas, magia',ph_pages:'Número de páginas',
@@ -1389,7 +1495,7 @@
     no_remove:'No, quitar',yes_add:'Sí, añadir',
     del_ask:'¿Eliminar este libro?',del_sub:'Las notas y las imágenes también se perderán',
     cancel:'Cancelar',delete_w:'Eliminar',edit_this:'Editar este libro',del_this:'Eliminar este libro',
-    pages_q:'¿Cuántas páginas?',goal_q:'¿Cuántos libros este año?',per_row:'Libros por fila',
+    pages_q:'¿Cuántas páginas?',goal_q:'¿Cuántos libros este año?',goal_cap:'Meta del año',per_row:'Libros por fila',
     books_lbl:'Libros',st_read:'Libros leídos',st_year:'Este año',st_avg:'Valoración media',
     reading_by:'Lectura por meses',cap1:'Enero — Junio',cap2:'Julio — Diciembre',
     fav_empty:'Aún no hay favoritos — toca el corazón de un libro que ames',
@@ -1405,7 +1511,7 @@
     add_article:'+ Añadir artículo',art_new:'Nuevo artículo',art_badge:'artículo',
     ph_art_title:'Título del artículo',ph_art_body:'Texto del artículo…',
     ph_art_tech:'Puntos clave, términos, notas técnicas…',ph_art_url:'https:// (enlace — opcional)',
-    art_pic:'Añadir imagen',art_text:'Artículo',book_t:'Libro',art_tech:'Puntos clave',articles:'Artículos',profile:'Perfil',edit_profile:'Editar perfil',exp_t:'Descargar apuntes',exp_single:'Una hoja',exp_pages:'Tarjetas iguales',ph_name:'Tu nombre',greet:'¡Hola, {name}!',storage_t:'Datos de la app',storage_line:'{used} de {quota} usado \u00b7 {free} libre',storage_warn:'La memoria casi está llena — guarda una copia y borra algo viejo',art_edit:'Editar artículo',art_del:'Eliminar este artículo',art_del_ask:'¿Eliminar este artículo?',art_empty:'Aún no hay artículos — toca el más',ph_link_name2:'Nombre del enlace: fuente, vídeo…',ph_search:'Buscar libros…',not_found:'No se encontró nada',
+    art_pic:'Añadir imagen',art_text:'Artículo',book_t:'Libro',art_tech:'Puntos clave',articles:'Artículos',profile:'Perfil',edit_profile:'Editar perfil',exp_t:'Descargar apuntes',exp_ready_t:'Tarjetas listas',exp_ready_sub:'Toca una tarjeta para guardarla',exp_zip:'Descargar ZIP',exp_share:'A la galería',exp_card:'Tarjeta {n}',exp_single:'Una hoja',exp_pages:'Tarjetas iguales',exp_limit_t:'Los apuntes son muy largos',exp_limit_sub:'Serían más de 15 tarjetas.\nAcorta el texto o quita algunas imágenes',ok_w:'Entendido',ph_name:'Tu nombre',greet:'¡Hola, {name}!',greet_empty:'Vamos a conocernos',storage_t:'Datos de la app',storage_line:'{used} de {quota} usado \u00b7 {free} libre',storage_warn:'La memoria casi está llena — guarda una copia y borra algo viejo',art_edit:'Editar artículo',art_del:'Eliminar este artículo',art_del_ask:'¿Eliminar este artículo?',art_empty:'Aún no hay artículos — toca el más',ph_link_name2:'Nombre del enlace: fuente, vídeo…',ph_search:'Buscar libros…',not_found:'No se encontró nada',
     cheer_start:'El año empieza con la primera página — ¡vamos!',
     cheer_done:'¡Meta cumplida — {n} de {goal}!',
     cheer_half:'¡Más de la mitad — solo quedan {left}!',
@@ -1549,6 +1655,7 @@
   const grid=document.getElementById('booksGrid');
   function renderReadGrid(){
     try{renderGoalIsland()}catch(e){}
+    if(BOOKS_ROW>4){BOOKS_ROW=4;try{localStorage.setItem('mrj-bkrow',4)}catch(e){}}
     grid.innerHTML='';
     // поля и зазоры задаются напрямую — ровно те же правила, что в сетках вишлиста и статистик
     grid.style.paddingLeft='2rem'; grid.style.paddingRight='2rem';
@@ -1825,6 +1932,7 @@
   }
   mediaInput.addEventListener('change',async()=>{
     for(const f of mediaInput.files){
+      if(mediaArr.length>=10)break; // до 10 картинок в конспекте
       const src=await shrinkImage(f);
       mediaArr.push({src,shape:'m'});
     }
@@ -1936,8 +2044,11 @@
   let PROFILE={avatar:null,name:''};
   function saveProfile(){idbSet('PROFILE',JSON.parse(JSON.stringify(PROFILE))).catch(()=>{})}
   function renderProfName(){
-    document.getElementById('profName').textContent=PROFILE.name?tf('greet',{name:PROFILE.name}):'';
+    const el=document.getElementById('profName');
+    if(PROFILE.name){el.textContent=tf('greet',{name:PROFILE.name});el.classList.remove('empty')}
+    else{el.textContent=t('greet_empty');el.classList.add('empty')}
   }
+  document.getElementById('profName').addEventListener('click',openProfSheet);
   const profSheet=document.getElementById('profSheet');
   function openProfSheet(){
     document.getElementById('profSheetT').textContent=t('edit_profile');
@@ -2035,6 +2146,7 @@
   document.getElementById('aMediaAdd').addEventListener('click',()=>aMediaInput.click());
   aMediaInput.addEventListener('change',async()=>{
     for(const f of aMediaInput.files){
+      if(aMediaArr.length>=10)break;
       const s=await shrinkImage(f);
       aMediaArr.push({src:s,shape:'m'});
     }
@@ -2164,6 +2276,20 @@
     refreshVRep(a);
     viewSheet.classList.add('open');sheetScrim.classList.add('open');document.body.classList.add('addopen');
   }
+
+  // рамка ответа гаснет при скролле панели или тапе мимо поля
+  [addSheet,artSheet,document.getElementById('wishSheet')].forEach(sh=>{
+    if(!sh)return;
+    sh.addEventListener('scroll',()=>{
+      const ae=document.activeElement;
+      if(ae&&(ae.tagName==='TEXTAREA'||ae.tagName==='INPUT'))ae.blur();
+    },{passive:true});
+    sh.addEventListener('touchstart',ev=>{
+      const ae=document.activeElement;
+      if(!ae||(ae.tagName!=='TEXTAREA'&&ae.tagName!=='INPUT'))return;
+      if(!ev.target.closest('input,textarea'))ae.blur();
+    },{passive:true});
+  });
 
   // предложение после сохранения новой книги
   const repAsk=document.getElementById('repAsk');
@@ -2391,7 +2517,7 @@
     pickSheet.classList.add('open');pickScrim.classList.add('open');
   }
   function closePick(){pickSheet.classList.remove('open');pickScrim.classList.remove('open')}
-  pickScrim.addEventListener('click',()=>{closePick();closeRowSheet();closeWishAsk();closeDelAsk();closeSearch();closeRepAsk();closeProfSheet();closeExpAsk()});
+  pickScrim.addEventListener('click',()=>{closePick();closeRowSheet();closeWishAsk();closeDelAsk();closeSearch();closeRepAsk();closeProfSheet();closeExpAsk();closeLimitAsk();closeExpReady()});
   const pyi=document.getElementById('pickYearInput');
   const applyYear=()=>{const y=parseInt(pyi.value,10);
     if(y>=1900&&y<=nowY+1){selY=y;yVal.textContent=y;closePick()}};
@@ -2497,13 +2623,13 @@
     // чтение по месяцам: весь год в две строки — Jan–Jun и Jul–Dec
     const perMonth=[];
     for(let m=0;m<12;m++)perMonth.push(READ.filter(b=>b.year===nowY&&b.month===m).length);
-    const maxN=Math.max(1,...perMonth);
-    const flat=maxN>10;
-    const cubeH=flat? .95 : 2.2, gap=.35, unit=cubeH+gap;
-    const rows=flat?Math.min(20,maxN):Math.min(10,maxN);
-    const stackH=(rows*unit-gap).toFixed(2);
-
     function fillHalf(colsId,axisId,from){
+      // высота считается по максимуму СВОЕГО полугодия — пустая половина не растёт
+      const maxN=Math.max(1,...perMonth.slice(from,from+6));
+      const flat=maxN>10;
+      const cubeH=flat? .95 : 2.2, gap=.35, unit=cubeH+gap;
+      const rows=flat?Math.min(20,maxN):Math.min(10,maxN);
+      const stackH=(rows*unit-gap).toFixed(2);
       const cols=document.getElementById(colsId); cols.innerHTML='';
       for(let m=from;m<from+6;m++){
         const n=perMonth[m];
@@ -2559,6 +2685,7 @@
         c.className=(bk.cov?'gcov':'gcov im-'+bk.id); c.dataset.id=bk.id;
         if(bk.cov){c.style.backgroundImage='url('+bk.cov+')';c.style.backgroundSize='cover';c.style.backgroundPosition='center'}
         c.style.animationDelay=(gi*0.06+Math.min(i,10)*0.03)+'s';
+        if(bk.liked)c.innerHTML='<svg class="gfav" viewBox="0 0 24 24"><path d="'+HEART+'"/></svg>';
         g.appendChild(c);
       });
       wrap.appendChild(g);
@@ -2593,6 +2720,7 @@
       c.className=(bk.cov?'gcov':'gcov im-'+bk.id); c.dataset.id=bk.id;
       if(bk.cov){c.style.backgroundImage='url('+bk.cov+')';c.style.backgroundSize='cover';c.style.backgroundPosition='center'}
       c.style.animationDelay=(Math.min(i,12)*0.03)+'s';
+      if(bk.liked)c.innerHTML='<svg class="gfav" viewBox="0 0 24 24"><path d="'+HEART+'"/></svg>';
       w.appendChild(c);
       if(bk.rating){const bd=document.createElement('span');bd.className='rt-badge';bd.textContent=bk.rating;w.appendChild(bd)}
       g.appendChild(w);
@@ -2607,6 +2735,7 @@
     favs.forEach((bk,i)=>{
       const c=document.createElement('div');
       c.className=(bk.cov?'gcov':'gcov im-'+bk.id); c.dataset.id=bk.id;
+      c.innerHTML='<svg class="gfav" viewBox="0 0 24 24"><path d="'+HEART+'"/></svg>';
       if(bk.cov){c.style.backgroundImage='url('+bk.cov+')';c.style.backgroundSize='cover';c.style.backgroundPosition='center'}
       c.style.animationDelay=(Math.min(i,12)*0.04)+'s';
       g.appendChild(c);
@@ -2629,7 +2758,7 @@
       opts=[1,2]; cur=TR_ROW;
       apply=v=>{TR_ROW=v;try{localStorage.setItem('mrj-trrow',v)}catch(e){};buildTracker()};
     }else if(currentScreen==='books'){
-      opts=[2,3,4,6,8,10]; cur=BOOKS_ROW;
+      opts=[2,3,4]; cur=Math.min(BOOKS_ROW,4);
       apply=v=>{BOOKS_ROW=v;try{localStorage.setItem('mrj-bkrow',v)}catch(e){};renderReadGrid()};
     }else{
       opts=[2,3,4,6,8,10]; cur=ROWS[currentScreen]||4;
@@ -2816,6 +2945,7 @@
   }
   async function exportCard(bk,paged){
     await (document.fonts&&document.fonts.ready);
+    // масштаб приложения: 1rem экрана = 50.6px листа — карточка повторяет вид конспекта
     const W=1654, M=130, INW=W-2*M, ACC='#47B0E9', SOFT='#8a8a8e', TXT='#1d1d1f';
     const F=(sz,it,wt)=> (it?'italic ':'')+(wt||500)+' '+sz+'px "Montserrat Alternates"';
     const cv=document.createElement('canvas'); cv.width=W; cv.height=100;
@@ -2829,7 +2959,7 @@
 
     function layout(draw,safe){
       let y=150;
-      const mark=()=>{if(safe)safe.push(y-36)}; // просвет между строками
+      const mark=()=>{if(safe)safe.push(y-36)};
       const cw=430, ch=645;
       if(coverImg){
         if(draw){ctx.save();rr(ctx,(W-cw)/2,y,cw,ch,14);ctx.clip();
@@ -2839,32 +2969,62 @@
           ctx.restore();}
         y+=ch+96; mark();
       }
-      // заголовок — жирный
+      // название — жирное, компактный кегль прошлой версии
       ctx.font=F(66,false,600); ctx.textAlign='center'; ctx.fillStyle=TXT;
-      wrapText(ctx,bk.title||'',INW).forEach(l=>{if(draw)ctx.fillText(l,W/2,y);y+=86}); y+=18; mark();
-      if(bk.author){ctx.font=F(44,true);ctx.fillStyle=SOFT;
-        if(draw)ctx.fillText(bk.author,W/2,y); y+=84; mark()}
-      // жанр (теги в файл не включаем)
-      if(bk.genre){ctx.font=F(38);ctx.fillStyle=TXT;ctx.textAlign='center';
-        if(draw)ctx.fillText(bk.genre,W/2,y); y+=64; mark()}
+      wrapText(ctx,bk.title||'',INW).forEach(l=>{if(draw)ctx.fillText(l,W/2,y);y+=86}); y-=6; mark();
+      // автор — ровным шрифтом, кегль как у жанра и ответов
+      if(bk.author){ctx.font=F(40,false,500);ctx.fillStyle=TXT;
+        if(draw)ctx.fillText(bk.author,W/2,y); y+=118; mark()}
+      // жанр (жирный) и хештеги — одной строкой, как в конспекте
+      const rowItems=[];
+      if(bk.genre)rowItems.push({txt:bk.genre,chip:false});
+      (bk.tags||[]).forEach(tg=>rowItems.push({txt:'#'+tg,chip:true}));
+      if(rowItems.length){
+        const cpad=40, cgap=18, chh=62;
+        const meas=it=>{ctx.font=it.chip?F(34,true):F(40,false,600);
+          return ctx.measureText(it.txt).width+(it.chip?cpad*2:0)};
+        const lines=[]; let cur=[],curW=0;
+        rowItems.forEach(it=>{
+          const w=meas(it);
+          if(curW&&curW+cgap+w>INW){lines.push({items:cur,w:curW});cur=[];curW=0}
+          cur.push(Object.assign({w},it)); curW+=(curW?cgap:0)+w;
+        });
+        if(cur.length)lines.push({items:cur,w:curW});
+        lines.forEach(ln=>{
+          let x=(W-ln.w)/2;
+          ln.items.forEach(it=>{
+            if(draw){
+              if(it.chip){ctx.fillStyle='rgba(97,183,228,.16)';rr(ctx,x,y-44,it.w,chh,30);ctx.fill();
+                ctx.font=F(34,true);ctx.fillStyle=TXT;ctx.textAlign='center';
+                ctx.fillText(it.txt,x+it.w/2,y)}
+              else{ctx.font=F(40,false,600);ctx.fillStyle=TXT;ctx.textAlign='center';
+                ctx.fillText(it.txt,x+it.w/2,y)}
+            }
+            x+=it.w+cgap;
+          });
+          y+=chh+18;
+        });
+        mark();
+      }
+      // плашки — пропорции и плотность как в приложении
       const pills=[];
       if(bk.format)pills.push(I18N[LANG].fmt[bk.format]);
       if(bk.year!=null)pills.push((bk.month!=null?MONTH_FULL[bk.month]+' ':'')+bk.year);
       if(bk.rating)pills.push(bk.rating+' / 10');
       if(bk.pages)pills.push(bk.pages+' '+t('pages_w'));
       if(pills.length){
-        y+=34; ctx.font=F(34); ctx.textAlign='center';
-        const pad=34, gap2=20, hh=76;
+        y+=58; ctx.font=F(34,true); ctx.textAlign='center';
+        const pad=64, gap2=20, hh=112;
         const widths=pills.map(p=>ctx.measureText(p).width+pad*2);
         let x=(W-(widths.reduce((a,b)=>a+b,0)+gap2*(pills.length-1)))/2;
         if(x<M)x=M;
         pills.forEach((p,i)=>{
           if(x+widths[i]>W-M){x=M;y+=hh+16}
-          if(draw){ctx.fillStyle='#F3F4F6';rr(ctx,x,y-50,widths[i],hh,34);ctx.fill();
+          if(draw){ctx.fillStyle='#F3F4F6';rr(ctx,x,y-68,widths[i],hh,24);ctx.fill();
             ctx.fillStyle=SOFT;ctx.fillText(p,x+widths[i]/2,y)}
           x+=widths[i]+gap2;
         });
-        y+=hh+44; mark();
+        y+=hh; mark();
       }
       if(bk.links&&bk.links.length){
         y+=20; ctx.textAlign='left';
@@ -2905,7 +3065,7 @@
         });
       }
       if(mediaImgs.length){
-        if(safe)safe.push(y); // рез до отступа: у картинок остаётся полный верхний зазор
+        if(safe)safe.push(y);
         y+=56;
         const cols=4, gap=16, unit=(INW-gap*(cols-1))/cols;
         const pos=packMedia(mediaImgs,cols);
@@ -2921,16 +3081,12 @@
         });
         y+=maxR*unit+(maxR-1)*gap+90; mark();
       }
-      ctx.font=F(40); ctx.textAlign='center';
-      if(draw){ctx.fillStyle=ACC;ctx.fillText('M R J',W/2,y+30)}
-      y+=110;
+      y+=40;
       return y;
     }
+
     const safe=[];
-    const H=Math.max(2339,Math.ceil(layout(false,safe)));
-    cv.height=H; ctx=cv.getContext('2d');
-    ctx.fillStyle='#FFFFFF'; ctx.fillRect(0,0,W,H);
-    layout(true,null);
+    const Hreal=Math.ceil(layout(false,safe));
 
     const fname=(bk.title||'book').replace(/[\\/:*?"<>|]+/g,' ').trim();
     const dlBlob=(blob,name)=>{
@@ -2938,41 +3094,204 @@
       const a=document.createElement('a');
       a.download=name; a.href=u;
       document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(()=>URL.revokeObjectURL(u),8000);
+      setTimeout(()=>URL.revokeObjectURL(u),9000);
     };
     const toBlob=canvas=>new Promise(res=>canvas.toBlob(res,'image/png'));
-
-    const A4H=2339, TOP=110, BOT=150, USE=A4H-TOP-BOT;
-    if(!paged||H<=A4H){
-      const b=await toBlob(cv); if(b)dlBlob(b,fname+' — MRJ.png');
-      return;
+    // одна карточка — сразу файлом; несколько — окно, где каждую можно забрать по одной
+    async function deliver(blobs,names){
+      if(blobs.length===1){dlBlob(blobs[0],names[0]);return}
+      openExpReady(blobs,names,fname);
     }
-    // равные карточки: рез только по безопасным линиям, текст не режется
+
+    const A4H=2339, TOP=110, BOT=170, USE=A4H-TOP-BOT; // снизу место под M R J
+    // раскрой: по безопасным линиям; хвост-сирота подклеивается или забирает себе больше
     const cuts=[0];
-    while(H-cuts[cuts.length-1]>USE){
+    while(Hreal-cuts[cuts.length-1]>USE){
       const from=cuts[cuts.length-1], target=from+USE;
       let best=-1;
       for(const s of safe){if(s<=target&&s>from+400)best=s}
       cuts.push(best>0?best:target);
     }
-    cuts.push(H);
+    cuts.push(Hreal);
+    if(cuts.length>2){
+      const lastSeg=cuts[cuts.length-1]-cuts[cuts.length-2];
+      if(lastSeg<340){
+        const prevFrom=cuts[cuts.length-3];
+        if(Hreal-prevFrom<=USE+60){ cuts.splice(cuts.length-2,1); } // влезает — клею к предыдущей
+        else{
+          // переношу рез выше, чтобы хвост стал полноценным
+          let nb=-1;
+          for(const s of safe){if(s<=Hreal-340&&s>prevFrom+400&&Hreal-s<=USE)nb=s}
+          if(nb>0)cuts[cuts.length-2]=nb;
+        }
+      }
+    }
     const total=cuts.length-1;
-    const files=[];
-    for(let p=0;p<total;p++){
-      const segH=cuts[p+1]-cuts[p];
+    if(total>15){ openLimitAsk(); return; }
+
+    function renderPage(p,withNum){
       const pc=document.createElement('canvas'); pc.width=W; pc.height=A4H;
       const px=pc.getContext('2d');
       px.fillStyle='#FFFFFF'; px.fillRect(0,0,W,A4H);
-      px.drawImage(cv,0,cuts[p],W,segH,0,TOP,W,segH);
-      // номер страницы — правый верхний угол, вне текста
-      px.fillStyle=ACC; px.font=F(32); px.textAlign='right';
-      px.fillText((p+1)+' / '+total,W-70,86);
-      const b=await toBlob(pc);
-      if(b)files.push({name:fname+' '+(p+1)+' of '+total+'.png',
-                       data:new Uint8Array(await b.arrayBuffer())});
+      // единственная короткая карточка — по центру; всё остальное прибито к верхней рамке
+      const segH=cuts[p+1]-cuts[p];
+      const dy=(total===1)?Math.max(TOP,Math.round((A4H-segH)/2)):TOP;
+      px.save();
+      px.beginPath(); px.rect(0,dy,W,segH); px.clip();
+      px.translate(0,dy-cuts[p]);
+      ctx=px; layout(true,null);
+      px.restore();
+      if(withNum){
+        px.fillStyle=ACC; px.font=F(32); px.textAlign='right';
+        px.fillText((p+1)+' / '+total,W-70,86);
+      }
+      // M R J — на каждой странице, с тем же полем снизу, что у номера сверху
+      px.fillStyle=ACC; px.font=F(40); px.textAlign='center';
+      px.fillText('M R J',W/2,A4H-74);
+      return pc;
     }
-    if(files.length)dlBlob(zipStore(files),fname+' — MRJ.zip');
+
+    if(!paged&&Hreal<=7600){
+      const H=Math.max(2339,Hreal+130);
+      const cv2=document.createElement('canvas'); cv2.width=W; cv2.height=H;
+      const c2=cv2.getContext('2d');
+      c2.fillStyle='#FFFFFF'; c2.fillRect(0,0,W,H);
+      ctx=c2; layout(true,null);
+      c2.fillStyle=ACC; c2.font=F(40); c2.textAlign='center';
+      c2.fillText('M R J',W/2,H-74);
+      const b=await toBlob(cv2);
+      if(b)await deliver([b],[fname+' — MRJ.png']);
+      return;
+    }
+    const blobs=[],names=[];
+    for(let p=0;p<total;p++){
+      const b=await toBlob(renderPage(p,total>1));
+      if(b){blobs.push(b);names.push(fname+' '+(p+1)+' of '+total+'.png')}
+    }
+    if(blobs.length)await deliver(blobs,names);
   }
+
+  // ---- выгрузка карточки цели: обложки по 4 в ряд, ряды не режутся ----
+  async function exportGoal(){
+    await (document.fonts&&document.fonts.ready);
+    const W=1654, M=130, INW=W-2*M, ACC='#47B0E9', SOFT='#8a8a8e', TXT='#1d1d1f';
+    const F=(sz,it,wt)=> (it?'italic ':'')+(wt||500)+' '+sz+'px "Montserrat Alternates"';
+    const cv=document.createElement('canvas'); cv.width=W; cv.height=100;
+    let ctx=cv.getContext('2d');
+    let spineImg=null;
+    try{const ss=spineSrc(); if(ss)spineImg=await loadImg(ss)}catch(e){}
+    const list=[...READ].sort((a,b)=>(a.added||0)-(b.added||0));
+    const covers=[];
+    for(const b of list){
+      let im=null;
+      try{const s=coverSrcOf(b); if(s)im=await loadImg(s)}catch(e){}
+      covers.push(im);
+    }
+    const year=GOAL.year||new Date().getFullYear();
+    const n=Math.min(READ.length,GOAL.goal);
+
+    const cols=4, cgap=26;
+    const cw=Math.floor((INW-cgap*(cols-1))/cols), chH=Math.round(cw*1.5);
+
+    function layout(draw,safe){
+      let y=150;
+      y=126; ctx.textAlign='center';
+      // герой: крупная цифра цели; подпись «книг» — как «Цель на год»
+      const hero=[
+        {txt:String(GOAL.goal),f:F(150,true,600),c:TXT,dy:0},
+        {txt:'  '+t('books_lbl'),f:F(36,true,500),c:SOFT,dy:0}
+      ];
+      let tw=0; hero.forEach(p=>{ctx.font=p.f;p.w=ctx.measureText(p.txt).width;tw+=p.w});
+      let x=(W-tw)/2; ctx.textAlign='left';
+      hero.forEach(p=>{if(draw){ctx.font=p.f;ctx.fillStyle=p.c;ctx.fillText(p.txt,x,y)}x+=p.w});
+      y+=70;
+      ctx.textAlign='center'; ctx.font=F(36,true); ctx.fillStyle=SOFT;
+      if(draw)ctx.fillText(t('goal_cap'),W/2,y);
+      y+=104;
+      // прогресс: N из M — прочитанное голубым
+      const prog=[
+        {txt:String(n),f:F(36,false,600),c:ACC},
+        {txt:' '+t('of_w')+' ',f:F(36,false,500),c:SOFT},
+        {txt:String(GOAL.goal),f:F(36,false,600),c:TXT}
+      ];
+      tw=0; prog.forEach(p=>{ctx.font=p.f;p.w=ctx.measureText(p.txt).width;tw+=p.w});
+      x=(W-tw)/2; ctx.textAlign='left';
+      prog.forEach(p=>{if(draw){ctx.font=p.f;ctx.fillStyle=p.c;ctx.fillText(p.txt,x,y)}x+=p.w});
+      y+=100; if(safe)safe.push(y-44);
+      // сетка обложек
+      for(let i=0;i<list.length;i+=cols){
+        for(let j=0;j<cols&&i+j<list.length;j++){
+          const xx=M+j*(cw+cgap);
+          if(draw){
+            const im=covers[i+j];
+            ctx.save(); rr(ctx,xx,y,cw,chH,14); ctx.clip();
+            if(im){
+              const k=Math.max(cw/im.width,chH/im.height);
+              ctx.drawImage(im,xx-(im.width*k-cw)/2,y-(im.height*k-chH)/2,im.width*k,im.height*k);
+              if(spineImg){ctx.globalAlpha=.9;ctx.drawImage(spineImg,xx,y,cw,chH);ctx.globalAlpha=1}
+            }else{
+              ctx.fillStyle='#F3F4F6'; ctx.fillRect(xx,y,cw,chH);
+              ctx.fillStyle=SOFT; ctx.font=F(40,false,500); ctx.textAlign='center';
+              ctx.fillText(String(i+j+1),xx+cw/2,y+chH/2+14); ctx.textAlign='left';
+            }
+            ctx.restore();
+          }
+        }
+        y+=chH+cgap;
+        if(safe)safe.push(y-Math.round(cgap/2)); // рез только между рядами
+      }
+      y+=30;
+      return y;
+    }
+
+    const safe=[];
+    const Hreal=Math.ceil(layout(false,safe));
+    const fname=(t('goal_t')+' '+year).trim();
+    const toBlob=c=>new Promise(res=>c.toBlob(res,'image/png'));
+    const dlBlob=(blob,name)=>{
+      const u=URL.createObjectURL(blob);
+      const a=document.createElement('a'); a.download=name; a.href=u;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(u),9000);
+    };
+    const A4H=2339, TOP=110, BOT=170, USE=A4H-TOP-BOT;
+    const cuts=[0];
+    while(Hreal-cuts[cuts.length-1]>USE){
+      const from=cuts[cuts.length-1], target=from+USE;
+      let best=-1;
+      for(const s of safe){if(s<=target&&s>from+400)best=s}
+      cuts.push(best>0?best:target);
+    }
+    cuts.push(Hreal);
+    const total=cuts.length-1;
+    if(total>15){openLimitAsk();return}
+    const blobs=[],names=[];
+    for(let p=0;p<total;p++){
+      const pc=document.createElement('canvas'); pc.width=W; pc.height=A4H;
+      const px=pc.getContext('2d');
+      px.fillStyle='#FFFFFF'; px.fillRect(0,0,W,A4H);
+      const segH=cuts[p+1]-cuts[p];
+      const dy=(total===1)?Math.max(TOP,Math.round((A4H-segH)/2)):TOP;
+      px.save(); px.beginPath(); px.rect(0,dy,W,segH); px.clip();
+      px.translate(0,dy-cuts[p]); ctx=px; layout(true,null); px.restore();
+      px.font=F(32); px.textAlign='right';
+      let rx=W-70;
+      if(total>1){
+        px.fillStyle=ACC;
+        px.fillText((p+1)+' / '+total,rx,86);
+        rx-=px.measureText((p+1)+' / '+total).width+34;
+      }
+      px.fillStyle=TXT;
+      px.fillText(t('goal_t')+' \u00b7 '+year,rx,86);
+      px.fillStyle=ACC; px.font=F(40); px.textAlign='center';
+      px.fillText('M R J',W/2,A4H-74);
+      const b=await toBlob(pc);
+      if(b){blobs.push(b);names.push(total>1?fname+' '+(p+1)+' of '+total+'.png':fname+' — MRJ.png')}
+    }
+    if(!blobs.length)return;
+    openExpReady(blobs,names,fname); // попап всегда — хоть одна карточка, хоть десять
+  }
+  document.getElementById('goalDlBtn').addEventListener('click',exportGoal);
 
   // ---- просмотр сохранённой книги ----
   const viewSheet=document.getElementById('viewSheet');
@@ -3021,6 +3340,66 @@
   }
   function closeView(){viewSheet.classList.remove('open');
     if(!addSheet.classList.contains('open')){sheetScrim.classList.remove('open');document.body.classList.remove('addopen')}}
+  // окно готовых карточек
+  const expReady=document.getElementById('expReady');
+  let expBlobs=[],expNames=[],expUrls=[],expBase='';
+  function closeExpReady(){
+    expReady.classList.remove('open'); pickScrim.classList.remove('open');
+    expUrls.forEach(u=>URL.revokeObjectURL(u)); expUrls=[]; expBlobs=[]; expNames=[];
+  }
+  function openExpReady(blobs,names,base){
+    expBlobs=blobs; expNames=names; expBase=base;
+    document.getElementById('expReadyT').textContent=t('exp_ready_t');
+    document.getElementById('expReadySub').textContent=t('exp_ready_sub');
+    document.getElementById('expZip').textContent=t('exp_zip');
+    const shBtn=document.getElementById('expShare');
+    shBtn.textContent=t('exp_share');
+    let canSh=false;
+    try{canSh=!!(navigator.canShare&&navigator.canShare({files:[new File([blobs[0]],names[0],{type:'image/png'})]}))}catch(e){}
+    shBtn.classList.toggle('hidden',!canSh);
+    const g=document.getElementById('expGrid'); g.innerHTML='';
+    blobs.forEach((b,i)=>{
+      const row=document.createElement('button'); row.type='button'; row.className='exp-row';
+      const lb=document.createElement('span'); lb.textContent=tf('exp_card',{n:i+1});
+      const ic=document.createElement('span'); ic.className='ic ic-dl';
+      row.appendChild(lb); row.appendChild(ic);
+      row.addEventListener('click',()=>{
+        const u=URL.createObjectURL(b);
+        const a=document.createElement('a'); a.download=expNames[i]; a.href=u;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(()=>URL.revokeObjectURL(u),9000);
+        row.classList.add('got');
+      });
+      g.appendChild(row);
+    });
+    expReady.classList.add('open'); pickScrim.classList.add('open');
+  }
+  document.getElementById('expReadyClose').addEventListener('click',closeExpReady);
+  document.getElementById('expZip').addEventListener('click',async()=>{
+    const files=[];
+    for(let i=0;i<expBlobs.length;i++)
+      files.push({name:expNames[i],data:new Uint8Array(await expBlobs[i].arrayBuffer())});
+    const u=URL.createObjectURL(zipStore(files));
+    const a=document.createElement('a'); a.download=expBase+' — MRJ.zip'; a.href=u;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(u),9000);
+  });
+  document.getElementById('expShare').addEventListener('click',async()=>{
+    try{
+      const fl=expBlobs.map((b,i)=>new File([b],expNames[i],{type:'image/png'}));
+      await navigator.share({files:fl});
+    }catch(e){}
+  });
+
+  const limitAsk=document.getElementById('limitAsk');
+  function openLimitAsk(){
+    document.getElementById('limitT').textContent=t('exp_limit_t');
+    document.getElementById('limitSub').textContent=t('exp_limit_sub');
+    document.getElementById('limitOk').textContent=t('ok_w');
+    limitAsk.classList.add('open'); pickScrim.classList.add('open');
+  }
+  const closeLimitAsk=()=>{limitAsk.classList.remove('open');pickScrim.classList.remove('open')};
+  document.getElementById('limitOk').addEventListener('click',closeLimitAsk);
   const expAsk=document.getElementById('expAsk');
   const closeExpAsk=()=>{expAsk.classList.remove('open');pickScrim.classList.remove('open')};
   document.getElementById('vExport').addEventListener('click',()=>{
@@ -3124,6 +3503,7 @@
     document.getElementById('screen-articles').classList.toggle('hidden',name!=='articles');
     document.getElementById('screen-profile').classList.toggle('hidden',name!=='profile');
     document.getElementById('artPlusBtn').classList.toggle('hidden',name!=='articles');
+    document.getElementById('goalDlBtn').classList.toggle('hidden',name!=='goal');
     document.getElementById('gearBtn').classList.toggle('hidden',['goal','months','authors','hashtags','favorites','wishlist','rating','tracker'].indexOf(name)<0);
     currentScreen=name;
     if(name==='tracker'){pageTitle.classList.remove('swap');pageTitle.innerHTML='<span class="tt">'+t('tracker')+'</span>';buildTracker()}
@@ -3179,7 +3559,9 @@
         renderReadGrid(); renderWishlistFan();
       }
     }catch(e){}
+    document.body.classList.remove('booting'); // показываем уже актуальное
   })();
+  setTimeout(()=>document.body.classList.remove('booting'),900);
 
   // ---- бэкап библиотеки файлом на устройство ----
   function backupData(){
@@ -3197,6 +3579,66 @@
     a.href=u; document.body.appendChild(a); a.click(); a.remove();
     setTimeout(()=>URL.revokeObjectURL(u),5000);
     closeDrawer();
+  });
+  // импорт готовой библиотеки из CSV (Goodreads, LiveLib и любые таблицы с колонками название/автор)
+  function parseCSV(text){
+    const rows=[]; let row=[],cell='',q=false;
+    for(let i=0;i<text.length;i++){
+      const ch=text[i];
+      if(q){
+        if(ch==='"'){ if(text[i+1]==='"'){cell+='"';i++} else q=false }
+        else cell+=ch;
+      }else{
+        if(ch==='"')q=true;
+        else if(ch===','){row.push(cell);cell=''}
+        else if(ch==='\n'){row.push(cell);rows.push(row);row=[];cell=''}
+        else if(ch!=='\r')cell+=ch;
+      }
+    }
+    if(cell||row.length){row.push(cell);rows.push(row)}
+    return rows.filter(r=>r.some(c=>c.trim()));
+  }
+  document.getElementById('importCsv').addEventListener('click',()=>document.getElementById('csvInput').click());
+  document.getElementById('csvInput').addEventListener('change',()=>{
+    const f=document.getElementById('csvInput').files[0]; if(!f)return;
+    const r=new FileReader();
+    r.onload=()=>{
+      try{
+        const rows=parseCSV(String(r.result)); if(rows.length<2)return;
+        const head=rows[0].map(h=>h.trim().toLowerCase());
+        const find=(...names)=>head.findIndex(h=>names.some(n=>h===n||h.includes(n)));
+        const iT=find('title','название'), iA=find('author','автор'),
+              iR=find('my rating','рейтинг','оценка'), iP=find('number of pages','страниц','pages'),
+              iD=find('date read','дата прочтения','дата');
+        if(iT<0)return;
+        const gr5=head[iR]==='my rating'; // Goodreads: шкала 1–5
+        const have=new Set(READ.map(b=>((b.title||'')+'|'+(b.author||'')).toLowerCase()));
+        let addBase=Math.max(0,...READ.map(b=>b.added||0)), n=0;
+        rows.slice(1).forEach(row=>{
+          const title=(row[iT]||'').trim(); if(!title)return;
+          const author=iA>=0?(row[iA]||'').trim():'';
+          const key=(title+'|'+author).toLowerCase();
+          if(have.has(key))return;
+          have.add(key);
+          const bk={id:'i'+Date.now()+'_'+(n++), added:++addBase, liked:false,
+                    title, author, genre:'', tags:[], format:'paper',
+                    notes:[], media:[], links:[]};
+          if(iR>=0){let v=parseFloat(String(row[iR]).replace(',','.'));
+            if(v){ if(gr5||v<=5)v=v*2; bk.rating=Math.max(1,Math.min(10,Math.round(v))) }}
+          if(iP>=0){const p=parseInt(row[iP],10); if(p)bk.pages=p}
+          if(iD>=0&&row[iD]){
+            const m=String(row[iD]).match(/(\d{4})[\/.\-](\d{1,2})|(\d{1,2})[\/.\-](\d{1,2})[\/.\-](\d{4})/);
+            if(m){ if(m[1]){bk.year=+m[1];bk.month=Math.min(11,Math.max(0,+m[2]-1))}
+                   else{bk.year=+m[5];bk.month=Math.min(11,Math.max(0,+m[4]-1))} }
+          }
+          READ.push(bk);
+        });
+        persistLibrary(); renderReadGrid();
+        closeDrawer(); showScreen('books');
+      }catch(e){}
+      document.getElementById('csvInput').value='';
+    };
+    r.readAsText(f);
   });
   document.getElementById('backupLoad').addEventListener('click',()=>document.getElementById('backupInput').click());
   document.getElementById('backupInput').addEventListener('change',()=>{
@@ -3246,6 +3688,7 @@
     setLbl(document.getElementById('themeBtn'),'theme');
     setLbl(document.getElementById('backupSave'),'save_backup');
     setLbl(document.getElementById('backupLoad'),'load_backup');
+    setLbl(document.getElementById('importCsv'),'import_csv');
     // главная
     const st=document.querySelector('.section-title span'); if(st)st.textContent=t('already_read');
     const ct=document.querySelector('.card-title'); if(ct)ct.textContent=t('wishlist');
@@ -3317,5 +3760,6 @@
   applyLang();
   renderGoalIsland();
 </script>
+<script>console.log('MRJ build 2026-09-22 · 13:20')</script>
 </body>
 </html>
