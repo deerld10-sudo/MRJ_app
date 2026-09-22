@@ -2959,7 +2959,7 @@
 
     function layout(draw,safe){
       let y=150;
-      const mark=()=>{if(safe)safe.push(y-44)}; // просвет при строке 72
+      const mark=()=>{if(safe)safe.push(y-42)}; // просвет при строке 68
       const cw=430, ch=645;
       if(coverImg){
         if(draw){ctx.save();rr(ctx,(W-cw)/2,y,cw,ch,14);ctx.clip();
@@ -2971,10 +2971,10 @@
       }
       // название — жирное, компактный кегль прошлой версии
       ctx.font=F(66,false,600); ctx.textAlign='center'; ctx.fillStyle=TXT;
-      wrapText(ctx,bk.title||'',INW).forEach(l=>{if(draw)ctx.fillText(l,W/2,y);y+=86}); y-=6; mark();
+      wrapText(ctx,bk.title||'',INW).forEach(l=>{if(draw)ctx.fillText(l,W/2,y);y+=86}); y-=16; mark(); // x=70 до автора
       // автор — ровным шрифтом, кегль как у жанра и ответов
       if(bk.author){ctx.font=F(50,false,500);ctx.fillStyle=TXT;
-        if(draw)ctx.fillText(bk.author,W/2,y); y+=128; mark()}
+        if(draw)ctx.fillText(bk.author,W/2,y); y+=140; mark()} // 2x до жанра
       // жанр (жирный) и хештеги — одной строкой, как в конспекте
       const rowItems=[];
       if(bk.genre)rowItems.push({txt:bk.genre,chip:false});
@@ -3040,28 +3040,28 @@
         y+=60; ctx.textAlign='left';
         bk.notes.forEach(n=>{
           ctx.font=F(36,true); ctx.fillStyle=SOFT;
-          wrapText(ctx,locQ(n.q),INW).forEach(l=>{if(draw)ctx.fillText(l,M,y);y+=50}); y+=12;
+          wrapText(ctx,locQ(n.q),INW).forEach(l=>{if(draw)ctx.fillText(l,M,y);y+=50}); y+=26;
           ctx.fillStyle=TXT;
           String(n.a).split('\n').forEach(par=>{
             const words=[];
             fmtRuns(par).forEach(r=>r.t.split(/\s+/).filter(Boolean)
               .forEach(w=>words.push({w,b:r.b,i:r.i})));
-            const fw=o=>{ctx.font=F(50,o.i,o.b?700:400);return ctx.measureText(o.w).width};
-            const sp=(()=>{ctx.font=F(50);return ctx.measureText(' ').width})();
+            const fw=o=>{ctx.font=F(46,o.i,o.b?700:400);return ctx.measureText(o.w).width};
+            const sp=(()=>{ctx.font=F(46);return ctx.measureText(' ').width})();
             let line=[],lw=0;
             const flush=()=>{
-              if(draw){let x=M;line.forEach(o=>{ctx.font=F(50,o.i,o.b?700:400);
+              if(draw){let x=M;line.forEach(o=>{ctx.font=F(46,o.i,o.b?700:400);
                 ctx.fillText(o.w,x,y);x+=o._w+sp})}
-              y+=72; mark(); line=[]; lw=0;
+              y+=68; mark(); line=[]; lw=0;
             };
             words.forEach(o=>{
               o._w=fw(o);
               if(lw&&lw+sp+o._w>INW)flush();
               line.push(o); lw+=(lw?sp:0)+o._w;
             });
-            if(line.length)flush(); else {y+=72; mark();}
+            if(line.length)flush(); else {y+=68; mark();}
           });
-          y+=68; mark();
+          y+=64; mark();
         });
       }
       if(mediaImgs.length){
@@ -3142,7 +3142,7 @@
       ctx=px; layout(true,null);
       px.restore();
       if(withNum){
-        px.fillStyle=ACC; px.font=F(36); px.textAlign='right';
+        px.fillStyle=ACC; px.font=F(40); px.textAlign='right';
         px.fillText((p+1)+' / '+total,W-70,86);
       }
       // M R J — на каждой странице, с тем же полем снизу, что у номера сверху
@@ -3198,16 +3198,16 @@
       y=126; ctx.textAlign='center';
       // герой: крупная цифра цели; подпись «книг» — как «Цель на год»
       const hero=[
-        {txt:String(GOAL.goal),f:F(170,true,600),c:TXT,dy:0},
-        {txt:'  '+t('books_lbl'),f:F(50,true,500),c:SOFT,dy:0}
+        {txt:String(GOAL.goal),f:F(250,true,600),c:TXT,dy:0},
+        {txt:'  '+t('books_lbl'),f:F(46,true,500),c:SOFT,dy:0}
       ];
       let tw=0; hero.forEach(p=>{ctx.font=p.f;p.w=ctx.measureText(p.txt).width;tw+=p.w});
       let x=(W-tw)/2; ctx.textAlign='left';
       hero.forEach(p=>{if(draw){ctx.font=p.f;ctx.fillStyle=p.c;ctx.fillText(p.txt,x,y)}x+=p.w});
-      y+=70;
-      ctx.textAlign='center'; ctx.font=F(50,true); ctx.fillStyle=SOFT;
+      y+=64; // x
+      ctx.textAlign='center'; ctx.font=F(46,true); ctx.fillStyle=SOFT;
       if(draw)ctx.fillText(t('goal_cap'),W/2,y);
-      y+=118;
+      y+=128; // 2x
       // прогресс: N из M — прочитанное голубым
       const prog=[
         {txt:String(n),f:F(54,false,600),c:ACC},
@@ -3217,7 +3217,7 @@
       tw=0; prog.forEach(p=>{ctx.font=p.f;p.w=ctx.measureText(p.txt).width;tw+=p.w});
       x=(W-tw)/2; ctx.textAlign='left';
       prog.forEach(p=>{if(draw){ctx.font=p.f;ctx.fillStyle=p.c;ctx.fillText(p.txt,x,y)}x+=p.w});
-      y+=112; if(safe)safe.push(y-44);
+      y+=128; if(safe)safe.push(y-44); // 2x до обложек
       // сетка обложек
       for(let i=0;i<list.length;i+=cols){
         const k=Math.min(cols,list.length-i); // в ряду меньше четырёх — центруем
@@ -3279,11 +3279,11 @@
       px.textAlign='right';
       let rx=W-70;
       if(total>1){
-        px.font=F(36); px.fillStyle=ACC;
+        px.font=F(40); px.fillStyle=ACC;
         px.fillText((p+1)+' / '+total,rx,86);
         rx-=px.measureText((p+1)+' / '+total).width+34;
       }
-      px.font=F(36); px.fillStyle=TXT;
+      px.font=F(40); px.fillStyle=TXT;
       px.fillText(t('goal_t')+' \u00b7 '+year,rx,86);
       px.fillStyle=ACC; px.font=F(40); px.textAlign='center';
       px.fillText('M R J',W/2,A4H-74);
