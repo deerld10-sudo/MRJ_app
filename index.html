@@ -285,7 +285,11 @@
     scrollbar-width:thin;scrollbar-color:rgba(97,183,228,.45) transparent}
   .note-item textarea::-webkit-scrollbar{width:.4rem}
   .note-item textarea::-webkit-scrollbar-thumb{background:rgba(97,183,228,.45);border-radius:1rem}
-  .fld input,.note-item textarea,#searchInput,#sheetInput,#goalInput,#pickYearInput,#profNameInput,#customQ,#aQ{font-size:16px}
+  .fld input,.note-item textarea,#searchInput,#sheetInput,#goalInput,#pickYearInput,#profNameInput,#customQ,#aQ{font-size:14px!important}
+  /* подсказки в полях — единый кегль 12, как у кнопок-подсказок */
+  .fld input::placeholder,.note-item textarea::placeholder,#searchInput::placeholder,#sheetInput::placeholder,#goalInput::placeholder,#pickYearInput::placeholder,#profNameInput::placeholder,#customQ::placeholder,#aQ::placeholder{font-size:1.05rem}
+  /* в фокусе 16px — защита от авто-зума iOS сохраняется */
+  /* фокус-кегль не повышаем: зум давит maximum-scale=1 во вьюпорте */
   .fld input{width:100%;height:3.9rem;border-radius:1.2rem;border:none;
     background:rgba(97,183,228,.12);color:var(--text);
     font-family:'Montserrat Alternates',sans-serif;font-size:1.3rem;font-weight:500;
@@ -294,9 +298,9 @@
   body.dark .fld input,body.dark .sheet input{background:var(--circle);
     box-shadow:inset 0 0 0 .1rem rgba(122,197,240,.05)}
   body.dark .fld input:focus,body.dark .sheet input:focus{box-shadow:inset 0 0 0 .1rem rgba(122,197,240,.05),0 0 0 .09rem #47B0E9}
-  .fld input::placeholder{color:var(--text-soft);font-size:1.15rem;font-style:italic;font-weight:500}
+  .fld input::placeholder{color:var(--text-soft);font-size:1.05rem;font-style:italic;font-weight:500}
   .seg{display:flex;background:var(--circle);border-radius:1.3rem;padding:.35rem;gap:.35rem;margin-bottom:1.8rem}
-  .q-cap{text-align:center;font-size:1.3rem;font-weight:500;color:var(--text);margin:2.6rem 0 1rem}
+  .q-cap{text-align:center;font-size:1.3rem;font-weight:500;color:var(--text);margin:3rem 0 1rem}
   .seg button{flex:1 1 auto;white-space:nowrap;height:3.6rem;border:none;border-radius:1rem;cursor:pointer;
     background:transparent;color:var(--text-soft);
     font-family:'Montserrat Alternates',sans-serif;font-size:1.15rem;font-weight:500;font-style:italic;
@@ -350,7 +354,7 @@
     background:rgba(97,183,228,.12);color:var(--text);
     font-family:'Montserrat Alternates',sans-serif;font-size:1.3rem;font-weight:500;line-height:1.5;
     padding:1.1rem 1.4rem;outline:none;resize:none;appearance:none;transition:box-shadow .2s}
-  .note-item textarea::placeholder{color:var(--text-soft);font-size:1.15rem;font-style:italic;font-weight:500}
+  .note-item textarea::placeholder{color:var(--text-soft);font-size:1.05rem;font-style:italic;font-weight:500}
   .note-item textarea:focus{box-shadow:0 0 0 .09rem #47B0E9}
   body.dark .note-item textarea{background:var(--circle);box-shadow:inset 0 0 0 .1rem rgba(122,197,240,.05)}
   body.dark .note-item textarea:focus{box-shadow:inset 0 0 0 .1rem rgba(122,197,240,.05),0 0 0 .09rem #47B0E9}
@@ -364,7 +368,7 @@
   .v-line{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;align-items:center;margin-bottom:2rem}
   .v-line:empty{display:none}
   .v-genre-txt{font-size:1.2rem;font-weight:600;color:var(--text)}
-  .v-actions{display:flex;gap:1rem;margin-top:2.6rem}
+  .v-actions{display:flex;gap:1rem;margin-top:5.2rem}
   .v-actions .add-save{flex:1;margin:0}
   .v-dl{width:4.4rem;height:4.4rem;border-radius:50%;border:none;cursor:pointer;flex-shrink:0;
     background:var(--circle);display:flex;align-items:center;justify-content:center;
@@ -379,10 +383,12 @@
   body.dark .v-del{background:rgba(224,85,85,.2);color:#FF8A8A}
   .v-del:hover{opacity:.75}
   .s-danger{background:#E66A6A;color:#fff}
-  .vn-q{font-size:1.15rem;font-style:italic;font-weight:500;color:var(--text-soft);margin-bottom:.4rem}
-  .vn-a{font-size:1.3rem;line-height:1.55;margin-bottom:1.6rem;white-space:pre-wrap}
+  .vn-q{font-size:1.15rem;font-style:italic;font-weight:500;color:var(--text-soft);margin-bottom:.8rem}
+  .vn-a{font-size:14px;line-height:1.55;margin-bottom:1.6rem;white-space:pre-wrap}
   .vn-a b{font-weight:700}
   #vNotes{margin:.4rem 0 .6rem}
+  #vMedia{margin-top:3.6rem}
+  #vMedia:empty{display:none} /* без картинок лишний отступ не копится */
 
   /* ---------- ОСТРОВ ЦЕЛИ НА ГЛАВНОЙ ---------- */
   .goalcard{background:linear-gradient(to top left,#8FC7E8 0%,rgba(143,199,232,0) 68%);
@@ -459,7 +465,7 @@
     background:rgba(97,183,228,.12);color:var(--text-soft);
     font-family:'Montserrat Alternates',sans-serif;font-size:1.15rem;font-weight:500;font-style:italic;
     display:flex;align-items:center;justify-content:center;gap:.8rem;
-    margin-bottom:1.4rem;transition:background .25s}
+    margin-bottom:1rem;transition:background .25s}
   .media-add:hover{background:rgba(97,183,228,.2)}
   body.dark .media-add{background:var(--circle);box-shadow:inset 0 0 0 .1rem rgba(122,197,240,.05)}
   .media-add .ic{width:1.2rem;height:1.2rem;background:#47B0E9}
@@ -610,7 +616,7 @@
     background:rgba(97,183,228,.12);color:var(--text);padding:0 1.4rem;
     font-family:'Montserrat Alternates',sans-serif;font-size:1.3rem;font-weight:500;
     outline:none;appearance:none;transition:box-shadow .2s}
-  #searchInput::placeholder{color:var(--text-soft);font-size:1.15rem;font-style:italic;font-weight:500}
+  #searchInput::placeholder{color:var(--text-soft);font-size:1.05rem;font-style:italic;font-weight:500}
   #searchInput:focus{box-shadow:0 0 0 .09rem #47B0E9}
   body.dark #searchInput{background:var(--circle);box-shadow:inset 0 0 0 .1rem rgba(122,197,240,.05)}
   body.dark #searchInput:focus{box-shadow:inset 0 0 0 .1rem rgba(122,197,240,.05),0 0 0 .09rem #47B0E9}
@@ -763,7 +769,7 @@
     background:rgba(97,183,228,.12);color:var(--text);text-align:center;
     font-family:'Montserrat Alternates',sans-serif;font-size:1.3rem;font-weight:500;
     outline:none;appearance:none;transition:box-shadow .2s}
-  #pickYearInput::placeholder{color:var(--text-soft);font-size:1.15rem;font-style:italic;font-weight:500}
+  #pickYearInput::placeholder{color:var(--text-soft);font-size:1.05rem;font-style:italic;font-weight:500}
   #pickYearInput:focus{box-shadow:0 0 0 .09rem #47B0E9}
   body.dark #pickYearInput{background:var(--circle);box-shadow:inset 0 0 0 .1rem rgba(122,197,240,.05)}
   body.dark #pickYearInput:focus{box-shadow:inset 0 0 0 .1rem rgba(122,197,240,.05),0 0 0 .09rem #47B0E9}
@@ -784,7 +790,7 @@
   .v-tags{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:1.8rem}
   .v-tag{background:rgba(97,183,228,.16);color:var(--text);border-radius:1rem;
     padding:.5rem 1.1rem;font-size:1.05rem;font-style:italic}
-  .v-meta{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:2.2rem}
+  .v-meta{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:4.4rem}
   .v-meta .datepill{flex:0 1 auto;padding:0 1.8rem;white-space:nowrap}
   .v-meta .datepill{cursor:default}
 
@@ -866,7 +872,7 @@
     background:rgba(97,183,228,.12);color:var(--text);font-family:'Montserrat Alternates',sans-serif;
     font-size:1.4rem;text-align:center;outline:none;margin-bottom:1.6rem;
     appearance:none}
-    .sheet input::placeholder{color:var(--text-soft);font-size:1.15rem}
+    .sheet input::placeholder{color:var(--text-soft);font-size:1.05rem}
   .sheet input:focus{box-shadow:0 0 0 .09rem #47B0E9}
   .chips{display:flex;gap:.6rem;margin-bottom:1.4rem}
   .chip{flex:1;height:3.4rem;border:none;border-radius:1rem;cursor:pointer;
